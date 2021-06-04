@@ -1,0 +1,46 @@
+FROM continuumio/miniconda3:latest
+
+RUN apt-get update && \
+    apt-get -y dist-upgrade && \
+    apt-get -y --no-install-recommends install \
+    gosu && \
+    apt-get clean
+
+RUN conda config --add channels conda-forge && \
+    conda config --set channel_priority true && \
+    conda update -n base -c defaults conda && \
+    conda install -c conda-forge mamba && \
+    mamba update -c conda-forge --all && \
+    mamba install -c conda-forge \
+    pyinotify \
+    trollsift \
+    netifaces \
+    pyzmq \
+    six \
+    scp \
+    paramiko \
+    pyyaml \
+    watchdog \
+    && \
+    conda clean -a -y
+RUN pip install -r /tmp/requirements_stable.txt && \
+    rm -r /tmp/requirements_stable.txt &&  \
+    cd /tmp/ && \
+    git clone https://github.com/pytroll/posttroll.git && \
+    cd posttroll && pip install . && \
+    cd /tmp/ && rm -rf /tmp/posttroll && \
+    git clone https://github.com/pytroll/trollmoves.git && \
+    cd trollmoves && pip install . && \
+    cd /tmp/ && rm -rf /tmp/trollmoves && \
+    git clone https://github.com/Supervisor/supervisor.git && \
+    cd supervisor && pip install . && \
+    cd /tmp/ && rm -rf /tmp/supervisor/ && \
+    git clone https://github.com/Supervisor/superlance.git && \
+    cd superlance && pip install . && \
+    cd /tmp/ && rm -rf /tmp/superlance/
+    
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["supervisord", "-c", "/mnt/config/supervisord.conf"]
