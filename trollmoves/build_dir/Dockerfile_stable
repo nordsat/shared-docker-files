@@ -10,7 +10,6 @@ RUN conda config --add channels conda-forge && \
     conda config --set channel_priority true && \
     conda update -n base -c defaults conda && \
     conda install -c conda-forge mamba && \
-    mamba update -c conda-forge --all && \
     mamba install -c conda-forge \
     pyinotify \
     trollsift \
@@ -23,6 +22,7 @@ RUN conda config --add channels conda-forge && \
     watchdog \
     && \
     conda clean -a -y
+ADD requirements_stable.txt /tmp/
 RUN pip install -r /tmp/requirements_stable.txt && \
     rm -r /tmp/requirements_stable.txt &&  \
     cd /tmp/ && \
