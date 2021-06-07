@@ -81,14 +81,14 @@ a) Start the trollmoves Docker image
   The login credentials, given in supervisord.conf, are "username" and
   "password".
 
-b) Copy files to "input" directory
+b) Copy files to "trollmoves_server_input" directory
 
-  Copying files to the mounted "output" subdirectory will trigger
-  Trollmoves Server to publish the presence of newly available data.
-  Log files are written to "logs" directory, and following them shows
-  the arrival of new files and that they are advertised.  The log
-  messages are also printed in the terminal where the trollmoves
-  Docker container is running.
+  Copying files to the mounted "trollmoves_server_input" subdirectory
+  will trigger Trollmoves Server to publish the presence of newly
+  available data.  Log files are written to "logs" directory, and
+  following them shows the arrival of new files and that they are
+  advertised.  The log messages are also printed in the terminal where
+  the trollmoves Docker container is running.
 
 3) Adapting the configuration files
 
@@ -102,8 +102,8 @@ b) Copy files to "input" directory
   - If the paths for the input, and/or logs are changed, these
     need to be updated also in the configuration files
 
-  - Remember to match the mount-points in the "docker run" command to
-    the paths defined in the configuration files
+  - Remember to match the mount-points and exposed ports in the
+    "docker run" command to those defined in the configuration files
 
   - For options in the used package, consult the documentation and/or
     example configs of corresponding package
