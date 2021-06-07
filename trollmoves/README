@@ -90,6 +90,22 @@ b) Copy files to "trollmoves_server_input" directory
   advertised.  The log messages are also printed in the terminal where
   the trollmoves Docker container is running.
 
+c) File transfers
+
+  The Client defines the protocol used for the transfers.
+
+  For FTP (`ftp:// as protocol) the credentials are defined in the
+  Client's config.
+
+  To use `file://` protocol (simple copy) the target directory needs
+  to be mounted similarly to the config, input and log directories in
+  the `docker run` command.
+
+  For SCP (secure copy over SSH, `scp://` as protocol) the credentials
+  can be used from the host machine by mounting the `$USER/.ssh/`
+  directory to the container, and using the internal-to-the-container
+  path to the key file in the Server config.
+
 3) Adapting the configuration files
 
   The example configuration files can be modified as the user sees
