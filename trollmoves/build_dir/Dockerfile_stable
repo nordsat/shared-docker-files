@@ -38,7 +38,7 @@ RUN pip install -r /tmp/requirements_stable.txt && \
     git clone https://github.com/Supervisor/superlance.git && \
     cd superlance && pip install . && \
     cd /tmp/ && rm -rf /tmp/superlance/
-    
+
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
