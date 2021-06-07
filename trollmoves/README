@@ -61,11 +61,17 @@ a) Start the trollmoves Docker image
     --mount type=bind,source=`pwd`/logs/,target=/mnt/logs/ \
     --mount type=bind,source=`pwd`/trollmoves_server_input/,target=/mnt/input/ \
     -p 9001:9001 \
+    -p 9013:9013 \
+    -p 9201:9201 \
     --rm \
     trollmoves
 
-  This will start Trollmoves Server and mount the three subdirectories within
-  this directory to the trollmoves Docker container.
+  This will start Trollmoves Server and mount the three subdirectories
+  within this directory to the trollmoves Docker container.  In
+  addition to exposing the port for Supervisord web interface, also
+  the publish (9013) and request (9201) ports are exposed.  These
+  ports are set in supervisord.conf and
+  trollmoves_server_geo_msg_0deg.ini respectively.
 
   The processes running inside the container can be controlled and
   monitored by opening the following URL in a browser:
