@@ -92,7 +92,8 @@ b) Copy files to "trollmoves_server_input" directory
 
 c) File transfers
 
-  The Client defines the protocol used for the transfers.
+  The Client defines the protocol used for the transfers, and makes
+  the requests for the data.
 
   For FTP (`ftp:// as protocol) the credentials are defined in the
   Client's config.
@@ -104,7 +105,33 @@ c) File transfers
   For SCP (secure copy over SSH, `scp://` as protocol) the credentials
   can be used from the host machine by mounting the `$USER/.ssh/`
   directory to the container, and using the internal-to-the-container
-  path to the key file in the Server config.
+  path to the key file in the Server config. The corresponding public
+  key needs to be added to the targets `$HOME/.ssh/authorized_keys`
+  file.
+
+2) Running Trollmoves Client
+
+  The example config
+  `config_trollmoves_client/trollmoves_client_geo_msg_0deg.ini` is
+  paired with the Trollmoves Server example, but requires some
+  modifications (the texts written in capital need to be replaced)
+  depending on your environment.  The example uses SSH to transfer the
+  data, so mount also the `$HOME/.ssh/` directory to the Trollmoves
+  Server as descriped above.
+
+  Once the config has been updated, the docker container can be started with
+
+  docker run \
+    -e LOCAL_USER_ID=`id -u $USER` \
+    --mount type=bind,source=`pwd`/config_trollmoves_client,target=/mnt/config/ \
+    --mount type=bind,source=`pwd`/logs/,target=/mnt/logs/ \
+    -p 9002:9002 \
+    -p 40101:40101 \
+    --rm trollmoves
+
+   Now, copying files to the input directory of Trollmoves Server
+   should trigger the transfers.  If the files are not copied, see the
+   logs for possible causes.
 
 3) Adapting the configuration files
 
