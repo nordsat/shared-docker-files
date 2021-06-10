@@ -44,8 +44,8 @@ RUN source /root/.bashrc && \
       logging_on(logging.DEBUG); download_rsr()' && \
     mkdir -p /home/user/.local/share && \
     mv /root/.local/share/pyspectral /home/user/.local/share/
-    
-COPY entrypoint.sh /usr/local/bin/entrypoint_rhel.sh
+
+COPY entrypoint_rhel.sh /usr/local/bin/entrypoint_rhel.sh
 RUN chmod +x /usr/local/bin/entrypoint_rhel.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint_rhel.sh"]
