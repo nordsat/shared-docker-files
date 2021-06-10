@@ -1,0 +1,11 @@
+FROM continuumio/miniconda3:latest
+
+RUN apt-get update && apt-get -y --no-install-recommends install \
+    gosu
+
+RUN conda config --add channels conda-forge && \
+    conda config --set channel_priority true && \
+    conda update -n base -c defaults conda && \
+    conda install -c conda-forge mamba && \
+    mamba update -c conda-forge --all && \
+    conda clean -a -y

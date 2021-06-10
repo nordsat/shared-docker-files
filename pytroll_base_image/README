@@ -1,0 +1,47 @@
+This example shows how to:
+
+- Build a Docker base image that is used as basis for all other images
+  described in this repository
+
+1) Building the Docker image
+
+a) Install Docker
+
+  Install docker following the instructions from the following links for
+  your operating system.
+
+  Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+  Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
+  OSX: https://docs.docker.com/docker-for-mac/install/
+  Windows: https://docs.docker.com/docker-for-windows/install/
+
+b) Build the "pytroll_base_image"
+
+  There are two options for the base image:
+
+    - Red Hat Enterprise Linux Universal Base Image (`Dockerfile_rhel_ubi`)
+    - Ubuntu base image (`Dockerfile_ubuntu`)
+
+  The choice between these two depends on the policy at the institute.
+  If there's no such restrictions, it doesn't matter which one is
+  used.
+
+  To build the image, issue the command
+
+    docker build -t pytroll_base_image -f build_dir/Dockerfile_ubuntu build_dir
+
+  or
+
+    docker build -t pytroll_base_image -f build_dir/Dockerfile_rhel_ubi build_dir
+
+c) Confirm the build succeeded
+
+  The image "pytroll_base_image" should now be in the output of
+
+    docker images
+
+  and the command
+
+    docker run -it pytroll_base_image echo "success"
+
+  should print "success" to the terminal.

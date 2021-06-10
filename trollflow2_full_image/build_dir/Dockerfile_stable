@@ -1,13 +1,6 @@
-FROM continuumio/miniconda3:latest
+FROM pytroll_base_image
 
-RUN apt-get update && apt-get -y --no-install-recommends install \
-    gosu
-
-RUN conda config --add channels conda-forge && \
-    conda config --set channel_priority true && \
-    conda update -n base -c conda-forge conda && \
-    conda install -c conda-forge mamba && \
-    mamba update -c conda-forge --all && \
+RUN . /root/.bashrc && \
     mamba install -c conda-forge satpy \
     pyresample \
     pykdtree \
@@ -27,10 +20,14 @@ RUN conda config --add channels conda-forge && \
     paramiko \
     dpath \
     toolz \
-    configobj && \
+    configobj \
+    pip \
+    git && \
     conda clean -a -y
+
 ADD requirements_stable.txt /tmp/
-RUN pip install -r /tmp/requirements_stable.txt && \
+RUN . /root/.bashrc && \
+    pip install -r /tmp/requirements_stable.txt && \
     rm -r /tmp/requirements_stable.txt &&  \
     cd /tmp/ && \
     git clone https://github.com/Supervisor/supervisor.git && \
@@ -47,9 +44,8 @@ RUN pip install -r /tmp/requirements_stable.txt && \
       logging_on(logging.DEBUG); download_rsr()' && \
     mkdir -p /home/user/.local/share && \
     mv /root/.local/share/pyspectral /home/user/.local/share/
-    
+
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["supervisord", "-c", "/mnt/config/supervisord.conf"]

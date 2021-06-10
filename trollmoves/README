@@ -19,7 +19,11 @@ a) Install Docker
   OSX: https://docs.docker.com/docker-for-mac/install/
   Windows: https://docs.docker.com/docker-for-windows/install/
 
-b) Build the docker image "trollmoves"
+b) Build the "pytroll_base_image"
+
+  See the instructions in "pytroll_base_image" directory.
+
+c) Build the docker image "trollmoves"
 
   After you have a working Docker installation, in commandline, navigate
   to the directory where this README file is located
@@ -35,8 +39,7 @@ b) Build the docker image "trollmoves"
     docker build -t trollmoves -f build_dir\Dockerfile_stable build_dir
 
   Depending on the computer and network connection, the build takes
-  from 5 minutes to 20 minutes.  To build the development version (using
-  'main' branches of Pytroll packages), use Dockerfile_dev.
+  from 5 minutes to 20 minutes.
 
 
 2) Running Trollmoves Server
