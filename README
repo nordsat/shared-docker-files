@@ -1,0 +1,9 @@
+This repository has recipes to build Docker images for running
+satellite image processing.  The recipes are mainly concentrated on
+using Pytroll packages.
+
+To start, see the README file in pytroll_base_image directory, then
+move on to other directories as required by the use case.
+
+Each of the actual runnable container images have example
+configuration files that can be used as starting points.
