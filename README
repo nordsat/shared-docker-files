@@ -5,5 +5,23 @@ using Pytroll packages.
 To start, see the README file in pytroll_base_image directory, then
 move on to other directories as required by the use case.
 
+Currently available images:
+
+  pytroll_base_image
+
+    - the base image used for all the other images.  Includes only the
+      operating system (Red Hat Enterprise Linux and Ubuntu as
+      options) and the base installation of Miniconda3
+
+  trollmoves
+
+    - contains Trollmoves Server and Client for transferring data
+
+  trollflow2_full_image
+
+    - contains pretty much everything needed to run Trollflow2 to
+      process images using Satpy, resample them with Pyresample, and
+      so on.
+
 Each of the actual runnable container images have example
 configuration files that can be used as starting points.
