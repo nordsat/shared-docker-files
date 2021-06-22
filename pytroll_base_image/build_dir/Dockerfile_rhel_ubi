@@ -1,0 +1,28 @@
+FROM registry.access.redhat.com/ubi8/ubi-minimal
+
+RUN microdnf update && \
+    microdnf install shadow-utils && \
+    microdnf clean all
+
+ENV GOSU_VERSION=1.11
+RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+    && curl -o /usr/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64" \
+    && curl -o /usr/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64.asc" \
+    && gpg --verify /usr/bin/gosu.asc \
+    && rm /usr/bin/gosu.asc \
+    && rm -r /root/.gnupg/ \
+    && chmod +x /usr/bin/gosu \
+    # Verify that the binary works
+    && gosu nobody true
+
+RUN curl -o Miniconda3-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    sh Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
+    rm Miniconda3-latest-Linux-x86_64.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /root/.bashrc && \
+    echo "conda activate base" >> /root/.bashrc && \
+    source /root/.bashrc && \
+    conda config --add channels conda-forge && \
+    conda config --set channel_priority true && \
+    conda update -n base -c conda-forge conda && \
+    conda install -c conda-forge mamba && \
+    mamba update -c conda-forge --all

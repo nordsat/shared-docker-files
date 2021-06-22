@@ -1,15 +1,6 @@
-FROM continuumio/miniconda3:latest
+FROM pytroll_base_image
 
-RUN apt-get update && \
-    apt-get -y dist-upgrade && \
-    apt-get -y --no-install-recommends install \
-    gosu && \
-    apt-get clean
-
-RUN conda config --add channels conda-forge && \
-    conda config --set channel_priority true && \
-    conda update -n base -c defaults conda && \
-    conda install -c conda-forge mamba && \
+RUN . /root/.bashrc && \
     mamba install -c conda-forge \
     pyinotify \
     trollsift \
@@ -20,10 +11,14 @@ RUN conda config --add channels conda-forge && \
     paramiko \
     pyyaml \
     watchdog \
+    pip \
+    git \
     && \
     conda clean -a -y
+
 ADD requirements_stable.txt /tmp/
-RUN pip install -r /tmp/requirements_stable.txt && \
+RUN . /root/.bashrc && \
+    pip install -r /tmp/requirements_stable.txt && \
     rm -r /tmp/requirements_stable.txt &&  \
     cd /tmp/ && \
     git clone https://github.com/pytroll/posttroll.git && \
@@ -43,4 +38,3 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["supervisord", "-c", "/mnt/config/supervisord.conf"]

@@ -1,10 +1,9 @@
 This example shows how to:
 
-1) Build a Docker image that contains everything needed to run trollflow2
-2) Use the Docker image to produce satellite images from various different
-   satellites
-3) Modify the config files to suit your needs
-
+- Build a Docker image that contains everything needed to run trollflow2
+- Use the Docker image to produce satellite images from various different
+  satellites
+- Modify the config files to suit your needs
 
 1) Building the Docker image
 
@@ -18,12 +17,16 @@ a) Install Docker
   OSX: https://docs.docker.com/docker-for-mac/install/
   Windows: https://docs.docker.com/docker-for-windows/install/
 
-b) Build the docker image "trollflow2"
+b) Build the "pytroll_base_image"
 
-  After you have a working Docker installation, in commandline, navigate
-  to the directory where this README file is located
-  (trollflow2/examples/docker/) and issue the following command to build
-  the latest release of trollflow2:
+  See the instructions in "pytroll_base_image" directory.
+
+c) Build the docker image "trollflow2"
+
+  After you have a working Docker installation and build the base
+  image, in commandline, navigate to the directory where this README
+  file is located (trollflow2/examples/docker/) and issue the
+  following command to build the latest release of trollflow2:
 
   In linux or OSX:
 
@@ -34,9 +37,7 @@ b) Build the docker image "trollflow2"
     docker build -t trollflow2 -f build_dir\Dockerfile_stable build_dir
 
   Depending on the computer and network connection, the build takes
-  from 5 minutes to 20 minutes.  To build the development version, use
-  Dockerfile_dev.  The development version will not download
-  pyspectral look-up tables.
+  from 5 minutes to 20 minutes.
 
 
 2) Running production

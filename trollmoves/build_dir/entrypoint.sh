@@ -12,4 +12,6 @@ export HOME=/home/user
 chown -R ${USER_ID}.${USER_ID} /home/user/
 mkdir -p /home/user/.ssh
 echo "StrictHostKeyChecking no" >> /home/user/.ssh/config
-exec gosu user "$@"
+echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/user/.bashrc && \
+echo "conda activate base" >> /home/user/.bashrc
+exec gosu user bash -c 'source /home/user/.bashrc && supervisord -c /mnt/config/supervisord.conf'
