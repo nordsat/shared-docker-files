@@ -1,7 +1,7 @@
 FROM pytroll_base_image
 
 RUN . /root/.bashrc && \
-    mamba install -c conda-forge \
+    mamba install \
     pyinotify \
     trollsift \
     netifaces \
