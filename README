@@ -11,7 +11,7 @@ Currently available images:
 
     - the base image used for all the other images.  Includes only the
       operating system (Red Hat Enterprise Linux and Ubuntu as
-      options) and the base installation of Miniconda3
+      options) and the base installation of Mambaforge
 
   trollmoves
 

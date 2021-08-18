@@ -42,6 +42,6 @@ c) Confirm the build succeeded
 
   and the command
 
-    docker run -it pytroll_base_image echo "success"
+    docker run -it --rm pytroll_base_image echo "success"
 
   should print "success" to the terminal.

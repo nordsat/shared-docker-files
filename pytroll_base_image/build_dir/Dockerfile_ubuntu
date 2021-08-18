@@ -1,11 +1,15 @@
-FROM continuumio/miniconda3:latest
+FROM ubuntu:latest
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
-    gosu
+    gosu \
+    curl \
+    ca-certificates
 
-RUN conda config --add channels conda-forge && \
-    conda config --set channel_priority true && \
-    conda update -n base -c defaults conda && \
-    conda install -c conda-forge mamba && \
-    mamba update -c conda-forge --all && \
-    conda clean -a -y
+RUN curl -L -o Mambaforge-latest-Linux-x86_64.sh https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh && \
+    sh Mambaforge-latest-Linux-x86_64.sh -b -p /opt/conda && \
+    rm Mambaforge-latest-Linux-x86_64.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /root/.bashrc && \
+    echo "conda activate base" >> /root/.bashrc && \
+    . /root/.bashrc && \
+    mamba update -n base conda && \
+    mamba update --all
