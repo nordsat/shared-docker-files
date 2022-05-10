@@ -14,4 +14,4 @@ mkdir -p /home/user/.ssh
 echo "StrictHostKeyChecking no" >> /home/user/.ssh/config
 echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/user/.bashrc && \
 echo "conda activate base" >> /home/user/.bashrc
-exec gosu user bash -c 'source /home/user/.bashrc && supervisord -c /mnt/config/supervisord.conf'
+exec gosu user bash -c 'source /home/user/.bashrc && /opt/conda/bin/supervisord -c /mnt/config/supervisord.conf'
