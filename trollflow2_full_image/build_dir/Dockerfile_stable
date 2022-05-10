@@ -1,7 +1,7 @@
 FROM pytroll_base_image
 
 RUN . /root/.bashrc && \
-    mamba install satpy \
+    mamba install -y satpy \
     pyresample \
     pykdtree \
     trollimage \
@@ -23,7 +23,7 @@ RUN . /root/.bashrc && \
     configobj \
     pip \
     git && \
-    conda clean -a -y
+    mamba clean -a -y
 
 ADD requirements_stable.txt /tmp/
 RUN . /root/.bashrc && \
@@ -36,14 +36,17 @@ RUN . /root/.bashrc && \
     git clone https://github.com/Supervisor/superlance.git && \
     cd superlance && python setup.py install && \
     cd /tmp/ && rm -rf /tmp/superlance/ && \
-    python -c 'from pyspectral.utils import download_luts; \
-      from pyspectral.utils import logging_on; import logging; \
-      logging_on(logging.DEBUG); download_luts()' && \
-    python -c 'from pyspectral.utils import download_rsr; \
-      from pyspectral.utils import logging_on; import logging; \
-      logging_on(logging.DEBUG); download_rsr()' && \
-    mkdir -p /home/user/.local/share && \
-    mv /root/.local/share/pyspectral /home/user/.local/share/
+    #python -c 'from pyspectral.utils import download_luts; \
+    #  from pyspectral.utils import logging_on; import logging; \
+    #  logging_on(logging.DEBUG); download_luts()' && \
+    #python -c 'from pyspectral.utils import download_rsr; \
+    #  from pyspectral.utils import logging_on; import logging; \
+    #  logging_on(logging.DEBUG); download_rsr()' && \
+    #mkdir -p /home/user/.local/share && \
+    #mv /root/.local/share/pyspectral /home/user/.local/share/ && \
+    pip cache purge && \
+    mamba uninstall -y git && \
+    mamba clean -a -y
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
