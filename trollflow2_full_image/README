@@ -46,6 +46,7 @@ c) Build the docker image "trollflow2"
   you'll need some satellite data.  This example contains example
   configurations for the following satellite instruments and formats:
 
+  - MTG FCI in compressed or uncompressed netCDF4 format
   - MSG SEVIRI in uncompressed HRIT format
   - EARS/AVHRR granules preprocessed with AAPP
   - EARS/VIIRS granules in compact SDR format
@@ -64,7 +65,7 @@ a) Start the trollflow2 Docker image
 
   docker run \
     -e LOCAL_USER_ID=`id -u $USER` \
-    --mount type=bind,source=`pwd`/config_seviri_hrit/,target=/mnt/config/ \
+    --mount type=bind,source=`pwd`/config_fci_nc/,target=/mnt/config/ \
     --mount type=bind,source=`pwd`/logs/,target=/mnt/logs/ \
     --mount type=bind,source=`pwd`/input/,target=/mnt/input/ \
     --mount type=bind,source=`pwd`/output/,target=/mnt/output/ \
@@ -75,7 +76,7 @@ a) Start the trollflow2 Docker image
   - in windows:
 
   docker run \
-    --mount type=bind,source=%cd%\config_seviri_hrit,target=/mnt/config/ \
+    --mount type=bind,source=%cd%\config_fci_nc,target=/mnt/config/ \
     --mount type=bind,source=%cd%\logs,target=/mnt/logs/ \
     --mount type=bind,source=%cd%\input,target=/mnt/input/ \
     --mount type=bind,source=%cd%\output,target=/mnt/output/ \
