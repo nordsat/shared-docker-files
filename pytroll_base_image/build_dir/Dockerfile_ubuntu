@@ -11,6 +11,6 @@ RUN curl -L -o Mambaforge-latest-Linux-x86_64.sh https://github.com/conda-forge/
     echo ". /opt/conda/etc/profile.d/conda.sh" >> /root/.bashrc && \
     echo "conda activate base" >> /root/.bashrc && \
     . /root/.bashrc && \
-    mamba update -n base conda && \
-    mamba update --all && \
+    mamba update -y -n base 'conda!=4.13.0' && \
+    mamba update -y --all && \
     mamba clean -a -y
