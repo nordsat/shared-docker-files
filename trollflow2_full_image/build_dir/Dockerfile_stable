@@ -23,6 +23,7 @@ RUN . /root/.bashrc && \
     configobj \
     pip \
     git && \
+    mamba install -y -c eumetsat public-decomp-wt && \
     mamba clean -a -y
 
 ADD requirements_stable.txt /tmp/
