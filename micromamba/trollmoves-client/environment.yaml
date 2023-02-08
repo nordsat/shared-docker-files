@@ -1,0 +1,18 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - zeromq
+  - pyinotify
+  - pyzmq
+  - pyyaml
+  - trollsift
+  - configobj
+  - netifaces
+  - configobj
+  - paramiko
+  - scp
+  - pip
+  - git
+  - pip:
+    - posttroll
