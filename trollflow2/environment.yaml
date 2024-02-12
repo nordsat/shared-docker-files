@@ -1,5 +1,6 @@
 channels:
   - conda-forge
+  - eumetsat
 dependencies:
   - python=3.11
   - zeromq
@@ -17,7 +18,7 @@ dependencies:
   - gdal
   - h5py
   - h5netcdf
-  - hdf5plugin
+  - public-decomp-wt
   - netcdf4
   - paramiko
   - scp
