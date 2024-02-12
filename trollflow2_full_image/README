@@ -97,7 +97,7 @@ a) Start the trollflow2 Docker image
 
 b) Copy files to "input" directory
 
-  Copying files to the mounted "output" subdirectory starts the
+  Copying files to the mounted "input" subdirectory starts the
   processing.  Log files are written to "logs" directory, and
   following them shows the progress of the processing.  The log
   messages are also printed in the terminal where the trollflow2 Docker
