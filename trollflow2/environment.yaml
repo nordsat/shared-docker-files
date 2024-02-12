@@ -35,4 +35,4 @@ dependencies:
   - git
   - pip:
     - posttroll
-    - git+https://github.com/pytroll/trollflow2.git@24c984aecc13485ba80cb704c2ceed6e99eaa032
+    - git+https://github.com/pytroll/trollflow2.git@99d4a6b9a6bbad8f04dc7874a56b393c0eea5dbf
