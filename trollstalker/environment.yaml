@@ -7,8 +7,8 @@ dependencies:
   - pip
   - pip:
     - posttroll==1.10.0
-    - pytroll-collectors==0.15.1
-    - pyinotify
+    - git+https://github.com/pytroll/pytroll-collectors.git@87045bce48a5b513f09e98f5e7987ccc667d62ad
+    - git+https://github.com/gorakhargosh/watchdog.git@20167ca36abc14bc0fcda083016a1b93a5d7deac
   - python=3.11
   - pyyaml
   - pyzmq
