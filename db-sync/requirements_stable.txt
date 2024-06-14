@@ -1,0 +1,6 @@
+sqlalchemy 
+pyyaml
+psycopg2
+rasterio
+posttroll
+

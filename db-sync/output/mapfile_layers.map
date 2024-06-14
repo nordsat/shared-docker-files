@@ -1,0 +1,41 @@
+
+  LAYER
+    STATUS OFF
+    NAME "time_idx_natural_color"
+    TYPE POLYGON
+    # Mapserver requires some unique field for SQL query
+    DATA "geom from (select * from products where product_name='natural_color') as foo using unique id"
+    METADATA
+      "wms_title" "TIME INDEX"
+      "wms_srs" "EPSG:3857"
+      "wms_timeextent" "2024-06-12T09:55:00Z/2024-06-14T11:30:00Z/PT5M"
+      "wms_timeitem" "time" #column in postgis table of type timestamp
+      "wms_timedefault" "2024-06-14T11:30:00Z"
+      "wms_enable_request" "*"
+      "wms_extent" "-7000000 -7644000 7000000 12000000"
+    END
+    PROJECTION
+      "init=epsg:3857"
+    END
+    CONNECTIONTYPE postgis
+    CONNECTION "host=postgis user=postgres dbname=postgres port=5432 password=pytroll"
+  END
+
+  LAYER
+    PROJECTION
+      "init=epsg:3857"
+    END
+    NAME "natural_color"
+    STATUS ON
+    TYPE raster
+    METADATA
+      "wms_title" "natural_color"
+      "wms_srs" "EPSG:3857"
+      "wms_timeextent" "2024-06-12T09:55:00Z/2024-06-14T11:30:00Z/PT5M"
+      "wms_enable_request" "*"
+      "wms_timeitem" "time"
+      "wms_extent" "-7000000 -7644000 7000000 12000000"
+    END
+    TILEINDEX time_idx_natural_color
+    TILEITEM "filename"
+  END
