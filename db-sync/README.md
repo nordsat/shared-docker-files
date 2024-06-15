@@ -33,6 +33,39 @@ mounts:
 - `/eodata/hrit_out/:/mnt/output/` -> where products are mounted
 - `./output:/usr/local/bin/db-sync/output/` -> where the mapfile layers output is placed on your host. This is the input for the WMS server.
 
+input arguments:
+- `db-and-mapfile-handle.yaml` -> db-sync configuration file
+
+Example of a needed config:
+```
+---
+# You can either give a trollflow2 config file or a hardcoded list of products
+trollflow2_config_file: home/trygveas/Git/ewc-config/config_fci_nc/trollflow2_fci_nc.yaml
+product_list:
+  areas:
+    nordsat1km:
+      products:
+        airmass:
+        true_color_day:
+        natural_color_day:
+# Also needed postgis credentials, database and table name to use.
+pg_table_name: products
+pg_user_name: postgres
+pg_password: password
+pg_database_name: postgres
+# This host_name is used for communication between running containers
+pg_host_name: some-postgres
+# THis host name is from this script running from commandline to postgis database
+host_name: localhost
+# File name if the generated mapserver map layers configuration. This needs to be included in your mapserver map file.
+mapfile_include_layers_filename: mapfile_layers.map
+
+subscriber_settings:
+    nameserver: false
+    addresses: ipc://bla
+
+```
+
 #### for ope
 ```
 podman run -d --replace  --name db-sync --network pytroll_network -v /eodata/hrit_out/:/mnt/output/ -v ./output:/usr/local/bin/db-sync/output/ db-sync python3 db-and-mapfile-handle.py db-and-mapfile-handle.yaml
