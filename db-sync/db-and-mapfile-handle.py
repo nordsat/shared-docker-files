@@ -150,12 +150,11 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
                 f"|| '/PT5M' "
                 f"from {config['pg_table_name']} where product_name='{product}';"
             )
-            
             time_extent = get_from_db(conn=conn, select_string=select_string)
-
             if time_extent:
                 time_default = time_extent.split('/')[1]
             else:
+                _LOGGER.error(f"Skipping product because time_extent is missing.")
                 continue
 
             _LOGGER.info(f"TIME EXTENT {time_extent}")
@@ -170,6 +169,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             if extent:
                 extent = extent.replace("BOX(",'').replace(',', ' ').replace(")", '')
             else:
+                _LOGGER.error(f"Skipping product because extent is missing.")
                 continue
 
             _LOGGER.info(f"EXTENT {extent}")
@@ -182,6 +182,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             )
             srid = get_from_db(conn=conn, select_string=srid_select_string)
             if not srid:
+                _LOGGER.error(f"Skipping product because SRID is missing.")
                 continue
 
             _LOGGER.info(f"SRID {srid}")
