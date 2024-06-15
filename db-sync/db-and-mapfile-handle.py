@@ -62,14 +62,6 @@ def subscribe_and_ingest(config: dict, areas: dict):
                 #    os.rename(tmp_layer_file, config['mapfile_include_layers_filename'])
 
 
-def read_trollflow2_config(tf2c):
-    """Read trollflow2 config."""
-    trollflow2_config = read_config(tf2c)
-    areas = trollflow2_config['product_list']['areas']
-
-    return areas
-
-
 def ingest_into_postgis(conn: psycopg2.connect, files: list, config: dict, areas: dict):
     """Ingest into POSTGIS.
 
