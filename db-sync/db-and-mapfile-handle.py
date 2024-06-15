@@ -385,12 +385,8 @@ def main(args=None):
     parsed_args = parse_args(args=args)
     config = read_config(parsed_args.config_file)
 
-    try:
-        # read from trollflow2 config file
-        areas = read_trollflow2_config(config['trollflow2_config_file'])
-    except:
-        # or use config in this config file
-        areas = config['product_list']['areas']
+    # or use config in this config file
+    areas = config['product_list']['areas']
 
     subscribe_and_ingest(config, areas)
 
