@@ -10,9 +10,10 @@ Source: https://registry.hub.docker.com/r/postgis/postgis/
 
 mounts:
 `./pg-data/:/var/lib/postgresql/data` -> save data from database on the host
+`./init.sql:/docker-entrypoint-initdb.d/init.sql` -> initial sql file to create the table
 
 ```
-podman run -d --replace --rm --name postgis --network pytroll_network -v ./pg-data/:/var/lib/postgresql/data -e POSTGRES_PASSWORD=pytroll postgis/postgis
+podman run -d --replace --rm --name postgis --network pytroll_network -v ./pg-data/:/var/lib/postgresql/data -v ./init.sql:/docker-entrypoint-initdb.d/init.sql -e POSTGRES_PASSWORD=pytroll postgis/postgis
 
 ```
 
@@ -34,7 +35,7 @@ mounts:
 - `./output:/usr/local/bin/db-sync/output/` -> where the mapfile layers output is placed on your host. This is the input for the WMS server.
 
 input arguments:
-- `db-and-mapfile-handle.yaml` -> db-sync configuration file
+- `trollflow2.yaml` -> trollglo2 configuration with db-sync configuration options
 
 Example of a needed config:
 ```
