@@ -1,13 +1,15 @@
 import os
 import sys
-import yaml
 import argparse
 import datetime
-import psycopg2
-import rasterio
 import traceback
 import logging
+
 from contextlib import closing
+
+import yaml
+import psycopg2
+import rasterio
 from posttroll.subscriber import create_subscriber_from_dict_config
 
 _LOGGER = logging.getLogger("db-sync")
@@ -25,6 +27,11 @@ def subscribe_and_ingest(config: dict, areas: dict):
 
             if message is None or message.type == 'beat':
                 _LOGGER.warning(f"Skipping message {message}. Not used here.")
+                continue
+
+            if message.type == 'del':
+                _LOGGER.info(f"Deleting product due to message: {message}")
+                deleted = False
                 continue
 
             try:
@@ -149,7 +156,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
                 _LOGGER.error(f"Skipping product because time_extent is missing.")
                 continue
 
-            _LOGGER.info(f"TIME EXTENT {time_extent}")
+            _LOGGER.debug(f"TIME EXTENT {time_extent}")
 
             # SELECT extent
             extent = ""
@@ -164,7 +171,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
                 _LOGGER.error(f"Skipping product because extent is missing.")
                 continue
 
-            _LOGGER.info(f"EXTENT {extent}")
+            _LOGGER.debug(f"EXTENT {extent}")
 
             # SELECT srid
             srid = ""
@@ -177,7 +184,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
                 _LOGGER.error(f"Skipping product because SRID is missing.")
                 continue
 
-            _LOGGER.info(f"SRID {srid}")
+            _LOGGER.debug(f"SRID {srid}")
 
             # Create LAYERS for MapFile for a product
             mapfile_layer_template=f"""
@@ -360,8 +367,8 @@ def read_config(yaml_file: str):
 def parse_args(args=None):
     """Parse commandline arguments."""
     parser = argparse.ArgumentParser(
-        "Message writer",
-        description="Write message into a json file for wms"
+        "Database sync",
+        description="Sync Postgis DB and update Mapfile layers."
     )
     parser.add_argument(
         "config_file",
@@ -375,9 +382,8 @@ def parse_args(args=None):
 def main(args=None):
     """Main script."""
     parsed_args = parse_args(args=args)
-    config = read_config(parsed_args.config_file)
 
-    # or use config in this config file
+    config = read_config(parsed_args.config_file)
     areas = config['product_list']['areas']
 
     subscribe_and_ingest(config, areas)
