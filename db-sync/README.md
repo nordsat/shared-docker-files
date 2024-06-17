@@ -9,8 +9,8 @@ Source: https://registry.hub.docker.com/r/postgis/postgis/
 ### deploy container
 
 mounts:
-`./pg-data/:/var/lib/postgresql/data` -> save data from database on the host
-`./init.sql:/docker-entrypoint-initdb.d/init.sql` -> initial sql file to create the table
+- `./pg-data/:/var/lib/postgresql/data` -> save data from database on the host
+- `./init.sql:/docker-entrypoint-initdb.d/init.sql` -> initial sql file to create the table
 
 ```
 podman run -d --replace --rm --name postgis --network pytroll_network -v ./pg-data/:/var/lib/postgresql/data -v ./init.sql:/docker-entrypoint-initdb.d/init.sql -e POSTGRES_PASSWORD=pytroll postgis/postgis
