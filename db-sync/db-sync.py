@@ -8,6 +8,7 @@ import logging
 from contextlib import closing
 
 import yaml
+from yaml import BaseLoader
 import psycopg2
 import rasterio
 from posttroll.subscriber import create_subscriber_from_dict_config
@@ -55,18 +56,16 @@ def subscribe_and_ingest(config: dict, areas: dict):
             
             if inserted:
 
-                # Create or update MAPfile
+                # Create MAPfile layers
                 layer_string = create_mapserver_layer_config(conn=conn, areas=areas, config=config)
                 if not layer_string:
+                    _LOGGER.error(f"File from {message} was inserted into the database, but layer were not added to mapfile. Check errors above.")
                     continue
 
                 tmp_layer_file_path = f"{config['mapfile_include_layers_filename']}" 
 
                 with open(tmp_layer_file_path, 'wt') as fd:
                     fd.write(layer_string)
-
-                #if os.path.exists(tmp_layer_file):
-                #    os.rename(tmp_layer_file, config['mapfile_include_layers_filename'])
 
 
 def ingest_into_postgis(conn: psycopg2.connect, files: list, config: dict, areas: dict):
@@ -88,7 +87,7 @@ def ingest_into_postgis(conn: psycopg2.connect, files: list, config: dict, areas
         for product_name in areas[area]['products']:
 
             for input_file in files:
-                _LOGGER.info(f"Considering file {input_file}")
+                _LOGGER.info(f"Considering file {input_file} for prodcut {product_name} for area {area}")
                 bn_f = os.path.basename(input_file)
 
                 if product_name in bn_f:
@@ -138,7 +137,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
     for area in areas:
         for product in areas[area]['products']:
 
-            _LOGGER.info(f"Product: {product}")
+            _LOGGER.debug(f"Product: {product}")
 
             # SELECT time extent
             time_extent = ""
@@ -241,19 +240,21 @@ def collect_data_from_file(input_file: str):
         dataset = rasterio.open(input_file)
 
     except Exception as ex:
-        _LOGGER.error(f"Exception rasterio open is {str(ex)}")
+        _LOGGER.error(f"Cannot collect info from file {input_file}. Exception rasterio open is {str(ex)}")
+        return None, None
 
     try:
         tags = dataset.tags()
 
     except Exception as ex:
-        _LOGGER.error(f"Exception dataset tags is {str(ex)}")
+        _LOGGER.error(f"Cannot collect info from file {input_file}. Exception dataset tags is {str(ex)}")
+        return None, None
  
     try:
         img_time = datetime.datetime.strptime(tags['TIFFTAG_DATETIME'], '%Y:%m:%d %H:%M:%S')
 
     except Exception as ex:
-        _LOGGER.error(f"Exception img_time is {str(ex)}")
+        _LOGGER.error(f"Cannot collect info from file {input_file}. Exception img_time is {str(ex)}")
         traceback.print_exc()
         img_time = None
 
@@ -263,8 +264,8 @@ def collect_data_from_file(input_file: str):
         bounds = dataset.bounds
         _LOGGER.info(f"Bounds: {bounds}")
     except Exception as ex:
-        _LOGGER.error(f"Exception bounds is {str(ex)}")
-        bounds = [1, 2, 3, 4]
+        _LOGGER.error(f"Cannot collect info from file {input_file}. Exception bounds is {str(ex)}")
+        return img_time, None
 
     ll_x = bounds[0]
     ll_y = bounds[1]
@@ -275,7 +276,7 @@ def collect_data_from_file(input_file: str):
         crs = dataset.crs.to_authority()
 
     except Exception as ex:
-        _LOGGER.error(f"Exception crs is {str(ex)}")
+        _LOGGER.error(f"Cannot collect info from file {input_file}. Exception crs is {str(ex)}")
         crs = None
 
     if crs is None:
@@ -315,13 +316,13 @@ def pg_connect(config: dict):
 
 
 def insert_into_db(
-        conn: psycopg2.connect,
-        filename: str,
-        product_name: str,
-        image_time: datetime.datetime,
-        geom: str,
-        db_config: dict
-    ):
+    conn: psycopg2.connect,
+    filename: str,
+    product_name: str,
+    image_time: datetime.datetime,
+    geom: str,
+    db_config: dict
+):
     """Check if file already exists, if not, insert into database. Return True if inserted."""
     insert = f"insert into {db_config['pg_table_name']}(filename, product_name, time, geom)"
 
@@ -356,12 +357,20 @@ def insert_into_db(
     return inserted
 
 
+def read_trollflow2_config(yaml_file: str):
+    """Read trollflow2 config."""
+    with open(yaml_file) as fd:
+        trollflow2_config = yaml.load(fd.read(), Loader=BaseLoader)
+
+    return trollflow2_config
+
+
 def read_config(yaml_file: str):
     """Read a config file."""
     with open(yaml_file) as fd:
-        data = yaml.safe_load(fd.read())
+        db_sync_config = yaml.safe_load(fd.read())
     
-    return data
+    return db_sync_config
 
 
 def parse_args(args=None):
@@ -372,7 +381,11 @@ def parse_args(args=None):
     )
     parser.add_argument(
         "config_file",
-        help="The configuration file to run on."
+        help="The configuration file for sync-db to run on."
+    )
+    parser.add_argument(
+        "tf2_config_file",
+        help="The trollflow2 configuration file to run on."
     )
     parser.add_argument("files", nargs="*", action="store")
 
@@ -383,10 +396,21 @@ def main(args=None):
     """Main script."""
     parsed_args = parse_args(args=args)
 
-    config = read_config(parsed_args.config_file)
-    areas = config['product_list']['areas']
+    try:
+        trollflow_config = read_trollflow2_config(yaml_file=parsed_args.tf2_config_file)
+    except Exception as exc:
+        _LOGGER.error(f"Could not read the trollflow2 config due to: {str(exc)}")
+        sys.exit(1)
+    
+    areas = trollflow_config['product_list']['areas']
 
-    subscribe_and_ingest(config, areas)
+    try:
+        config = read_config(yaml_file=parsed_args.config_file)
+    except Exception as exc:
+        _LOGGER.error(f"Could not read the db-sync config due to: {str(exc)}")
+        sys.exit(1)
+
+    subscribe_and_ingest(config=config, areas=areas)
 
 
 if __name__ == "__main__":
