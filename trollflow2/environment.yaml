@@ -18,6 +18,7 @@ dependencies:
   - gdal
   - h5py
   - h5netcdf
+  - hdf5plugin
   - public-decomp-wt
   - netcdf4
   - paramiko
@@ -36,4 +37,4 @@ dependencies:
   - git
   - pip:
     - posttroll
-    - git+https://github.com/pytroll/trollflow2.git@99d4a6b9a6bbad8f04dc7874a56b393c0eea5dbf
+    - trollflow2
