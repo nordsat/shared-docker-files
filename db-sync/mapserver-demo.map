@@ -1,0 +1,54 @@
+MAP
+  DEBUG 5
+  CONFIG "CPL_DEBUG" "ON"
+  CONFIG "CPL_TIMESTAMP" "ON"
+  CONFIG "PROJ_DEBUG" "ON"
+  CONFIG "MS_ERRORFILE" "/tmp/ms_error.txt"
+  IMAGETYPE      GTiff
+  SIZE           2400 2750
+  IMAGECOLOR     255 255 255
+  EXTENT         -7000000 2000000 4400000 12000000
+
+  #WEB
+  #  IMAGEPATH "/tmp/"
+  #  IMAGEURL "/tmp/"
+  #  LEGENDFORMAT "text/html"
+  #  METADATA
+  #    "wms_title"          "WMS senda test/demo server mapserver-test.64.225.129.10.nip.io"  ##required
+  #    "wms_onlineresource" "http://mapserver-test.64.225.129.10.nip.io/cgi-bin/mapserv?MAP=/etc/mapserver/mapfile_test.map"   ##required
+  #    "wms_srs"            "EPSG:3978 EPSG:4326 EPSG:4269 EPSG:3857"  ##recommended
+  #    "wms_enable_request" "*"   ##necessary
+  #    "wms_include_items" "all"
+  #    "wms_feature_info_mime_type" "text/html"
+  #  END
+  #END # Web
+
+  PROJECTION
+    "init=epsg:3857"
+  END
+
+  OUTPUTFORMAT
+    NAME "GTiff"
+    DRIVER GDAL/GTiff
+    MIMETYPE "image/tiff"
+    IMAGEMODE RGB
+    EXTENSION "tif"
+  END
+  OUTPUTFORMAT
+    NAME "gif"
+    DRIVER GD/GIF
+    MIMETYPE "image/gif"
+    IMAGEMODE RGB
+    EXTENSION "gif"
+  END
+
+  # Layer objects are defined beneath the map object.  You need at least one
+  # layer defined in your map file before you can display a map...  You can
+  # define as many layers as you'd like.
+
+ 
+  # Start of LAYER DEFINITIONS ---------------------------------------------
+  INCLUDE "/etc/mapfile_pytroll_layers.map" 
+  # End of LAYER DEFINITIONS -------------------------------
+
+END # All map files must come to an end just as all other things must come to...

@@ -1,0 +1,1 @@
+CREATE TABLE products (id serial primary key, filename varchar, product_name varchar, time timestamp, geom geometry);
