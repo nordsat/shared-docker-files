@@ -12,7 +12,5 @@ subscriber_settings:
   # topics: '/test/1b/hrit-segment/rss'
   # services: 'dummy_sender'
   #port: 10009
-  addresses: 
-    - tcp://trollflow2-seviri:10009
-#    - tcp://test-message:10010
-
+  addresses:
+    - tcp://trollflow2-fci:10009
