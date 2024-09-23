@@ -18,8 +18,4 @@ COPY . $APP_DIR
 RUN pip install -r requirements_stable.txt && \
     rm -r requirements_stable.txt
 
-# ENTRYPOINT [ "/usr/bin/python ${APP_DIR}/db-sync.py ${APP_DIR}/db-sync.yaml /etc/trollflow2.yaml" ]
-# COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-# RUN chmod +x /usr/local/bin/entrypoint.sh
-
-# ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT [ "/usr/local/bin/python ${APP_DIR}/db-sync.py ${APP_DIR}/db-sync.yaml /etc/trollflow2.yaml" ]
