@@ -18,6 +18,8 @@ COPY . $APP_DIR
 RUN pip install -r requirements_stable.txt && \
     rm -r requirements_stable.txt
 
-RUN chmod +x ${APP_DIR}/entrypoint.sh
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 
-ENTRYPOINT ["${APP_DIR}/entrypoint.sh"]
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
