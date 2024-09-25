@@ -51,9 +51,9 @@ def subscribe_and_ingest(config: dict, areas: dict):
                     f"Failed to get connection to postgis db. Message will be skipped. {message}"
                 )
                 continue
-            
+
             inserted = ingest_into_postgis(conn=conn, files=files, config=config, areas=areas)
-            
+
             if inserted:
 
                 # Create MAPfile layers
@@ -62,7 +62,7 @@ def subscribe_and_ingest(config: dict, areas: dict):
                     _LOGGER.error(f"File from {message} was inserted into the database, but layer were not added to mapfile. Check errors above.")
                     continue
 
-                tmp_layer_file_path = f"{config['mapfile_include_layers_filename']}" 
+                tmp_layer_file_path = f"{config['mapfile_include_layers_filename']}"
 
                 with open(tmp_layer_file_path, 'wt') as fd:
                     fd.write(layer_string)
@@ -145,7 +145,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             select_string = (
                 f"select to_char(min(time),'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
                 f"|| '/' || to_char(max(time), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
-                f"|| '/PT5M' "
+                f"|| '/PT{config['time_slot_interval_in_minutes']}M' "
                 f"from {config['pg_table_name']} where product_name='{product}';"
             )
             time_extent = get_from_db(conn=conn, select_string=select_string)
@@ -228,7 +228,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
     TILEITEM "filename"
   END
 """
-            
+
             layer_string += mapfile_layer_template
 
     return layer_string
@@ -249,7 +249,7 @@ def collect_data_from_file(input_file: str):
     except Exception as ex:
         _LOGGER.error(f"Cannot collect info from file {input_file}. Exception dataset tags is {str(ex)}")
         return None, None
- 
+
     try:
         img_time = datetime.datetime.strptime(tags['TIFFTAG_DATETIME'], '%Y:%m:%d %H:%M:%S')
 
@@ -259,7 +259,7 @@ def collect_data_from_file(input_file: str):
         img_time = None
 
         return img_time, None
-        
+
     try:
         bounds = dataset.bounds
         _LOGGER.info(f"Bounds: {bounds}")
@@ -369,7 +369,7 @@ def read_config(yaml_file: str):
     """Read a config file."""
     with open(yaml_file) as fd:
         db_sync_config = yaml.safe_load(fd.read())
-    
+
     return db_sync_config
 
 
@@ -401,7 +401,7 @@ def main(args=None):
     except Exception as exc:
         _LOGGER.error(f"Could not read the trollflow2 config due to: {str(exc)}")
         sys.exit(1)
-    
+
     areas = trollflow_config['product_list']['areas']
 
     try:
