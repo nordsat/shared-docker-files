@@ -206,7 +206,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
       "init=epsg:{srid}"
     END
     CONNECTIONTYPE postgis
-    CONNECTION "host={config['pg_host_name']} user={config['pg_user_name']} dbname={config['pg_database_name']} port=5432 password={config['pg_password']}"
+    CONNECTION "host={config['pg_host_name']} user={config['pg_user_name']} dbname={config['pg_database_name']} port=5432 password={os.environ['POSTGRES_PASSWORD']}"
   END
 
   LAYER
