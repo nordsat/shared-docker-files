@@ -309,7 +309,7 @@ def pg_connect(config: dict):
         port='5432',
         dbname=config['pg_database_name'],
         user=config['pg_user_name'],
-        password=config['pg_password']
+        password=os.environ['POSTGRES_PASSWORD']
     )
 
     return conn
