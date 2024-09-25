@@ -6,6 +6,7 @@ pg_database_name: postgres
 pg_host_name: postgis
 host_name: postgis
 mapfile_include_layers_filename: /usr/local/bin/db-sync/output/mapfile_layers.map
+time_slot_interval_in_minutes: 10
 
 subscriber_settings:
   nameserver: false
