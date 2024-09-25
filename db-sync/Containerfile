@@ -12,8 +12,8 @@ WORKDIR $APP_DIR
 # change file ownership
 RUN chmod -R +x $APP_DIR
 
-# copy main file
-COPY . $APP_DIR
+# copy main files
+COPY db-sync.py $APP_DIR
 
 RUN pip install -r requirements_stable.txt && \
     rm -r requirements_stable.txt
