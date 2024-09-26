@@ -94,6 +94,8 @@ def ingest_into_postgis(conn: psycopg2.connect, files: list, config: dict, areas
                     img_time, geom = collect_data_from_file(input_file=input_file)
 
                     if geom:
+                        _LOGGER.info("Adding file to db.")
+                        _LOGGER.debug(str(geom))
                         inserted.append(
                             insert_into_db(
                                 conn=conn,
@@ -152,7 +154,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             if time_extent:
                 time_default = time_extent.split('/')[1]
             else:
-                _LOGGER.error(f"Skipping product because time_extent is missing.")
+                _LOGGER.error(f"Skipping product {product} because time_extent is missing.")
                 continue
 
             _LOGGER.debug(f"TIME EXTENT {time_extent}")
@@ -167,7 +169,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             if extent:
                 extent = extent.replace("BOX(",'').replace(',', ' ').replace(")", '')
             else:
-                _LOGGER.error(f"Skipping product because extent is missing.")
+                _LOGGER.error(f"Skipping product {product} because extent is missing.")
                 continue
 
             _LOGGER.debug(f"EXTENT {extent}")
@@ -180,7 +182,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             )
             srid = get_from_db(conn=conn, select_string=srid_select_string)
             if not srid:
-                _LOGGER.error(f"Skipping product because SRID is missing.")
+                _LOGGER.error(f"Skipping product {product} because SRID is missing.")
                 continue
 
             _LOGGER.debug(f"SRID {srid}")
@@ -305,7 +307,7 @@ def pg_connect(config: dict):
     _LOGGER.info("Connecting to pg")
 
     conn = psycopg2.connect(
-        host=config['host_name'],
+        host=config['pg_host_name'],
         port='5432',
         dbname=config['pg_database_name'],
         user=config['pg_user_name'],
