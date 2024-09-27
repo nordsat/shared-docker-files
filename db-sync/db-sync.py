@@ -201,7 +201,7 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
       "wms_timeextent" "{time_extent}"
       "wms_timeitem" "time" #column in postgis table of type timestamp
       "wms_timedefault" "{time_default}"
-      "wms_enable_request" "*"
+      "wms_enable_request" "!*"
       "wms_extent" "{extent}"
     END
     PROJECTION
