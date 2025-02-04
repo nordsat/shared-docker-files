@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - eumetsat
 dependencies:
-  - python=3.11
+  - python=3.13
   - zeromq
   - pyzmq
   - pyyaml
