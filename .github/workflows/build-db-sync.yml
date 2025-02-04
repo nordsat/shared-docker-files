@@ -1,7 +1,9 @@
 name: Publish the db-sync Docker image
 
 on:
-  push
+  push:
+    paths:
+      - db-sync/**
 
 jobs:
   push_to_registry:

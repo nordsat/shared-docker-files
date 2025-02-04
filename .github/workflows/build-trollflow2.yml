@@ -1,7 +1,9 @@
 name: Publish the trollflow2 Docker image
 
 on:
-  push
+  push:
+    paths:
+      - trollflow2/**
 
 jobs:
   push_to_registry:
