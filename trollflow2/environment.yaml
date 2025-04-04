@@ -10,7 +10,7 @@ dependencies:
   - configobj
   - netifaces
   - satpy
-  - pyresample
+  - pyresample>=1.33.0
   - pykdtree
   - trollimage
   - rasterio
