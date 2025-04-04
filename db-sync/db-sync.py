@@ -23,6 +23,14 @@ def subscribe_and_ingest(config: dict, areas: dict):
 
        It is inserted into a postgis to be used by mapserver.
     """
+    conn = pg_connect(config)
+    layer_string = create_mapserver_layer_config(conn=conn, areas=areas, config=config)
+    if layer_string:
+        tmp_layer_file_path = f"{config['mapfile_include_layers_filename']}"
+
+        with open(tmp_layer_file_path, 'wt') as fd:
+            fd.write(layer_string)
+
     with closing(create_subscriber_from_dict_config(config['subscriber_settings'])) as sub:
         for message in sub.recv():
 
