@@ -166,7 +166,10 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             _LOGGER.info(select_string)
             time_extent = get_from_db(conn=conn, select_string=select_string)
             if time_extent:
-                time_default = time_extent.split('/')[1]
+                try:
+                    time_default = time_extent.split('/')[1]
+                except IndexError:
+                    time_default = time_extent.split(",")[-1]
             else:
                 _LOGGER.error(f"Skipping product {product} because time_extent is missing.")
                 continue
