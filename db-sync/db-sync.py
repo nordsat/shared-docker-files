@@ -161,8 +161,8 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
                     f"from {config['pg_table_name']} where product_name='{product}';"
                 )
             except ValueError:
-                select_string = (f"select string_agg(to_char(time,'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), ',') as times "
-                                 f"order by time "
+                select_string = (f"select string_agg(to_char(time,'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), ',') "
+                                 f"order by time as times "
                                  f"from {config['pg_table_name']} where product_name='{product}';")
             _LOGGER.info(select_string)
             time_extent = get_from_db(conn=conn, select_string=select_string)
