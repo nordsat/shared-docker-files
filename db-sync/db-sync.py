@@ -144,12 +144,17 @@ def create_mapserver_layer_config(conn: psycopg2.connect, areas, config: dict):
             # SELECT time extent
             time_extent = ""
             time_default = ""
-            select_string = (
-                f"select to_char(min(time),'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
-                f"|| '/' || to_char(max(time), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
-                f"|| '/PT{config['time_slot_interval_in_minutes']}M' "
-                f"from {config['pg_table_name']} where product_name='{product}';"
-            )
+            try:
+                time_interval = int(config["time_slot_interval_in_minutes"])
+                select_string = (
+                    f"select to_char(min(time),'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
+                    f"|| '/' || to_char(max(time), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
+                    f"|| '/PT{time_interval}M' "
+                    f"from {config['pg_table_name']} where product_name='{product}';"
+                )
+            except ValueError:
+                select_string = ("select string_agg(to_char(time,'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), ',') as times",
+                                 f"from {config['pg_table_name']} where product_name='{product}';")
             time_extent = get_from_db(conn=conn, select_string=select_string)
             if time_extent:
                 time_default = time_extent.split('/')[1]
