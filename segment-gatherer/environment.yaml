@@ -3,9 +3,9 @@ channels:
 dependencies:
   - configobj
   - git
-  - netifaces-plus
   - pip
   - pip:
+    - netifaces-plus
     - posttroll
     - pytroll-collectors
   - python
