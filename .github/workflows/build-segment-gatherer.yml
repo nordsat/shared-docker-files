@@ -1,7 +1,9 @@
 name: Publish the segment-gatherer Docker image
 
 on:
-  release
+  push:
+    paths:
+      - segment-gatherer/**
 
 jobs:
   push_to_registry:

@@ -3,7 +3,7 @@ channels:
 dependencies:
   - configobj
   - git
-  - netifaces
+  - netifaces-plus
   - pip
   - pip:
     - posttroll
