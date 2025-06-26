@@ -7,7 +7,7 @@ dependencies:
   - pip:
     - netifaces-plus
     - posttroll
-    - pytroll-collectors
+    - pytroll-collectors>=0.18.0
   - python
   - paramiko
   - pyyaml
