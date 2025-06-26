@@ -9,6 +9,7 @@ dependencies:
     - posttroll
     - pytroll-collectors
   - python
+  - paramiko
   - pyyaml
   - pyzmq
   - s3fs>=2022.8.2
