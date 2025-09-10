@@ -5,9 +5,9 @@ dependencies:
   - git
   - pip
   - pip:
-    - netifaces-plus
-    - posttroll
-    - pytroll-collectors
+      - netifaces-plus
+      - posttroll
+      - pytroll-collectors>0.17.0
   - python
   - paramiko
   - pyyaml
