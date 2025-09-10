@@ -23,7 +23,7 @@ RUN mkdir /opt/conda && \
     chgrp -R 0 /opt/conda && \
     chmod -R g=u /opt/conda
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+FROM registry.access.redhat.com/ubi9/ubi-minimal
 
 COPY --from=builder /opt/conda /opt/conda
 COPY --from=builder /usr/bin/micromamba /usr/bin/
