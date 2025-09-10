@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal AS builder
+FROM registry.access.redhat.com/ubi9/ubi-minimal AS builder
 
 ENV MAMBA_ROOT_PREFIX=/opt/conda
 ENV MAMBA_DISABLE_LOCKFILE=TRUE
