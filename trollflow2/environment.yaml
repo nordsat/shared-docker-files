@@ -37,5 +37,5 @@ dependencies:
   - bottleneck
   - git
   - pip:
-    - posttroll
-    - trollflow2
+      - posttroll
+      - trollflow2>=0.17.0
