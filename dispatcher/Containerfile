@@ -1,11 +1,9 @@
 # Use a Python image with uv pre-installed
-FROM r-harbor.smhi.se/satsa/ghcr.io/astral-sh/uv:python3.13-trixie-slim
+FROM ghcr.io/astral-sh/uv:python3.13-trixie-slim
 
 # Setup a non-root user
 RUN addgroup --system --gid 1000 nonroot \
  && adduser --system --uid 1000 --ingroup nonroot --no-create-home nonroot
-ADD http://pki1.smhi.se/CertData/SMHIROOTCA-G2.crt /usr/local/share/ca-certificates/SMHIROOTCA-G2.crt
-RUN update-ca-certificates
 WORKDIR /dispatcher
 
 # Enable bytecode compilation
