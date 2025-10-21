@@ -1,0 +1,81 @@
+---
+
+services:
+  posttroll:
+    image: posttroll:latest
+    ports:
+      - "16543:16543"
+    volumes:
+      - config:/config
+      - logs:/logs
+
+  trollflow2:
+    image: trollflow2:latest
+    links:
+      - posttroll
+    environment:
+      - MESSAGE_SOURCE=tcp://posttroll:16543
+      - CONFIGFILE=trollflow2_seviri_hrit.yaml
+    volumes:
+      - config:/config
+      - logs:/logs
+      - input:/input
+      - output:/output
+
+  segment_gatherer:
+    image: segment_gatherer:latest
+    links:
+      - posttroll
+    volumes:
+      - config:/config
+      - logs:/logs
+      - input:/input
+      - output:/output
+
+  trollstalker:
+    image: trollstalker:latest
+    environment:
+      - READER=seviri_hrit
+    links:
+      - posttroll
+    volumes:
+      - config:/config
+      - logs:/logs
+      - input:/input
+
+#  trollmoves:
+#    image: trollmoves:latest
+#    volumes:
+#      - config:/config
+
+#  trollwatcher:
+#    image: trollwatcher:latest
+#    volumes:
+#      - config:/config
+
+
+volumes:
+  input:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./input
+  output:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./output
+  config:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./config
+  logs:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./logs
