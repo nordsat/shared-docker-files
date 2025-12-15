@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - eumetsat
 dependencies:
-  - python>=3.13.11
+  - python>=3.13
   - zeromq
   - pyzmq
   - pyyaml
@@ -15,7 +15,7 @@ dependencies:
   - trollimage
   - rasterio
   - pyorbital
-  - gdal=3.11.0
+  - gdal<3.11.1
   - h5py
   - h5netcdf
   - hdf5plugin
