@@ -15,7 +15,7 @@ RUN mkdir /opt/conda && \
     mv /root/.bashrc /opt/conda/.bashrc && \
     source /opt/conda/.bashrc && \
     micromamba activate && \
-    micromamba install -y -f /tmp/environment.yaml && \
+    micromamba install -y -v -f /tmp/environment.yaml && \
     rm /tmp/environment.yaml && \
     pip cache purge && \
     micromamba remove -y --force git pip && \
