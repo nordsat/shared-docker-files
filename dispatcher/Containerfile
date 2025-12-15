@@ -36,4 +36,4 @@ ENTRYPOINT []
 # Use the non-root user to run our application
 USER nonroot
 
-CMD ["dispatcher.py", "-vv", "-c", "/dispatcher/log_config.yaml", "/dispatcher/dispatcher_config.yaml"]
+CMD ["dispatcher.py", "-c", "/dispatcher/log_config.yaml", "/dispatcher/dispatcher_config.yaml"]

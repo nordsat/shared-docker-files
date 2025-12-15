@@ -38,4 +38,5 @@ dependencies:
   - git
   - pip:
       - posttroll
+      - pyninjotiff
       - trollflow2>=0.17.0
