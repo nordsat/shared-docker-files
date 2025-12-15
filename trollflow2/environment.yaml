@@ -15,7 +15,7 @@ dependencies:
   - trollimage
   - rasterio
   - pyorbital
-  - gdal=3.11.5
+  - gdal=3.10.3
   - h5py
   - h5netcdf
   - hdf5plugin
