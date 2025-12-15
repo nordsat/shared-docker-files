@@ -15,7 +15,7 @@ dependencies:
   - trollimage
   - rasterio
   - pyorbital
-  - gdal=3.10.3
+  - gdal=3.11.0
   - h5py
   - h5netcdf
   - hdf5plugin
@@ -37,4 +37,5 @@ dependencies:
   - git
   - pip:
       - posttroll
+      - pyninjotiff
       - trollflow2>=0.17.0
