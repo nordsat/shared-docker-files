@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - eumetsat
 dependencies:
-  - python
+  - python>=3.13.11
   - zeromq
   - pyzmq
   - pyyaml
@@ -36,6 +36,7 @@ dependencies:
   - bottleneck
   - git
   - pip:
+      - --no-dependencies
       - posttroll
       - pyninjotiff
       - trollflow2>=0.17.0
