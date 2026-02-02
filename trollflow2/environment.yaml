@@ -17,7 +17,7 @@ dependencies:
   - pyorbital
   - gdal<3.11.1
   - h5py
-  - h5netcdf
+  - h5netcdf<1.7.0
   - hdf5plugin
   - public-decomp-wt
   - netcdf4
