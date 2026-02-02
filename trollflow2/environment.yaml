@@ -38,4 +38,4 @@ dependencies:
   - pip:
       - posttroll
       - pyninjotiff
-      - trollflow2>=0.17.0
+      - trollflow2>=0.18.0
