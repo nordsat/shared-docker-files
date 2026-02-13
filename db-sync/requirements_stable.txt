@@ -1,5 +1,5 @@
 pyyaml
 psycopg2
 rasterio
-posttroll>=1.12.1
+posttroll>=1.13.1
 
