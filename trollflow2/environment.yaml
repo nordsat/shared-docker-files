@@ -3,9 +3,6 @@ channels:
   - eumetsat
 dependencies:
   - python>=3.13
-  - zeromq
-  - pyzmq
-  - pyyaml
   - trollsift
   - configobj
   - netifaces
