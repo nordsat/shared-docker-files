@@ -36,4 +36,4 @@ ENTRYPOINT []
 # Use the non-root user to run our application
 USER nonroot
 
-CMD ["pytroll-watcher", "-l", "/dispatcher/log_config.yaml", "/watcher/watcher_config.yaml"]
+CMD ["pytroll-watcher", "-l", "/config/log_config.yaml", "/config/watcher_config.yaml"]
