@@ -14,6 +14,10 @@ loggers:
     level: ERROR
     propagate: false
     handlers: [console]
+  requests_oauthlib:
+    level: INFO
+    propagate: false
+    handlers: [console]
 root:
   level: DEBUG
   handlers: [console]
