@@ -1,0 +1,31 @@
+[project]
+name = "trollflow2-image"
+version = "0.1.0"
+description = "trollflow2 instance"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "trollsift",
+    "satpy",
+    "rasterio",
+    "pyorbital",
+    "rioxarray",
+    "h5py",
+    "h5netcdf<1.7.0",
+    "netcdf4",
+    "paramiko",
+    "scp",
+    "fsspec",
+    "s3fs",
+    "dpath",
+    "toolz",
+    "shapely",
+    "scipy",
+    "fasteners",
+    "numcodecs",
+    "asciitree",
+    "bottleneck",
+    "posttroll",
+    "pyninjotiff",
+    "trollflow2>=0.18.0"
+]
