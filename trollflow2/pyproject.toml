@@ -26,5 +26,6 @@ dependencies = [
     "asciitree",
     "bottleneck",
     "pyninjotiff",
+    "python-geotiepoints",
     "trollflow2>=0.18.0"
 ]
