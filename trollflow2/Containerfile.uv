@@ -23,16 +23,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 # Then, add the rest of the project source code and install it
 # Installing separately from its dependencies allows optimal layer caching
-COPY ./log_config.yaml /trollflow2
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     uv sync --locked --no-dev
 
 # Place executables in the environment at the front of the path
 ENV PATH="/trollflow2/.venv/bin:$PATH"
 
 COPY entrypoint.uv.sh /usr/bin/
-# Reset the entrypoint, don't invoke `uv`
-ENTRYPOINT []
 
 # Use the non-root user to run our application
 USER nonroot
