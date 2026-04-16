@@ -25,7 +25,6 @@ dependencies = [
     "numcodecs",
     "asciitree",
     "bottleneck",
-    "posttroll",
     "pyninjotiff",
     "trollflow2>=0.18.0"
 ]
