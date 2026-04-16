@@ -1,3 +1,4 @@
+ARG STABILITY=stable
 FROM registry.access.redhat.com/ubi9/ubi-minimal AS builder
 
 ENV MAMBA_ROOT_PREFIX=/opt/conda
@@ -22,6 +23,10 @@ RUN mkdir /opt/conda && \
     micromamba clean -a -y && \
     chgrp -R 0 /opt/conda && \
     chmod -R g=u /opt/conda
+
+RUN if [ "$STABILITY" = "unstable" ]; then \
+      micromamba run -n base pip install "satpy @ git+https://github.com/pytroll/satpy@main"; \
+    fi
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 

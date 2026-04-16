@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         flavor: [uv, mamba]
-
+        stability: [stable, unstable]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
         with:
           images: mraspaud/trollflow2
           flavor: |
-            suffix=-${{ matrix.flavor }},onlatest=true
+            suffix=-${{ matrix.flavor }}${{ matrix.stability == 'unstable' && '-unstable' || '' }},onlatest=true
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -43,5 +43,7 @@ jobs:
           context: ./trollflow2
           file: ./trollflow2/Containerfile.${{ matrix.flavor }}
           push: true
+          build-args: |
+            STABILITY=${{ matrix.stability }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
