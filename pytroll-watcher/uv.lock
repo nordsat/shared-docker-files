@@ -891,11 +891,11 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pytroll-watchers", extras = ["minio", "local", "publishing", "ssh", "dataspace", "datastore", "s3"] }]
+requires-dist = [{ name = "pytroll-watchers", extras = ["minio", "local", "publishing", "ssh", "dataspace", "datastore", "s3"], specifier = ">=0.10.0" }]
 
 [[package]]
 name = "pytroll-watchers"
-version = "0.9.0"
+version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "geojson" },
@@ -903,7 +903,7 @@ dependencies = [
     { name = "trollsift" },
     { name = "universal-pathlib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/82/1aee45f026582b65c8749101d14ac0841032400064aac9d3576ed402138d/pytroll_watchers-0.9.0.tar.gz", hash = "sha256:70970e1a7f7de087b2bc899dc75e237e04ae3c20f012ab8b56b0e95042b113b5", size = 65594, upload-time = "2026-03-11T15:31:28.991Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a4/9d/c713fbff704eab14a2708f7602daa7ec38a5b373599f16e4df270c6606e6/pytroll_watchers-0.10.0.tar.gz", hash = "sha256:faf3b8e715c1c575ddfc4e34931aa3e63a41fc579878b73739d31d938b1f54de", size = 66385, upload-time = "2026-04-16T07:05:48.441Z" }
 
 [package.optional-dependencies]
 dataspace = [
