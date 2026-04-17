@@ -1,0 +1,12 @@
+[project]
+name = "db-push"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "pyyaml",
+    "psycopg2-binary",
+    "rasterio",
+    "posttroll>=1.13.1",
+    "trollsift",
+]
+
