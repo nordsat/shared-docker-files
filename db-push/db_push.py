@@ -3,13 +3,12 @@ import sys
 import argparse
 import datetime
 import logging
-import json
 from contextlib import closing
 
 import yaml
 from yaml import BaseLoader
 import psycopg2
-from osgeo import gdal
+import rasterio
 from trollsift import parse
 from posttroll.subscriber import create_subscriber_from_dict_config
 
@@ -28,7 +27,20 @@ def main(args=None):
         _LOGGER.error(f"Failed to load configurations: {str(exc)}")
         sys.exit(1)
 
-    subscribe_and_ingest(config=config, pattern=pattern)
+    if parsed_args.files:
+        _LOGGER.info("Batch processing files…")
+        conn = _pg_connect(config)
+        if not conn:
+            sys.exit("Fatal: Could not establish database connection for batch ingest.")
+
+        try:
+            ingest_into_postgis(conn=conn, files=parsed_args.files, config=config, pattern=pattern)
+        finally:
+            if not conn.closed:
+                conn.close()
+        _LOGGER.info("Batch processing complete. Exiting.")
+    else:
+        subscribe_and_ingest(config=config, pattern=pattern)
 
 
 def parse_args(args=None):
@@ -36,6 +48,7 @@ def parse_args(args=None):
     parser = argparse.ArgumentParser(description="Sync Sentinel-1 Footprints to PostGIS.")
     parser.add_argument("config_file", help="The configuration file for sync-db.")
     parser.add_argument("tf2_config_file", help="The trollflow2 configuration file.")
+    parser.add_argument("files", nargs="*", action="store")
     return parser.parse_args(args)
 
 
@@ -128,35 +141,46 @@ def ingest_into_postgis(conn: psycopg2.extensions.connection,
 
 
 def collect_metadata_from_tiff(input_file: str):
-    """Use GDAL to collect exact footprint from GCPs and datetime."""
+    """Use rasterio to collect exact footprint from grid or GCPs and datetime."""
     try:
-        # Get metadata directly using GDAL bindings
-        ds = gdal.Open(input_file)
-        if ds is None:
-            _LOGGER.error(f"GDAL failed to open {input_file}")
-            return None, None
-            
-        meta = ds.GetMetadata()
-        time_str = meta.get('TIFFTAG_DATETIME')
-        
-        if time_str:
-            img_time = datetime.datetime.strptime(time_str, '%Y:%m:%d %H:%M:%S')
-        else:
-            _LOGGER.error(f"TIFFTAG_DATETIME missing in {input_file}")
-            img_time = None
-            
-        ds = None # Close dataset
+        with rasterio.open(input_file) as ds:
 
-        # Use gdal.Info to extract the WGS84 footprint solved from GCPs
-        # TODO: make a narrower footpring polygon?
-        info = gdal.Info(input_file, format='json')
-        if info and 'wgs84Extent' in info:
-            geom_json = json.dumps(info['wgs84Extent'])
-        else:
-            _LOGGER.error(f"No WGS84 extent (footprint) found for {input_file}.")
-            geom_json = None
+            tags = ds.tags
+            time_str = tags.get('TIFFTAG_DATETIME')
+            if time_str:
+                img_time = datetime.datetime.strptime(time_str, '%Y:%m:%d %H:%M:%S')
+            else:
+                _LOGGER.error(f"TIFFTAG_DATETIME missing in {input_file}")
+                img_time = None
+            gcps, gcp_crs = ds.gcps
 
-        return img_time, geom_json
+            if gcps:  # Sentinel 1 GRD data for example
+                _LOGGER.info(f"Detected GCPs in {input_file}. Building Multipoint cloud.")
+                points = [f"{gcp.x} {gcp.y}" for gcp in gcps]
+                geom_wkt = f"MULTIPOINT({', '.join(points)})"
+
+                # Default to 4326 if undefined, otherwise extract from GCP CRS
+                srid = 4326
+                if gcp_crs and gcp_crs.is_epsg_code:
+                    srid = gcp_crs.to_epsg()
+
+            else:  # standard grid
+                _LOGGER.info(f"Detected standard affine grid in {input_file}. Building Bounding Box.")
+                crs = ds.crs
+                if not crs or not crs.is_epsg_code:
+                    _LOGGER.error(f"Missing valid EPSG CRS in standard TIFF {input_file}. Cannot proceed.")
+                    return img_time, None, None
+                srid = crs.to_epsg()
+                bounds = ds.bounds
+                geom_wkt = (
+                    f"POLYGON(({bounds.left} {bounds.bottom}, "
+                    f"{bounds.left} {bounds.top}, "
+                    f"{bounds.right} {bounds.top}, "
+                    f"{bounds.right} {bounds.bottom}, "
+                    f"{bounds.left} {bounds.bottom}))"
+                )
+
+            return img_time, geom_wkt, srid
 
     except Exception as ex:
         _LOGGER.exception(f"Cannot collect info from file {input_file}. Exception: {str(ex)}")
@@ -167,15 +191,30 @@ def insert_into_db(conn: psycopg2.extensions.connection,
                    filename: str, 
                    product_name: str, 
                    image_time: datetime.datetime, 
-                   geom_json: str, 
+                   geom_wkt: str, 
+                   native_srid: int, 
                    db_config: dict):
-    """Safely insert into database using parameterized queries."""
+    """Safely insert into database using EPSG:3575 and Concave Hull for maximum WMS efficiency."""
     table = db_config['pg_table_name']
     
     select_query = f"SELECT 1 FROM {table} WHERE filename = %s;"
+    
+    # 1. Read the GCP Multipoint (or affine Polygon) in its native SRID (usually 4326)
+    # 2. Instantly transform the points to your working projection (3575)
+    # 3. Shrink-wrap the points using ST_ConcaveHull (0.95 tightness)
     insert_query = f"""
         INSERT INTO {table} (filename, product_name, time, geom) 
-        VALUES (%s, %s, %s, ST_SetSRID(ST_GeomFromGeoJSON(%s), 4326));
+        VALUES (
+            %s, %s, %s, 
+            ST_ConcaveHull(
+                ST_Transform(
+                    ST_SetSRID(ST_GeomFromText(%s), %s), 
+                    3575
+                ), 
+                0.95, -- Target percent: tweak this between 0.90 and 0.99 if needed
+                false -- Do not allow interior holes
+            )
+        );
     """
 
     inserted = False
@@ -185,7 +224,7 @@ def insert_into_db(conn: psycopg2.extensions.connection,
             if curs.fetchone():
                 _LOGGER.info(f"File {filename} is already in the database. Skipping.")
             else:
-                curs.execute(insert_query, (filename, product_name, image_time, geom_json))
+                curs.execute(insert_query, (filename, product_name, image_time, geom_wkt, native_srid))
                 inserted = True
             conn.commit()
     except psycopg2.Error as e:
@@ -193,7 +232,6 @@ def insert_into_db(conn: psycopg2.extensions.connection,
         conn.rollback()
 
     return inserted
-
 
 
 if __name__ == "__main__":

@@ -1,11 +1,6 @@
 # Use a Python image with uv pre-installed
 FROM ghcr.io/astral-sh/uv:python3.13-trixie-slim
 
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgdal-dev \
- && rm -rf /var/lib/apt/lists/*
-
 # Setup a non-root user
 RUN addgroup --system --gid 1000 nonroot \
  && adduser --system --uid 1000 --ingroup nonroot --no-create-home nonroot
