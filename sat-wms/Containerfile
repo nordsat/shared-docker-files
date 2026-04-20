@@ -47,4 +47,4 @@ ENTRYPOINT []
 # Use the non-root user to run our application
 USER nonroot
 
-CMD ["uvicorn", "main:app"]
+CMD ["uvicorn", "sat_wms.app:app"]
