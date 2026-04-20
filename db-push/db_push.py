@@ -130,11 +130,11 @@ def ingest_into_postgis(conn: psycopg2.extensions.connection,
         basename = os.path.basename(input_file)
 
         _LOGGER.info(f"Processing {input_file}.")
-        img_time, geom_json = collect_metadata_from_tiff(input_file=input_file)
+        img_time, geom_json, srid = collect_metadata_from_tiff(input_file=input_file)
         mda = parse(pattern, basename)
 
         if img_time and geom_json:
-            if insert_into_db(conn, input_file, mda["productname"], img_time, geom_json, config):
+            if insert_into_db(conn, input_file, mda["productname"], img_time, geom_json, srid, config):
                 _LOGGER.info(f"Successfully registered {basename}.")
                 inserted = True
     return inserted
