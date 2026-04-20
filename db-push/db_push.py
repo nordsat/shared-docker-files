@@ -145,7 +145,7 @@ def collect_metadata_from_tiff(input_file: str):
     try:
         with rasterio.open(input_file) as ds:
 
-            tags = ds.tags
+            tags = ds.tags()
             time_str = tags.get('TIFFTAG_DATETIME')
             if time_str:
                 img_time = datetime.datetime.strptime(time_str, '%Y:%m:%d %H:%M:%S')
