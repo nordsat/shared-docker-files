@@ -39,5 +39,4 @@ ENTRYPOINT []
 # Use the non-root user to run our application
 USER nonroot
 
-# GDAL_CACHEMAX=512 GDAL_NUM_THREADS=ALL_CPUS SAT_WMS_FORCE_WEBP=True SAT_WMS_EMPTY_NO_CONTENT=True nohup 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8997", "--workers", "4"]
+CMD ["uvicorn", "main:app"]
