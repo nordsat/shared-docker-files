@@ -961,8 +961,8 @@ wheels = [
 
 [[package]]
 name = "sat-wms"
-version = "0.1.dev36+g9219c5c63"
-source = { git = "https://github.com/mraspaud/sat-wms?rev=main#9219c5c63ec43e9c4b1b1c4fd3f19b49cb57a60f" }
+version = "0.1.dev37+gff1b1a491"
+source = { git = "https://github.com/mraspaud/sat-wms?rev=main#ff1b1a491087fba131be356362a8204c73fa43fd" }
 dependencies = [
     { name = "donfig" },
     { name = "fastapi", extra = ["standard"] },
