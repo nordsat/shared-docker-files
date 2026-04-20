@@ -1,4 +1,4 @@
-name: Publish the pytroll watcher container image
+name: Publish the sat-wms container image
 
 on:
   push:

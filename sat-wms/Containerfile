@@ -19,7 +19,11 @@ ENV UV_TOOL_BIN_DIR=/usr/local/bin
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    apt-get update && \
+    apt-get install -y --no-install-recommends git && \
     uv sync --locked --no-install-project --no-dev
+    apt-get purge -y --auto-remove git && \
+    rm -rf /var/lib/apt/lists/* ;
 
 # Then, add the rest of the project source code and install it
 # Installing separately from its dependencies allows optimal layer caching
