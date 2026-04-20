@@ -1,0 +1,9 @@
+[project]
+name = "sat-wms-container"
+version = "0.1.0"
+description = "sat-wms instance"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "sat-wms @ git+https://github.com/mraspaud/sat-wms@main",
+]
