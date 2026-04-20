@@ -41,4 +41,4 @@ USER nonroot
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 ENTRYPOINT []
 
-CMD ["python", "$APP_DIR/db_push.py", "/config/db-push.yaml", "/etc/trollflow2.yaml"]
+CMD ["python", "db_push.py", "/config/db-push.yaml", "/etc/trollflow2.yaml"]
