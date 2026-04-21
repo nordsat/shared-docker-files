@@ -106,7 +106,7 @@ def _pg_connect(config: dict):
             port='5432',
             dbname=config['pg_database_name'],
             user=config['pg_user_name'],
-            password=os.environ['POSTGRES_PASSWORD']
+            password=os.environ['PGPASSWORD']
         )
         return conn
     except psycopg2.OperationalError as e:
