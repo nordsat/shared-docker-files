@@ -1,5 +1,5 @@
 # Use a Python image with uv pre-installed
-FROM ghcr.io/astral-sh/uv:python3.13-trixie-slim
+FROM ghcr.io/astral-sh/uv:python3.14-trixie-slim
 
 # Setup a non-root user
 RUN addgroup --system --gid 1000 nonroot \
