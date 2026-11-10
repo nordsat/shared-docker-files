@@ -1,0 +1,101 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_PCPh.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - GEO-PCPh
+# *
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_PCPh.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for GEO-PCPh
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-PCPh product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    0.0         GMV      First version (PROTOTYPE)
+# * APR 2020    vMTG        GMV      Update of output product format for vMTG
+# * JAN 2022    v4.0       GMV       Final version for NWC/GEO vMTG
+# * 
+# **************************************************************************/
+#
+
+
+
+# PCPh
+# -------------------------------------------
+TITLE       NWC GEO Precipitating Clouds from Cloud Physical Properties
+SUMMARY     Precipitating Clouds Product of the NWC/GEO. Probability of precipitation in pre-defined probability intervals from Cloud Physical Properties
+KEYWORDS    Precipitation Probability
+CDM         Image
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          pcph_pal
+PAL_FILE        S_NWC_PALETTE_pcph.pal
+PALETTE_END
+
+# Attributes for Container pcph
+# -------------------------------------------
+BLOCK_pcph
+standard_name        
+long_name            NWC GEO PCPh Precipitating Clouds
+scale_factor         1.0
+add_offset           0.0
+units                100
+valid_range          0, 101
+_FillValue           65535
+ancillary_variables  pcph_status_flag  pcph_conditions pcph_quality pcph_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container pcph_status_flag
+# ------------------------------------
+BLOCK_pcph_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO PCPh processing
+valid_range          1, 256
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 256
+flag_values          1, 2, 4, 8, 16, 256
+flag_meanings        microphysics_data_missing
+flag_meanings        phase_not_available
+flag_meanings        ir_band_missing
+flag_meanings        parallax_correction_applied
+flag_meanings        stability_correction_applied
+flag_meanings        data_hole_filled
+BLOCK_END
+
+# Attributes for Container pcph_pal
+# ------------------------------------
+BLOCK_pcph_pal
+long_name            RGB palette for pcph
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field pcph
+BLOCK_END

@@ -1,0 +1,17 @@
+# Palette for ASII-ICE, asiiice_haic_mask parameter
+# ---------------------------------
+#
+# Number of different count values:
+7
+#
+# Palette definition:
+#
+# Count    R   G   B
+# --------------------
+     0      0   0   0
+     1	  255 255 255
+     2     51 204 204
+     3	    0   0 255
+     4	  255 255   0
+     5    255   0   0
+     6    100 100 100

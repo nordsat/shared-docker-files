@@ -1,0 +1,72 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_EV_9chan.dat
+# * \brief  Eigenvalues for the computation of components for CRRPh
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *                     between EUMETSAT and AEMET.
+# *
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-CRRPh
+# *
+# * \par FILE        :  S_NWC_EV_9chan.dat
+# *
+# * \par TYPE        :  configuration file
+# *
+# * \par FUNCTION    :  This file contains the eignevalues for the computation 
+# *                     of the components for retrieve CRRPh 
+# *                     using normalised data for the following satellite 
+# *                     bands:
+# *                       CWP
+# *                       IR108
+# *                       IR120
+# *                       IR134
+# *                       IR87
+# *                       IR97
+# *                       VIS06
+# *                       WV62
+# *                       WV73
+# *
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    v0.0       GMV       First version (GEO-CRRPh PROTOTYPE)       
+# * OCT 2021    v3.0       GMV       Final version for NWC/GEO v2021     
+# * JAN 2022    v4.0       GMV       Final version for NWC/GEO vMTG
+# *
+# **************************************************************************/
+#
+
+# Eigenvector V1
+# --------------
+v11    -0.19426604
+v12     0.35904999
+v13     0.35865646
+v14     0.35813887
+v15     0.35933997
+v16     0.35286535
+v17    -0.29268894
+v18     0.35407908
+v19     0.33431710
+
+# Eigenvector V2
+# --------------
+v21    -0.83583786
+v22    -0.09086839
+v23    -0.10932737
+v24    -0.13268772
+v25    -0.07710212
+v26    -0.08497276
+v27    -0.44038809
+v28    -0.14455189
+v29    -0.18856688

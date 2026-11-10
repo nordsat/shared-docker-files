@@ -1,0 +1,15 @@
+# Palette for CMA, cma_cloudsnow parameter
+# ---------------------------------
+#
+# Number of different count values:
+5
+#
+# Palette definition:
+#
+# Count    R   G   B
+# --------------------
+     0      0   0   0
+     1    255   0   0
+     2    200 175 250
+     3    250 190 250
+     4    100 100 100

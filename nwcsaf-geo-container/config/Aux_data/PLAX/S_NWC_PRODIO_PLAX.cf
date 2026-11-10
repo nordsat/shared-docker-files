@@ -1,0 +1,357 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_PLAX.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - PLAX
+# *
+# *
+# * \par Copyright 2020, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_PLAX.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for PLAX
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate PLAX product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# *                                  Support to all NWC/GEO satellite bands
+# * 
+# **************************************************************************/
+#
+
+
+# PLAX
+# -------------------------------------------
+TITLE       NWC/GEO Satellite Product
+SUMMARY     Satellite data
+KEYWORDS    Satellite Data
+CDM         Image
+
+
+# Palette Definition
+# ------------------------------
+
+
+# Attributes for Container VIS04
+# -------------------------------------------
+BLOCK_VIS04
+standard_name        toa_bidirectional_reflectance
+long_name            0.4 microns visible channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VIS05
+# -------------------------------------------
+BLOCK_VIS05
+standard_name        toa_bidirectional_reflectance
+long_name            0.5 microns visible channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VIS06
+# -------------------------------------------
+BLOCK_VIS06
+standard_name        toa_bidirectional_reflectance
+long_name            0.6 microns visible channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container HRV
+# -------------------------------------------
+BLOCK_HRV
+standard_name        toa_bidirectional_reflectance
+long_name            high resolution visible channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VIS08
+# -------------------------------------------
+BLOCK_VIS08
+standard_name        toa_bidirectional_reflectance
+long_name            0.8 microns visible channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VIS09
+# -------------------------------------------
+BLOCK_VIS09
+standard_name        toa_bidirectional_reflectance
+long_name            0.9 microns visible channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container NIR13
+# -------------------------------------------
+BLOCK_NIR13
+standard_name        toa_bidirectional_reflectance
+long_name            1.3 microns near infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container NIR16
+# -------------------------------------------
+BLOCK_NIR16
+standard_name        toa_bidirectional_reflectance
+long_name            1.6 microns near infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container NIR22
+# -------------------------------------------
+BLOCK_NIR22
+standard_name        toa_bidirectional_reflectance
+long_name            2.2 microns near infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR38
+# -------------------------------------------
+BLOCK_IR38
+standard_name        toa_brightness_temperature
+long_name            3.8 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VW62
+# -------------------------------------------
+BLOCK_WV62
+standard_name        toa_brightness_temperature
+long_name            6.2 microns water vapour channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VW70
+# -------------------------------------------
+BLOCK_WV70
+standard_name        toa_brightness_temperature
+long_name            7.0 microns water vapour channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container VW73
+# -------------------------------------------
+BLOCK_WV73
+standard_name        toa_brightness_temperature
+long_name            7.3 microns water vapour channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR87
+# -------------------------------------------
+BLOCK_IR87
+standard_name        toa_brightness_temperature
+long_name            8.7 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR97
+# -------------------------------------------
+BLOCK_IR97
+standard_name        toa_brightness_temperature
+long_name            9.7 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR103
+# -------------------------------------------
+BLOCK_IR103
+standard_name        toa_brightness_temperature
+long_name            10.3 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR108
+# -------------------------------------------
+BLOCK_IR108
+standard_name        toa_brightness_temperature
+long_name            10.8 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR120
+# -------------------------------------------
+BLOCK_IR120
+standard_name        toa_brightness_temperature
+long_name            12.0 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container IR134
+# -------------------------------------------
+BLOCK_IR134
+standard_name        toa_brightness_temperature
+long_name            13.4 microns infra-red channel
+scale_factor         0.01
+add_offset           0.0
+units                K
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END

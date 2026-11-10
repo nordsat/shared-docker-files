@@ -1,0 +1,17 @@
+# Palette for CT, ct_cumuliform parameter
+# ---------------------------------
+#
+# Number of different count values:
+7
+#
+# Palette definition:
+#
+# Count    R   G   B
+# --------------------
+     0      0   0   0
+     1    255 100   0
+     2      0  80 215
+     3    115  80  50
+     4      0   0   0
+     5     75  40  15     
+     6    100 100 100

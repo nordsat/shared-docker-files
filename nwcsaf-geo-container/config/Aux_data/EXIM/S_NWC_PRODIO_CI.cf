@@ -1,0 +1,171 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_CI.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - CI
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CI.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CI
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-CI products in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * NOV 2017    V2016       GMV      CF Convention Compliance
+# * OCT 2018    V2018       MFT      Updated to GEO-CI v2018
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * AUG 2021     2021        MFT         SPR-SAF-NWC-CDOP3-0740 : SMR-SAF-NWC-CDOP3-0709
+# *
+# **************************************************************************/
+#
+
+
+# CI
+# -------------------------------------------
+TITLE        NWC GEO Convection Initiation Product
+SUMMARY      Convection Initiation Product of the NWC/GEO. Probability for a cloudy pixel to become a thunderstorm
+KEYWORDS     Convection
+CDM          Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          ci_pal
+PAL_COLORS      256
+PAL_FILE        S_NWC_PALETTE_ci.pal
+PALETTE_END
+
+
+# Attributes for Container ci_prob30
+# ------------------------------------
+BLOCK_ci_prob30
+standard_name        
+long_name            NWC GEO CI Convection Initiation Probability next 30min
+units                1
+valid_range          0, 4
+_FillValue           255
+ancillary_variables  ci_status_flag  ci_conditions  ci_quality  ci_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0: no probability;
+comment              1: 0-25% probability;
+comment              2: 25-50% probability;
+comment              3: 50-75% probability;
+comment              4: 75-100% probability;
+flag_values          0, 1, 2, 3, 4
+flag_meanings        no_probability
+flag_meanings        0-25_pc_probability
+flag_meanings        25-50_pc_probability
+flag_meanings        50-75_pc_probability
+flag_meanings        75-100_pc_probability
+BLOCK_END
+
+
+# Attributes for Container ci_prob60
+# ------------------------------------
+BLOCK_ci_prob60
+standard_name        
+long_name            NWC GEO CI Convection Initiation Probability next 60min
+units                1
+valid_range          0, 4
+_FillValue           255
+ancillary_variables  ci_status_flag  ci_conditions  ci_quality  ci_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0: no probability;
+comment              1: 0-25% probability;
+comment              2: 25-50% probability;
+comment              3: 50-75% probability;
+comment              4: 75-100% probability;
+flag_values          0, 1, 2, 3, 4
+flag_meanings        no_probability
+flag_meanings        0-25_pc_probability
+flag_meanings        25-50_pc_probability
+flag_meanings        50-75_pc_probability
+flag_meanings        75-100_pc_probability
+BLOCK_END
+
+
+# Attributes for Container ci_prob90
+# ------------------------------------
+BLOCK_ci_prob90
+standard_name        
+long_name            NWC GEO CI Convection Initiation Probability next 90min
+units                1
+valid_range          0, 4
+_FillValue           255
+ancillary_variables  ci_status_flag  ci_conditions  ci_quality  ci_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0: no probability;
+comment              1: 0-25% probability;
+comment              2: 25-50% probability;
+comment              3: 50-75% probability;
+comment              4: 75-100% probability;
+flag_values          0, 1, 2, 3, 4
+flag_meanings        no_probability
+flag_meanings        0-25_pc_probability
+flag_meanings        25-50_pc_probability
+flag_meanings        50-75_pc_probability
+flag_meanings        75-100_pc_probability
+BLOCK_END
+
+
+# Attributes for Container ci_status_flag
+# ------------------------------------
+BLOCK_ci_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CI processing
+valid_range          0, 63
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            0, 1, 2, 4, 8, 16, 32
+flag_values          0, 1, 2, 4, 8, 16, 32
+flag_meanings        not_processed
+flag_meanings        High_resolution_satellite_data_used
+flag_meanings        Visible_data_used
+flag_meanings        IR3.9m_data_used
+flag_meanings        Cloud_type_data_used
+flag_meanings        Cloud_Microphysic_data_used
+flag_meanings        NWP_data_used 
+BLOCK_END
+
+
+# Attributes for Container ci_pal
+# ------------------------------------
+BLOCK_ci_pal
+long_name            RGB palette for ci
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ci
+BLOCK_END
+
+
+

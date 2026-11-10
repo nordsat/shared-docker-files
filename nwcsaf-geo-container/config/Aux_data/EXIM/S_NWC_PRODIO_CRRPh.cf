@@ -1,0 +1,135 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_CRRPh.cf
+# * \brief (PRIVATE) Configurable information for CRRPh
+# *
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CRRPh.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CRRPh
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-CRRPh product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    0.0         GMV      First version (PROTOTYPE)
+# * MAR 2021    v2018.2     GMV      Final version for 2018.2
+# * OCT 2021    v3.0        GMV      Final version for v2021
+# * JAN 2022    v4.0        GMV      Final version for NWC/GEO vMTG
+# * MAR 2023    v4.0        GMV      long_name corrected
+# *
+# **************************************************************************/
+#
+
+
+
+# CRRPh
+# -------------------------------------------
+TITLE        NWC GEO Convective Rainfall Rate from Cloud Physical Properties
+SUMMARY      Convective Rainfall Rate Product of the NWC/GEO. Estimation of the precipitation rate associated to convective clouds from Cloud Physical Properties
+KEYWORDS     Precipitation Rate, Convection, Rain Rate
+CDM          Image
+
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          crrph_pal
+PAL_FILE        S_NWC_PALETTE_crrph.pal
+PALETTE_END
+
+
+# Attributes for Container crrph_intensity
+# -------------------------------------------
+BLOCK_crrph_intensity
+standard_name        convective_precipitation_rate
+long_name            NWC GEO CRRPh Convective Rainfall Intensity
+scale_factor         0.1
+add_offset           0.0
+units                mm/h
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  crrph_status_flag  crrph_conditions crrph_quality crrph_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container crrph_accum
+# -------------------------------------------
+BLOCK_crrph_accum
+standard_name        
+long_name            NWC GEO CRRPh Convective Hourly Rainfall Accumulation
+scale_factor         0.1
+add_offset           0.0
+units                mm/h
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  crrph_status_flag  crrph_conditions crrph_quality crrph_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+     
+
+# Attributes for Container crrph_status_flag
+# ------------------------------------
+BLOCK_crrph_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CRRPh processing
+valid_range          1, 24576
+_FillValue           0
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 256, 3584, 3584, 3584, 3584, 4096, 24576, 24576, 24576
+flag_values          1, 2, 4, 8, 16, 32, 64, 256,  512, 1024, 1536, 2048, 4096,  8192, 16384, 24576
+flag_meanings        microphysics_data_missing
+flag_meanings        phase_not_available
+flag_meanings        ir_band_missing
+flag_meanings        parallax_correction_applied
+flag_meanings        cwp_correction_applied
+flag_meanings        stability_correction_applied
+flag_meanings        lightning_data_used
+flag_meanings        data_hole_filled
+flag_meanings        all_bands_for_accumulation_available
+flag_meanings        one_band_for_accumulation_missing
+flag_meanings        several_no_consecutive_bands_for_accumulation_missing
+flag_meanings        several_consecutive_bands_for_accumulation_missing
+flag_meanings        accumulation_quality_flag
+flag_meanings        accumulation_using_day_algorithm_only
+flag_meanings        accumulation_using_night_algorithm_only
+flag_meanings        accumulation_using_mixed_algorithms
+BLOCK_END
+
+
+# Attributes for Container crrph_pal
+# ------------------------------------
+BLOCK_crrph_pal
+long_name            RGB palette for crrph
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to fields crrph, crrph_acum
+BLOCK_END

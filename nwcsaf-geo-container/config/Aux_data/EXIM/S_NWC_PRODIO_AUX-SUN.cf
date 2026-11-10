@@ -1,0 +1,74 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_AUX-SUN.cf
+# * \brief (PRIVATE) Configurable information for PRODIO, AUX-SUN
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_AUX-SUN.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for AUX-SUN
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-AUX-SUN product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * JUN 2017    2016.2      GMV      SPR-621: Generation of AUX Products in netCDF
+# * NOV 2017    V2016        GMV      CF Convention Compliance
+# * 
+# **************************************************************************/
+#
+
+
+
+# Attributes for Header - AUX-SUN
+# ------------------------------
+TITLE       NWC GEO Auxiliary Product - Sun angles
+SUMMARY     Solar azimuth and zenith angles data Product of the NWC/GEO
+KEYWORDS    Auxiliary
+CDM         Image
+
+# Palette Definition
+# ------------------------------
+
+
+# Attributes for Container sun_azimuth
+# ------------------------------------
+BLOCK_sun_azimuth
+standard_name        solar_azimuth_angle
+long_name            Sun azimuth angle at the centre of each pixel
+units                degrees
+valid_range          0.0 360.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for Container sun_zenith
+# ------------------------------------
+BLOCK_sun_zenith
+standard_name        solar_zenith_angle
+long_name            Sun zenith angle at the centre of each pixel
+units                degrees
+valid_range          0.0, 180.0
+_FillValue           -9999.0
+BLOCK_END

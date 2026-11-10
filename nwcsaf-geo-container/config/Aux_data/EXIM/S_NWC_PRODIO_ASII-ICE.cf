@@ -1,0 +1,143 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_ASII-ICE.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - ASII-ICE
+# *
+# *
+# * \par Copyright 2021, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  ZAMG Zentralanstalt fuer Meteorologie und Geodynamik
+# *                     This SW was developed by ZAMG within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     entered in force 1 March 2017 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-ASII-ICE/NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_ASII-ICE.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for ASII-ICE
+# *
+# * \par FUNCTION    :  Defines Product information to be used by PRODIO
+# *                     to generate a GEO-ASII-ICE product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED NOT TO MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR    	REASONS
+# *
+# * SEP 2021    vMTG	   ZAMG         Creation
+# *
+# **************************************************************************/
+#
+
+# ASII-ICE
+# -------------------------------------------
+TITLE    NWC GEO Automatic Satellite Image Interpretation - Icing Product
+SUMMARY  Automatic Satellite Image Interpretation (New Generation) Product of the NWC/GEO. Automatic interpretation of the satellite image.
+KEYWORDS icing
+CDM      Image
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          asiiice_haic_mask_pal
+PAL_FILE        S_NWC_PALETTE_asiiice_haic_mask.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          asiiice_sc_mask_pal
+PAL_FILE        S_NWC_PALETTE_asiiice_sc_mask.pal
+PALETTE_END
+
+
+# Attributes for Container asiiice_haic_mask
+# --------------------------------------------
+BLOCK_asiiice_haic_mask
+standard_name        
+long_name            High altitude ice crystals 
+units                1
+valid_range          0, 2
+_FillValue           255
+ancillary_variables  asiiice_quality asiiice_haic_mask_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment		     0:  no icing;
+comment              1:  unknown;
+comment              2:  icing;
+flag_values	     0, 1, 2
+flag_meanings	     no_icing
+flag_meanings	     unknown
+flag_meanings	     icing 
+BLOCK_END
+
+
+# Attributes for Container asiiice_sc_mask
+# --------------------------------------------
+BLOCK_asiiice_sc_mask
+standard_name        
+long_name            Icing due to supercooled water 
+units                1
+valid_range          0, 5
+_FillValue           255
+ancillary_variables  asiiice_quality asiiice_sc_mask_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment		     0:  no icing;
+comment              1:  unknown;
+comment              2:  low probability of light icing;
+comment              3:  medium probability of light icing; 
+comment              4:  high probability of light icing;
+comment              5:  high probability of medium-or-greater icing;
+flag_values	     0, 1, 2, 3, 4, 5
+flag_meanings	     no_icing
+flag_meanings	     unknown
+flag_meanings	     light_icing_low_prob
+flag_meanings	     light_icing_medium_prob
+flag_meanings	     light_icing_high_prob
+flag_meanings	     medium_or_greater_icing_high_prob 
+BLOCK_END
+
+# Attributes for Container asiiice_status_flag
+# --------------------------------------------------------
+BLOCK_asiiice_status_flag
+standard_name        status_flag
+long_name            Status flag for icing indicators
+valid_range          0, 7
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+flag_mask            1, 2, 4
+flag_values          1, 2, 4
+flag_meanings        HAIC_in_RDT_severity
+flag_meanings	     CTTH_outage
+flag_meanings	     CMIC_outage 
+BLOCK_END
+
+
+# Attributes for Container asiiice_sc_mask_pal
+# -------------------------------------------
+BLOCK_asiiice_sc_mask_pal
+long_name            RGB palette for asiiice_sc_mask
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field asiiice_sc_mask
+BLOCK_END
+
+# Attributes for Container asiiice_haic_mask_pal
+# -------------------------------------------
+BLOCK_asiiice_haic_mask_pal
+long_name            RGB palette for asiiice_haic_mask
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field asiiice_haic_mask
+BLOCK_END
+

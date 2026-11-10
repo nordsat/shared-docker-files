@@ -1,0 +1,46 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_LUT_pcph.dat
+# * \brief  LUT for the computation of the PCPh
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *                     between EUMETSAT and AEMET.
+# *
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-PCPh
+# *
+# * \par FILE        :  S_NWC_LUT_pcph.dat
+# *
+# * \par TYPE        :  LUT table
+# *
+# * \par FUNCTION    :  This is the configuration file to read the 2D binary LUT
+# *                     S_NWC_LUT_pcph.lut, containing PCPh values as a 
+# *                     function of principal components (p1,p2) computed
+# *                     from normalized values oc CWP, IR, VIS and WV bands
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    v0.0       GMV       First version (GEO-PCPh PROTOTYPE)
+# * DIC 2020    v3.0       GMV       Update of coefficients for vMTG
+# * OCT 2021    v3.0       GMV       Final version for NWC/GEO v2021     
+# * JAN 2022    v4.0       GMV       Final version for NWC/GEO vMTG
+# *
+# **************************************************************************/
+#
+
+LUT_NCOLS    200
+LUT_NLINES   200
+LUT_X0       -9.95
+LUT_Y0       -9.95
+LUT_DX       0.10
+LUT_DY       0.10

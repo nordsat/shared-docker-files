@@ -1,0 +1,28 @@
+# Precipitation likelihood for night algorithm4, all clouds
+# Column 1: Precipitation Index PI
+# Column 2: P(precipitation < 0.1mm/hr)
+# Column 3: P(precipitation > 0.1mm/hr)
+# Column 4: obsolete, should always be 0
+    5  100    0    0
+   10  100    0    0
+   15  100    0    0
+   20  100    0    0
+   25  100    0    0
+   30  100    0    0
+   35  100    0    0
+   40  100    0    0
+   45  100    0    0
+   50  100    0    0
+   55  100    0    0
+   60  100    0    0
+   65  100    0    0
+   70   90   10    0
+   75   90   10    0
+   80   90   10    0
+   85   90   10    0
+   90   80   20    0
+   95   70   30    0
+  100   60   40    0
+  105   50   50    0
+  110	40   60    0
+  115   30   70    0

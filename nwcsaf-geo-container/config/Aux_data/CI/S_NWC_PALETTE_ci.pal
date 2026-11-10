@@ -1,0 +1,16 @@
+# Palette for CI, ci parameter
+# ---------------------------------
+#
+# Number of different count values:
+6
+#
+# Palette definition:
+#
+# Count    R   G   B
+# --------------------
+     0    220 220 220
+     1    250 230  50
+     2    250 150  20
+     3    240  20  20
+     4    250   0 250
+     5      0   0   0

@@ -1,0 +1,712 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_HRW.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - HRW
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_HRW.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for HRW
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-HRW product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# * DATE     VERSION AUTHOR    REASONS
+# * DEC 2014         GMV       Creation.
+# * APR 2016  v5.0   AEMET/GMV NWC/GEO v2016
+# * 
+# * JUL 2018  v6.0   AEMET/GMV NWC/GEO v2018
+# * AUG 2019  v6.1   AEMET/GMV NWC/GEO v2018.1
+# * AUG 2021  v6.2   AEMET/GMV NWC/GEO v2021
+# * OCT 2020  v7.P     AEMET   NWC/PPS v2021
+# * AUG 2021  v7.0   AEMET/GMV NWC/GEO vMTG-day1
+# * APR 2023           AEMET      SPR-SAF-NWC-CDOP3-0772 : SMR-SAF-NWC-CDOP3-0742
+# * 
+# **************************************************************************/
+#
+
+# HRW
+# -------------------------------------------
+TITLE     NWC/GEO-High Resolution Winds Product
+SUMMARY   High Resolution Winds Product of the NWC/GEO. Detailed sets of Atmospheric Motion Vectors or Trajectories throughout all hours of the day, considering visible, infrared and water vapour channel data
+KEYWORDS  Atmospheric Motion Vectors or Trajectories, Satellite winds or trajectories
+CDM       Bulletin
+
+# Attributes for observations 
+# -------------------------------------------
+BLOCK_observations
+standard_name
+long_name            AMV_number
+units                1
+valid_range          0u, 16777214u
+_FillValue           16777215
+ancillary_variables
+coordinates          time lat lon
+comment              AMV identifier
+BLOCK_END
+
+# Attributes for trajectory
+# -------------------------------------------
+BLOCK_trajectory
+long_name            trajectory_number
+units                1
+valid_range          0u, 16777214u
+_FillValue           16777215
+ancillary_variables
+coordinates          time lat lon
+comment              Trajectory identifier
+cf_role              trajectory_id
+BLOCK_END
+
+# Attributes for observationst
+# -------------------------------------------
+BLOCK_observationst
+long_name            point_inside_the_trajectory
+units                1
+valid_range          0ub, 25ub
+_FillValue           31
+ancillary_variables
+coordinates          time lat lon
+comment              Point inside the trajectory; values between 1 (initial point) and 1+number of trajectory segments (last point) 
+BLOCK_END
+
+# Attributes for obs_time
+# -------------------------------------------
+BLOCK_obs_time
+standard_name
+long_name            trajectory_point_observation_time
+units                seconds since 1970-01-01 00:00:00 
+valid_range          1., 2147483646. 
+_FillValue           0.
+ancillary_variables
+coordinates          time lat lon
+comment              Trajectory point observation time 
+BLOCK_END
+
+# Attributes for wind_id
+# -------------------------------------------
+BLOCK_wind_id
+standard_name
+long_name            wind_id
+units                1
+valid_range          0u, 16777214u
+_FillValue           16777215
+ancillary_variables
+coordinates          time lat lon
+comment              AMV identifier; wind_id changes for each slot
+BLOCK_END
+
+# Attributes for wind_prev_id
+# -------------------------------------------
+BLOCK_wind_prev_id
+standard_name        
+long_name            wind_prev_id
+units                1
+valid_range          0u, 16777214u
+_FillValue           16777215
+ancillary_variables  
+coordinates          time lat lon
+comment              AMV identifier in the previous slot; wind_id in current slot and wind_prev_id in previous slot are used to identify two consecutive segments of the same trajectory
+BLOCK_END
+
+# Attributes for number_of_winds
+# ------------------------------
+BLOCK_number_of_winds
+standard_name        
+long_name            number_of_winds
+units                1
+valid_range          0ub, 3ub
+_FillValue           7
+ancillary_variables  
+coordinates          time lat lon
+comment              Number of AMVs calculated for the same tracer by HRW
+BLOCK_END
+
+# Attributes for correlation_test
+# ------------------------------
+BLOCK_correlation_test
+standard_name        
+long_name            correlation_test
+units                1
+valid_range          0ub, 3ub
+_FillValue           7
+ancillary_variables  
+coordinates          time lat lon
+comment              Correlation test; Values based on BUFR code table 060201
+flag_values          0, 1, 2, 3
+flag_meanings        AMV_which_is_not_the_initially_calculated_AMV_and_has_not_the_Best_correlation_value
+flag_meanings        AMV_which_is_not_the_initially_calculated_AMV_but_has_the_Best_correlation_value
+flag_meanings        AMV_which_is_the_initially_calculated_AMV_but_has_not_the_Best_correlation_value
+flag_meanings        AMV_which_is_the_initially_calculated_AMV_and_has_the_Best_correlation_value
+BLOCK_END
+
+# Attributes for quality_test
+# ------------------------------
+BLOCK_quality_test
+standard_name        
+long_name            quality_test
+units                1
+valid_range          0u, 1024u
+_FillValue           2047
+ancillary_variables  
+coordinates          time lat lon
+comment              Quality test; Values based on BUFR code table 060202; It stores a bit mask with values for Orographic|Forecast|Spatial|Temporal|Two scale flags (two bits each one of them)
+comment              For each one of the flags: 0 - Corresponding Quality test could not be calculated; 
+comment                                         1 - Among the AMVs for the tracer, this AMV has a rather worse result for this Quality test;
+comment                                         2 - Among the AMVs for the tracer, this AMV has a slightly worse result for this Quality test;
+comment                                         3 - Among the AMVs for the tracer, this AMV has the best result for this Quality test
+BLOCK_END
+
+# Attributes for segment_x
+# ------------------------------
+BLOCK_segment_x
+standard_name        
+long_name            segment_x (m)
+units                m
+valid_range          0u, 262140u
+_FillValue           262143
+ancillary_variables  
+coordinates          time lat lon
+comment              Tracer longitudinal size in metres
+BLOCK_END
+
+# Attributes for segment_y
+# ------------------------------
+BLOCK_segment_y
+standard_name            
+long_name            segment_y (m)
+units                m
+valid_range          0u, 262140u
+_FillValue           262143
+ancillary_variables  
+coordinates          time lat lon
+comment              Tracer latitudinal size in metres
+BLOCK_END
+
+# Attributes for segment_x_pix
+# ------------------------------
+BLOCK_segment_x_pix
+standard_name        
+long_name            segment_x_pix (pix)
+units                1
+valid_range          0ub, 126ub
+_FillValue           127
+ancillary_variables  
+coordinates          time lat lon
+comment              Tracer longitudinal size in pixels
+BLOCK_END
+
+# Attributes for segment_y_pix
+# ------------------------------
+BLOCK_segment_y_pix
+standard_name        
+long_name            segment_y_pix (pix)
+units                1
+valid_range          0ub, 126ub
+_FillValue           127
+ancillary_variables  
+coordinates          time lat lon
+comment              Tracer latitudinal size in pixels
+BLOCK_END
+
+# Attributes for lat
+# -------------------------------------------
+BLOCK_lat
+standard_name        latitude
+long_name            latitude (degrees_north)
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           245.0
+ancillary_variables  
+coordinates          
+comment              Latitude; name reduced to lat due to need by processing apps
+BLOCK_END
+
+# Attributes for lon
+# -------------------------------------------
+BLOCK_lon
+standard_name        longitude     
+long_name            longitude (degrees_east)
+units                degrees_east
+valid_range          -180.0, 179.99999
+_FillValue           +491.0
+ancillary_variables  
+coordinates          
+comment              Longitude; name reduced to lon due to need by processing apps
+BLOCK_END
+
+# Attributes for latitude_increment
+# -------------------------------------------
+BLOCK_latitude_increment
+standard_name        
+long_name            latitude_increment (degrees_north)
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           +245.0
+ancillary_variables  
+coordinates          time lat lon
+comment              AMV latitude increment between initial and later image
+BLOCK_END
+
+# Attributes for longitude_increment
+# -------------------------------------------
+BLOCK_longitude_increment
+standard_name            
+long_name            longitude_increment (degrees_east)
+units                degrees_east
+valid_range          -180.0, 179.99999
+_FillValue           491.0
+ancillary_variables  
+coordinates          time lat lon
+comment              AMV longitude increment between initial and later image
+BLOCK_END
+
+# Attributes for air_temperature
+# -------------------------------------------
+BLOCK_air_temperature
+standard_name        air_temperature
+long_name            air_temperature (K)
+units                K
+valid_range          0.0, 409.4
+_FillValue           409.5
+ancillary_variables  
+coordinates          time lat lon
+comment              Temperature
+BLOCK_END
+
+# Attributes for air_pressure
+# -------------------------------------------
+BLOCK_air_pressure
+standard_name        air_pressure
+long_name            air_pressure (Pa)
+units                Pa
+valid_range          0.0, 163829.0
+_FillValue           163830.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Pressure
+BLOCK_END
+
+# Attributes for air_pressure_error
+# -------------------------------------------
+BLOCK_air_pressure_error
+standard_name        
+long_name            air_pressure_error (Pa)
+units                Pa
+valid_range          -80000.0, 80000.0
+_FillValue           83830.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Pressure error (Calculated by CCC height assignment method) with a limit of +/- 80000 Pa
+BLOCK_END
+
+# Attributes for air_pressure_correction
+# -------------------------------------------
+BLOCK_air_pressure_correction
+standard_name        
+long_name            air_pressure_correction (Pa)
+units                Pa
+valid_range          -80000.0, 80000.0
+_FillValue           83830.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Pressure correction (Calculated by CCC height assignment method Microphysics correction) with a limit of +/- 80000 Pa
+BLOCK_END
+
+# Attributes for air_pressure_nwp_at_best_fit_level
+# -------------------------------------------
+BLOCK_air_pressure_nwp_at_best_fit_level
+standard_name        
+long_name            air_pressure_nwp_at_best_fit_level (Pa)
+units                Pa
+valid_range          0.0, 163829.0
+_FillValue           163830.0
+ancillary_variables  
+coordinates          time lat lon
+comment              AMV pressure at NWP best fit level
+BLOCK_END
+
+# Attributes for barometric_altitude_in_hectofeet
+# -------------------------------------------
+BLOCK_barometric_altitude_in_hectofeet
+standard_name        
+long_name            barometric_altitude_in_hectofeet (hectofeet)
+units                hectofeet
+valid_range          -40.0, 1030.0
+_FillValue           2047.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Barometric altitude in the International Standard Atmosphere (ICAO, 1976). Rounded by 5 gives the nearest Flight Level (FL)
+BLOCK_END
+
+# Attributes for wind_speed
+# -------------------------------------------
+BLOCK_wind_speed
+standard_name        wind_speed
+long_name            wind speed (m s-1)
+units                m s-1
+valid_range          0.0, 409.4
+_FillValue           409.5
+ancillary_variables  
+coordinates          time lat lon
+comment              Wind speed
+BLOCK_END
+
+# Attributes for wind_from_direction
+# -------------------------------------------
+BLOCK_wind_from_direction
+standard_name        wind_from_direction
+long_name            wind_from_direction (degrees)
+units                degrees
+valid_range          0.0, 359.99999
+_FillValue           511.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Wind direction (direction from which wind is blowing)
+BLOCK_END
+
+# Attributes for wind_speed_nwp_at_amv_level
+# -------------------------------------------
+BLOCK_wind_speed_nwp_at_amv_level
+standard_name        
+long_name            wind_speed_nwp_at_amv_level (m s-1)
+units                m s-1
+valid_range          0.0, 409.4
+_FillValue           409.5
+ancillary_variables  
+coordinates          time lat lon
+comment              NWP wind speed at AMV level
+BLOCK_END
+
+# Attributes for wind_from_direction_nwp_at_amv_level
+# -------------------------------------------
+BLOCK_wind_from_direction_nwp_at_amv_level
+standard_name        
+long_name            wind_from_direction_nwp_at_amv_level (degrees)
+units                degrees
+valid_range          0.0, 359.99999
+_FillValue           511.0
+ancillary_variables  
+coordinates          time lat lon
+comment              NWP wind direction at AMV level (direction from which the wind is blowing)
+BLOCK_END
+
+# Attributes for wind_speed_nwp_at_best_fit_level
+# -------------------------------------------
+BLOCK_wind_speed_nwp_at_best_fit_level
+standard_name        
+long_name            wind_speed_nwp_at_best_fit_level (m s-1)
+units                m s-1
+valid_range          0.0, 409.4
+_FillValue           409.5
+ancillary_variables  
+coordinates          time lat lon
+comment              NWP wind speed at AMV best fit level
+BLOCK_END
+
+# Attributes for wind_from_direction_nwp_at_best_fit_level
+# -------------------------------------------
+BLOCK_wind_from_direction_nwp_at_best_fit_level
+standard_name        
+long_name            wind_from_direction_nwp_at_best_fit_level (degrees)
+units                degrees
+valid_range          0.0, 359.99999
+_FillValue           511.0
+ancillary_variables  
+coordinates          time lat lon
+comment              NWP wind direction at AMV best fit level (direction from which the wind is blowing)
+BLOCK_END
+
+# Attributes for wind_speed_difference_nwp_at_amv_level
+# -------------------------------------------
+BLOCK_wind_speed_difference_nwp_at_amv_level
+standard_name        
+long_name            wind_speed_difference_nwp_at_amv_level (m s-1)
+units                m s-1
+valid_range          0.0, 409.4
+_FillValue           409.5
+ancillary_variables  
+coordinates          time lat lon
+comment              Wind speed difference between AMV and NWP at AMV level
+BLOCK_END
+
+# Attributes for wind_from_direction_difference_nwp_at_amv_level
+# -------------------------------------------
+BLOCK_wind_from_direction_difference_nwp_at_amv_level
+standard_name        
+long_name            wind_from_direction_difference_nwp_at_amv_level (degrees)
+units                degrees
+valid_range          0.0, 359.99999
+_FillValue           511.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Wind direction difference between AMV and NWP at AMV level (direction from which the wind is blowing)
+BLOCK_END
+
+# Attributes for wind_speed_difference_nwp_at_best_fit_level
+# -------------------------------------------
+BLOCK_wind_speed_difference_nwp_at_best_fit_level
+standard_name        
+long_name            wind_speed_difference_nwp_at_best_fit_level (m s-1)
+units                m s-1
+valid_range          0.0, 409.4
+_FillValue           409.5
+ancillary_variables  
+coordinates          time lat lon
+comment              Wind speed difference between AMV and NWP at AMV best fit level
+BLOCK_END
+
+# Attributes for wind_from_direction_difference_nwp_at_best_fit_level
+# -------------------------------------------
+BLOCK_wind_from_direction_difference_nwp_at_best_fit_level
+standard_name        
+long_name            wind_from_direction_difference_nwp_at_best_fit_level (degrees)
+units                degrees
+valid_range          0.0, 359.99999
+_FillValue           511.0
+ancillary_variables  
+coordinates          time lat lon
+comment              Wind direction difference between AMV and NWP at AMV best fit level (direction from which the wind is blowing)
+BLOCK_END
+
+# Attributes for quality_index_with_forecast
+# -------------------------------------------
+BLOCK_quality_index_with_forecast
+standard_name        
+long_name            quality_index_with_forecast (percent)
+units                percent
+valid_range          0ub, 100ub
+_FillValue           127
+ancillary_variables  
+coordinates          time lat lon
+comment              Quality index with forecast (%)
+BLOCK_END
+
+# Attributes for quality_index_without_forecast
+# -------------------------------------------
+BLOCK_quality_index_without_forecast
+standard_name        
+long_name            quality_index_without_forecast (percent)
+units                percent
+valid_range          0ub, 100ub
+_FillValue           127
+ancillary_variables  
+coordinates          time lat lon
+comment              Quality index without forecast (%)
+BLOCK_END
+
+# Attributes for quality_index_iwwg_value
+# -------------------------------------------
+BLOCK_quality_index_iwwg_value
+standard_name        
+long_name            quality_index_iwwg_value (percent)
+units                percent
+valid_range          0ub, 100ub
+_FillValue           127
+ancillary_variables  
+coordinates          time lat lon
+comment              Quality index (International Winds Working Group common value) (%)
+BLOCK_END
+
+# Attributes for tracer_correlation_method
+# -------------------------------------------
+BLOCK_tracer_correlation_method
+standard_name        
+long_name            tracer_correlation_method
+units                1
+valid_range          0ub, 2ub
+_FillValue           7
+ancillary_variables  
+coordinates          time lat lon
+comment              Tracer correlation method; Values based on BUFR code table 002164
+flag_values          0, 1, 2
+flag_meanings        Euclidean_Distance
+flag_meanings        invalid
+flag_meanings        Cross_Correlation
+BLOCK_END
+
+# Attributes for tracer_type
+# -------------------------------------------
+BLOCK_tracer_type
+standard_name        
+long_name            tracer_type
+units                1
+valid_range          0ub, 3ub
+_FillValue           7
+ancillary_variables  
+coordinates          time lat lon
+comment              Tracer type; Values based on BUFR code table 060104
+flag_values          0, 1, 2, 3
+flag_meanings        Basic_tracer
+flag_meanings        Detailed_tracer_related_to_a_Narrow_basic_tracer
+flag_meanings        Detailed_tracer_related_to_a_Wide_basic_tracer
+flag_meanings        Detailed_tracer_unrelated_to_a_Basic_tracer
+BLOCK_END
+
+# Attributes for height_assignment_method
+# -------------------------------------------
+BLOCK_height_assignment_method
+standard_name        
+long_name            height_assignment_method
+units                1
+valid_range          0ub, 15ub
+_FillValue           31
+ancillary_variables  
+coordinates          time lat lon
+comment              Height assignment method; Values based on BUFR code table 060103
+flag_values          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+flag_meanings        Brightness_Temperature_Interpolation_height_assignment._Top_pressure._Clear_air_AMV
+flag_meanings        Brightness_Temperature_Interpolation_height_assignment._Top_pressure._Cloudy_AMV
+flag_meanings        invalid
+flag_meanings        Brightness_Temperature_Interpolation_height_assignment._Base_pressure._Cloudy_AMV
+flag_meanings        CCC_height_assignment._Low_threshold._Cold_branch._Clear_air_AMV
+flag_meanings        CCC_height_assignment._High_threshold._Cold_branch._Clear_air_AMV
+flag_meanings        CCC_height_assignment._Low_threshold._Cold_or_Bright_branch._Cloudy_AMV._Undefined_cloud_phase
+flag_meanings        CCC_height_assignment._High_threshold._Cold_or_Bright_branch._Cloudy_AMV._Undefined_cloud_phase
+flag_meanings        CCC_height_assignment._Low_threshold._Cold_or_Bright_branch._Cloudy_AMV._Liquid_cloud_phase
+flag_meanings        CCC_height_assignment._High_threshold._Cold_or_Bright_branch._Cloudy_AMV._Liquid_cloud_phase
+flag_meanings        CCC_height_assignment_with_Microphysics_correction._Low_threshold._Cold_or_Bright_branch._Cloudy_AMV._Liquid_cloud_phase
+flag_meanings        CCC_height_assignment_with_Microphysics_correction._High_threshold._Cold_or_Bright_branch._Cloudy_AMV._Liquid_cloud_phase
+flag_meanings        CCC_height_assignment._Low_threshold._Cold_or_Bright_branch._Cloudy_AMV._Ice_cloud_phase
+flag_meanings        CCC_height_assignment._High_threshold._Cold_or_Bright_branch._Cloudy_AMV._Ice_cloud_phase
+flag_meanings        CCC_height_assignment_with_Microphysics_correction._Low_threshold._Cold_or_Bright_branch._Cloudy_AMV._Ice_cloud_phase
+flag_meanings        CCC_height_assignment_with_Microphysics_correction._High_threshold._Cold_or_Bright_branch._Cloudy_AMV._Ice_cloud_phase
+BLOCK_END
+
+# Attributes for orographic_index
+# -------------------------------------------
+BLOCK_orographic_index
+standard_name        
+long_name            orographic_index
+units                1
+valid_range          0ub, 6ub
+_FillValue           7
+ancillary_variables  
+coordinates          time lat lon
+comment              Orographic index; Values based on BUFR code table 060205
+flag_values          0, 1, 2, 3, 4, 5, 6
+flag_meanings        Orographic_index_not_calculated
+flag_meanings        AMV_wrongly_located_below_Earth_surface_by_Microphysics_correction._Always_removed
+flag_meanings        Very_important_Orographic_influence_at_current_AMV_location
+flag_meanings        Important_Orographic_influence_at_current_AMV_location
+flag_meanings        Very_important_Orographic_influence_at_previous_AMV_locations
+flag_meanings        Important_Orographic_influence_at_previous_AMV_locations
+flag_meanings        Orographic_influence_not_found
+BLOCK_END
+
+# Attributes for cloud_type
+# -------------------------------------------
+BLOCK_cloud_type
+standard_name        
+long_name            cloud_type
+units                1
+valid_range          1ub, 23ub
+_FillValue           255
+ancillary_variables  
+coordinates          time lat lon
+comment              Cloud type; Values based on BUFR code table 060206
+flag_values          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+flag_meanings        Cloud_free_land
+flag_meanings        Cloud_free_sea
+flag_meanings        Land_contaminated_by_snow_or_ice
+flag_meanings        Sea_contaminated_by_ice
+flag_meanings        Very_low_cumulus_or_stratus
+flag_meanings        Low_cumulus_or_stratus
+flag_meanings        Medium_level_cumulus_or_stratus
+flag_meanings        High_opaque_cumulus_or_stratus
+flag_meanings        Very_high_opaque_cumulus_or_stratus
+flag_meanings        Fractional_clouds
+flag_meanings        High_semitransparent_thin_clouds
+flag_meanings        High_semitransparent_meanly_thick_clouds
+flag_meanings        High_semitransparent_thick_clouds
+flag_meanings        High_semitransparent_above_other_clouds
+flag_meanings        High_semitransparent_above_snow_or_ice
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        Multiple_cloud_types
+flag_meanings        Multiple_clear_air_types
+flag_meanings        Mixed_cloudy_and_clear_air_types
+BLOCK_END
+
+# Attributes for correlation
+# -------------------------------------------
+BLOCK_correlation
+standard_name        
+long_name            correlation (percent)
+units                percent
+valid_range          0ub, 100ub
+_FillValue           127
+ancillary_variables  
+coordinates          time lat lon
+comment              Correlation (only available for Cross Correlation tracking)
+BLOCK_END
+
+# Attributes for number_of_trajectory_points
+# -------------------------------------------
+BLOCK_number_of_trajectory_points
+standard_name
+long_name            number_of_trajectory_points
+units                1
+valid_range          0ub, 25ub
+_FillValue           31
+ancillary_variables
+coordinates          time lat lon
+comment              Number of points in the Trajectory
+BLOCK_END
+
+# Attributes for satellite_channel
+# -------------------------------------------
+BLOCK_satellite_channel
+standard_name        
+long_name            satellite_channel
+units                1
+valid_range          0ub, 18ub
+_FillValue           31
+ancillary_variables  
+flag_values          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        MSG-VIS06__GOESN-VIS07__HIMA-VIS06__GOESR-VIS06__MTGI-VIS06__POLAR-VIS06
+flag_meanings        MSG-VIS08__HIMA-VIS08__GOESR-VIS08__MTGI-VIS08
+flag_meanings        invalid
+flag_meanings        MSG-HRVIS
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        MSG-WV062__GOESN-WV065__HIMA-WV062__GOESR-WV062__MTGI-WV063
+flag_meanings        HIMA-WV069__GOESR-WV070
+flag_meanings        MSG-WV073__HIMA-WV073__GOESR-WV074__MTGI-WV073
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        invalid
+flag_meanings        MSG-IR108__GOESN-IR107__HIMA-IR112__GOESR-IR112__MTGI-IR105__POLAR-IR108+IR110
+flag_meanings        MSG-IR120__MTGI-IR123
+flag_meanings        invalid
+coordinates          time lat lon
+comment              Satellite channel used for the AMV/Trajectory calculation; Band Label info available at: https://www.nwcsaf.org/aemetRest/downloadAttachment/5767
+BLOCK_END

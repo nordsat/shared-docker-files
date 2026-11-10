@@ -1,0 +1,175 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_CRR.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - CRR
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CRR.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CRR
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-CRR product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * NOV 2017    V2016       GMV      CF Convention Compliance
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * 
+# **************************************************************************/
+#
+
+
+# CRR
+# -------------------------------------------
+TITLE      NWC GEO Convective Rainfall Rate Product
+SUMMARY    Convective Rainfall Rate Product of the NWC/GEO. Estimation of the precipitation rate associated to convective clouds
+KEYWORDS   Precipitation Rate, Convection, Rain Rate
+CDM        Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          crr_pal
+PAL_FILE        S_NWC_PALETTE_crr.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          crr_intensity_pal
+PAL_FILE        S_NWC_PALETTE_crr_intensity.pal
+PALETTE_END
+
+
+# Attributes for Container crr
+# ------------------------------------
+BLOCK_crr
+standard_name        
+long_name            NWC GEO CRR Convective Rainfall Rate Class
+units                
+valid_range          0, 11
+_FillValue           255
+ancillary_variables  crr_status_flag  crr_conditions crr_quality crr_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_values          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+flag_meanings        00_02_mm_h
+flag_meanings        02_1_mm_h
+flag_meanings        1_2_mm_h
+flag_meanings        2_3_mm_h
+flag_meanings        3_5_mm_h
+flag_meanings        5_7_mm_h
+flag_meanings        7_10_mm_h
+flag_meanings        10_15_mm_h
+flag_meanings        15_20_mm_h
+flag_meanings        20_30_mm_h
+flag_meanings        30_50_mm_h
+flag_meanings        50____mm_h
+BLOCK_END
+
+
+# Attributes for Container crr_intensity
+# -------------------------------------------
+BLOCK_crr_intensity
+standard_name        convective_precipitation_rate
+long_name            NWC GEO CRR Convective Rainfall Intensity
+scale_factor         0.1
+add_offset           0.0
+units                mm/h
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  crr_status_flag  crr_conditions crr_quality crr_intensity_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container crr_acum
+# -------------------------------------------
+BLOCK_crr_accum
+standard_name        
+long_name            NWC GEO CRR Convective Hourly Rainfall Accumulation
+scale_factor         0.1
+add_offset           0.0
+units                mm
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  crr_status_flag  crr_conditions crr_quality crr_intensity_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container crr_status_flag
+# ---------------------------------------
+BLOCK_crr_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CRR processing
+valid_range          1, 4096
+_FillValue           0
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 128, 256, 3584, 3584, 3584, 3584, 4096
+flag_values          1, 2, 4, 8, 16, 32, 64, 128, 256,  512, 1024, 1536, 2048, 4096
+flag_meanings        humidity_correction_applied
+flag_meanings        evolution_correction_applied
+flag_meanings        gradient_correction_applied
+flag_meanings        parallax_correction_applied
+flag_meanings        orographic_correction_applied
+flag_meanings        solar_data_used
+flag_meanings        lightning_data_used
+flag_meanings        data_filtered
+flag_meanings        data_hole_filled
+flag_meanings        all_bands_for_accumulation_available
+flag_meanings        one_band_for_accumulation_missing
+flag_meanings        several_no_consecutive_bands_for_accumulation_missing
+flag_meanings        several_consecutive_bands_for_accumulation_missing
+flag_meanings        accumulation_quality_flag
+BLOCK_END
+
+
+# Attributes for Container crr_pal
+# ------------------------------------
+BLOCK_crr_pal
+long_name            RGB palette for crr
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field crr
+BLOCK_END
+
+
+# Attributes for Container crr_intensity_pal
+# ------------------------------------
+BLOCK_crr_intensity_pal
+long_name            RGB palette for crr_intensity
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field crr_intensity
+BLOCK_END
+

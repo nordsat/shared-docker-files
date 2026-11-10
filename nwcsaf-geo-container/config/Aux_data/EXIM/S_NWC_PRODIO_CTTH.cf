@@ -1,0 +1,262 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_CTTH.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - CTTH
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CTTH.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CTTH
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-CTTH product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * OCT 2017    V2018	    MFL      adaptation V2018/CF conventions
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * OCT 2021   vMTG      MF/CEMS  SPR-741/SMR-711 
+# **************************************************************************/
+#
+
+
+# CTTH
+# -------------------------------------------
+TITLE       NWC GEO Cloud Top Temperature and Height Product
+SUMMARY     Cloud Top Temperature and Height Product of the NWC/GEO. Information on cloud vertical extension and on cloud top temperature.
+KEYWORDS    Cloud Height, Cloud Top Pressure, Cloud Top Temperature, Cloud Emissivity
+CDM         Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          ctth_pres_pal
+PAL_FILE        S_NWC_PALETTE_ctth_pres.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ctth_alti_pal
+PAL_FILE        S_NWC_PALETTE_ctth_alti.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ctth_tempe_pal
+PAL_FILE        S_NWC_PALETTE_ctth_tempe.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ctth_effectiv_pal
+PAL_FILE        S_NWC_PALETTE_ctth_effectiv.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ctth_hfeet_pal
+PAL_FILE        S_NWC_PALETTE_ctth_hfeet.pal
+PALETTE_END
+
+# Attributes for Container ctth_pres
+# -------------------------------------------
+BLOCK_ctth_pres
+standard_name        air_pressure_at_cloud_top
+long_name            NWC GEO CTTH Cloud Top Pressure
+scale_factor         10.0
+add_offset            0.0
+units                Pa
+valid_range          0, 11000
+_FillValue           65535
+ancillary_variables  ctth_status_flag  ctth_conditions ctth_quality ctth_pres_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container ctth_alti
+# ----------------------------------------
+BLOCK_ctth_alti
+standard_name        cloud_top_altitude
+long_name            NWC GEO CTTH Cloud Top Altitude
+scale_factor             1.0
+add_offset           -2000.0
+units                m
+valid_range          0, 27000
+_FillValue           65535
+ancillary_variables  ctth_status_flag  ctth_conditions ctth_quality ctth_alti_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container ctth_tempe
+# ----------------------------------------
+BLOCK_ctth_tempe
+standard_name        air_temperature_at_cloud_top
+long_name            NWC GEO CTTH Cloud Top Temperature
+scale_factor           0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  ctth_status_flag  ctth_conditions ctth_quality ctth_tempe_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container ctth_effectiv
+# ----------------------------------------
+BLOCK_ctth_effectiv
+standard_name        cloud_area_fraction
+long_name            NWC GEO CTTH Effective Cloudiness
+scale_factor           0.01
+add_offset             0.0
+units                1
+valid_range          0, 100
+_FillValue           65535
+ancillary_variables  ctth_status_flag ctth_conditions ctth_quality ctth_effectiv_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container ctth_hfeet
+# ----------------------------------------
+BLOCK_ctth_hfeet
+standard_name        cloud_top_barometric_altitude_in_hectofeet
+long_name            NWC GEO CTTH Cloud Top in hectofeet
+scale_factor             1.0
+add_offset              -40.0
+units                hectofeet
+valid_range          0, 1070
+_FillValue           65535
+ancillary_variables  ctth_status_flag  ctth_conditions ctth_quality ctth_hfeet_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              Barometric altitude in the International Standard Atmosphere (ICAO, 1976). Rounded by 5 gives the nearest FL
+BLOCK_END
+
+# Attributes for Container ctth_method
+# ---------------------------------------
+BLOCK_ctth_method
+standard_name        status_flag
+long_name            NWC GEO CTTH List of Methods
+valid_range          0, 16383
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192
+flag_values          1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192
+flag_meanings        Cloud-free
+flag_meanings        No_reliable_method
+flag_meanings        Opaque_cloud_RTTOV_not_available
+flag_meanings        Opaque_cloud_using_RTTOV
+flag_meanings        Opaque_cloud_using_RTTOV_in_case_thermal_inversion
+flag_meanings        Intercept_method_108um_134um
+flag_meanings        Intercept_method_108um_62um
+flag_meanings        Intercept_method_108um_70um
+flag_meanings        Intercept_method_108um_73um
+flag_meanings        Radiance_ratioing_method_108um_134um
+flag_meanings        Radiance_ratioing_method_108um_62um
+flag_meanings        Radiance_ratioing_method_108um_70um
+flag_meanings        Radiance_ratioing_method_108um_73um
+flag_meanings        Spatial_smoothing
+BLOCK_END
+
+
+# Attributes for Container ctth_status_flag
+# ---------------------------------------
+BLOCK_ctth_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CTTH processing
+valid_range          0, 63
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32
+flag_values          1, 2, 4, 8, 16, 32
+flag_meanings        Cloud-free
+flag_meanings        Low_level_thermal_inversion_in_NWP_field
+flag_meanings        Opaque_cloud
+flag_meanings        Fractional_clouds_no_reliable_method
+flag_meanings        Too_thin_clouds_no_reliable_method
+flag_meanings        Multilayer_cloud_suspected
+BLOCK_END
+
+
+# Attributes for Container ctth_pres_pal
+# ------------------------------------
+BLOCK_ctth_pres_pal
+long_name            RGB palette for ctth_pres
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ctth_pres
+BLOCK_END
+
+
+# Attributes for Container ctth_alti_pal
+# ------------------------------------
+BLOCK_ctth_alti_pal
+long_name            RGB palette for ctth_alti
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ctth_alti
+BLOCK_END
+
+
+# Attributes for Container ctth_tempe_pal
+# ------------------------------------
+BLOCK_ctth_tempe_pal
+long_name            RGB palette for ctth_tempe
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ctth_tempe
+BLOCK_END
+
+
+# Attributes for Container ctth_effectiv_pal
+# ------------------------------------
+BLOCK_ctth_effectiv_pal
+long_name            RGB palette for ctth_tempe
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ctth_effectiv
+BLOCK_END
+
+
+# Attributes for Container ctth_hfeet_pal
+# ------------------------------------
+BLOCK_ctth_hfeet_pal
+long_name            RGB palette for ctth_tempe
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ctth_hfeet
+BLOCK_END
+
+

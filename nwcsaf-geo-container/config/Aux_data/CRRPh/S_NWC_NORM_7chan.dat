@@ -1,0 +1,53 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_NORM_7chan.dat
+# * \brief  Data to normalice input channels for CWP/VIS06
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *                     between EUMETSAT and AEMET.
+# *
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-CRRPh
+# *
+# * \par FILE        :  S_NWC_NORM_7chan.dat
+# *
+# * \par TYPE        :  configuration file
+# *
+# * \par FUNCTION    :  This file contains the values for the normalizacion of 
+# *                     input channels to compute principal components for CWP/VIS06
+# *                       IR108
+# *                       IR120
+# *                       IR134
+# *                       IR87
+# *                       IR97
+# *                       WV62
+# *                       WV73
+# *
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * OCT 2021    v3.0       GMV       Final version for NWC/GEO v2021     
+# * JAN 2022    v4.0       GMV       Final version for NWC/GEO vMTG
+# *
+# **************************************************************************/
+#
+
+# Normalization parameters
+# ------------------------
+IR108     242.03643436      21.27664634
+IR120     240.61806287      20.58345066
+IR134     234.23087442      13.51909372
+IR87      242.08655814      20.78070428
+IR97      235.34225756      10.67359157
+WV62      227.09770767       6.63554842
+WV73      233.72949906      12.15742079

@@ -1,0 +1,100 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_ASII-TF.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - ASII-TF
+# *
+# *
+# * \par Copyright 2021, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  ZAMG Zentralanstalt fuer Meteorologie und Geodynamik
+# *                     This SW was developed by ZAMG within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     entered in force 1 March 2017 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-ASII-TF/NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_ASII-TF.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for ASII-TF
+# *
+# * \par FUNCTION    :  Defines Product information to be used by PRODIO
+# *                     to generate a GEO-ASII-TF product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED NOT TO MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR    	REASONS
+# * DEC 2014    SIRR        GMV      	NWCLIB Implementation for SIRR
+# * OCT 2015	1.0	   ZAMG		Reflecting the actual status of product development
+# * AUG 2018    v2018	    GMV         CF Convention Compliance
+# * JAN 2020    vMTG        GMV         Update of output product format for vMTG
+# * SEP 2021    vMTG       ZAMG         Minor change in output variable names
+# **************************************************************************/
+#
+
+# ASII-TF
+# -------------------------------------------
+TITLE    NWC GEO Automatic Satellite Image Interpretation - Tropopause Folding Product
+SUMMARY  Automatic Satellite Image Interpretation (New Generation) Product of the NWC/GEO. Automatic interpretation of the satellite image.
+KEYWORDS turbulence, upper level winds, wind shear, flight level winds, high level clouds
+CDM      Image
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          asiitf_prob_pal
+PAL_FILE        S_NWC_PALETTE_asiitf_prob.pal
+PALETTE_END
+
+
+# Attributes for Container asiitf_prob
+# --------------------------------------------
+BLOCK_asiitf_prob
+standard_name        
+long_name            Probability of occurrence of tropopause foldings
+units                1
+valid_range          0, 100
+_FillValue           255
+ancillary_variables  asiitf_status_flag asiitf_conditions asiitf_quality asiitf_prob_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+
+# Attributes for Container asiitf_status_flag
+# --------------------------------------------------------
+BLOCK_asiitf_status_flag
+standard_name        status_flag
+long_name            Status flag for probability-of-occurrence of tropopause foldings
+valid_range          0, 63
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32
+flag_values          1, 2, 4, 8, 16, 32
+flag_meanings        stripe_in_WV62_image_missing
+flag_meanings        gradient_of_WV62_image_missing
+flag_meanings        gradient_of_IR97_IR108_difference_image_missing
+flag_meanings        shear_vorticity_missing
+flag_meanings        wind_speed_missing
+flag_meanings        tropopause_from_specific_humidity_missing
+BLOCK_END
+
+# Attributes for Container asiitf_prob_pal
+# -------------------------------------------
+BLOCK_asiitf_prob_pal
+long_name            RGB palette for asiitf_prob
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field asiitf_prob
+BLOCK_END

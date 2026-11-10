@@ -1,0 +1,59 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_NORM_9chan.dat
+# * \brief  Data to normalice input channels for PCPh
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *                     between EUMETSAT and AEMET.
+# *
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-PCPh
+# *
+# * \par FILE        :  S_NWC_NORM_9chan.dat
+# *
+# * \par TYPE        :  configuration file
+# *
+# * \par FUNCTION    :  This file contains the values for the normalizacion of 
+# *                     input channels to compute principal components for PCPh:
+# *                       CWP
+# *                       IR108
+# *                       IR120
+# *                       IR134
+# *                       IR87
+# *                       IR97
+# *                       VIS06
+# *                       WV62
+# *                       WV73
+# *
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    v0.0       GMV       First version (GEO-PCPh PROTOTYPE)   
+# * DIC 2020    v3.0       GMV       Update of coefficients for vMTG    
+# * OCT 2021    v3.0       GMV       Final version for NWC/GEO v2021     
+# * JAN 2022    v4.0       GMV       Final version for NWC/GEO vMTG
+# *
+# **************************************************************************/
+#
+
+# Normalization parameters
+# ------------------------
+CWP       520.48193446     780.39100519
+IR108     242.76576216      17.20011957
+IR120     241.32026712      16.7090834
+IR134     234.68889863      11.11713272
+IR87      242.86897636      16.73599863
+IR97      234.46443828       9.0608213
+VIS06      56.93809613      17.59992087
+WV62      227.46449281       5.44519917
+WV73      234.96183994       9.87543324

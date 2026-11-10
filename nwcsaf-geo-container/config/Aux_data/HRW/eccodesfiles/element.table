@@ -1,0 +1,29 @@
+#code|abbreviation|type|name|unit|scale|reference|width|crex_unit|crex_scale|crex_width
+060000|segmentSizeAtNadirInXDirectionPixels|long|SEGMENT SIZE AT NADIR IN X-DIRECTION (PIXELS)|Numeric|0|0|7|Numeric|0|3
+060001|segmentSizeAtNadirInYDirectionPixels|long|SEGMENT SIZE AT NADIR IN Y-DIRECTION (PIXELS)|Numeric|0|0|7|Numeric|0|3
+060100|windSequenceNumber|long|WIND SEQUENCE NUMBER|Numeric|0|0|24|Numeric|0|8
+060101|priorWindSequenceNumber|long|PRIOR WIND SEQUENCE NUMBER|Numeric|0|0|24|Numeric|0|8
+060102|trajectorySequenceNumber|long|TRAJECTORY SEQUENCE NUMBER|Numeric|0|0|24|Numeric|0|8
+060103|heightAssignmentMethodNwcsaf|table|HEIGHT ASSIGNMENT METHOD (NWCSAF CODE TABLE 060103)|CODE TABLE|0|0|5|CODE TABLE|0|2
+060104|tracerType|table|TRACER TYPE (NWCSAF CODE TABLE 060104)|CODE TABLE|0|0|3|CODE TABLE|0|1
+060200|numberOfWindsComputedForTheTracer|long|NUMBER OF WINDS COMPUTED FOR THE TRACER|Numeric|0|0|3|Numeric|0|1
+060201|correlationTest|table|CORRELATION TEST (NWCSAF CODE TABLE 060201)|CODE TABLE|0|0|3|CODE TABLE|0|1
+060202|appliedQualityTests|table|APPLIED QUALITY TESTS (NWCSAF CODE TABLE 060202)|CODE TABLE|0|0|11|CODE TABLE|0|4
+060203|numberOfAvailableNwpWindGuessLevels|long|NUMBER OF AVAILABLE NWP WIND GUESS LEVELS|Numeric|0|0|7|Numeric|0|3
+060204|numberOfPredecessorWinds|long|NUMBER OF PREDECESSOR WINDS|Numeric|0|0|7|Numeric|0|3
+060205|orographicIndex|table|OROGRAPHIC INDEX (NWCSAF CODE TABLE 060205)|CODE TABLE|0|0|3|CODE TABLE|0|1
+060206|cloudTypeNwcsaf|table|CLOUD TYPE (NWCSAF CODE TABLE 060206)|CODE TABLE|0|0|5|CODE TABLE|0|2
+060207|satelliteChannelUsedInComputationNwcsaf|table|SATELLITE CHANNEL USED IN COMPUTATION (NWCSAF CODE TABLE 060207)|CODE TABLE|0|0|5|CODE TABLE|0|2
+060208|trackingCorrelationOfVectorNwcsaf|long|TRACKING CORRELATION OF VECTOR (NWCSAF)|%|0|0|7|%|0|3
+060209|pressureError|long|PRESSURE ERROR|Pa|-1|-8000|14|Pa|-1|5
+060210|pressureCorrection|long|PRESSURE CORRECTION|Pa|-1|-8000|14|Pa|-1|5
+060211|nwpWindDirectionAtAmvLevel|long|NWP WIND DIRECTION AT AMV LEVEL|deg|0|0|9|deg|0|3
+060212|nwpWindSpeedAtAmvLevel|double|NWP WIND SPEED AT AMV LEVEL|m/s|1|0|12|m/s|1|4
+060213|nwpWindDirectionAtBestFitLevel|long|NWP WIND DIRECTION AT BEST FIT LEVEL|deg|0|0|9|deg|0|3
+060214|nwpWindSpeedAtBestFitLevel|double|NWP WIND SPEED AT BEST FIT LEVEL|m/s|1|0|12|m/s|1|4
+060215|nwpPressureAtBestFitLevel|long|NWP PRESSURE AT BEST FIT LEVEL|Pa|-1|0|14|Pa|-1|5
+060216|differenceDirectionWithNwpWindAtAmvLevel|long|DIFFERENCE DIRECTION WITH NWP WIND AT AMV LEVEL|deg|0|0|9|deg|0|3
+060217|differenceSpeedWithNwpWindAtAmvLevel|double|DIFFERENCE SPEED WITH NWP WIND AT AMV LEVEL|m/s|1|0|12|m/s|1|4
+060218|differenceDirectionWithNwpWindAtBestFitLevel|long|DIFFERENCE DIRECTION WITH NWP WIND AT BEST FIT LEVEL|deg|0|0|9|deg|0|3
+060219|differenceSpeedWithNwpWindAtBestFitLevel|double|DIFFERENCE SPEED WITH NWP WIND AT BEST FIT LEVEL|m/s|1|0|12|m/s|1|4
+060220|validationAgainstNwpAnalysisOrForecast|table|VALIDATION AGAINST NWP ANALYSIS OR FORECAST (NWCSAF CODE TABLE 060220)|CODE TABLE|0|0|2|CODE TABLE|0|1

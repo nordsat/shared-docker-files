@@ -1,0 +1,222 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_CT.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - CT
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CT.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CT product
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate NGEO-CT product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * AGO 2015    STRR        GMV      Corrected one of the flag meanings
+# * OCT 2017    V2018	    MFL      adaptation V2018/CF conventions
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * 
+# **************************************************************************/
+#
+
+
+# CT
+# ------------------------------
+TITLE        NWC GEO Cloud Type Product
+SUMMARY      Cloud Type Product of the NWC/GEO. Information on the major cloud types and on snow/sea ice occurrence
+KEYWORDS     Cloud Types
+CDM          Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          ct_pal
+PAL_FILE        S_NWC_PALETTE_ct.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ct_cumuliform_pal
+PAL_FILE        S_NWC_PALETTE_ct_cumuliform.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ct_multilayer_pal
+PAL_FILE        S_NWC_PALETTE_ct_multilayer.pal
+PALETTE_END
+
+
+# Attributes for Container ct
+# ------------------------------------
+BLOCK_ct
+standard_name        
+long_name            NWC GEO CT Cloud Type
+units                
+valid_range          1, 15
+_FillValue           255
+ancillary_variables  ct_status_flag ct_conditions ct_quality ct_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              1:  Cloud-free land;
+comment              2:  Cloud-free sea;
+comment              3:  Snow over land; 
+comment              4:  Sea ice;
+comment              5:  Very low clouds;
+comment              6:  Low clouds;
+comment              7:  Mid-level clouds; 
+comment              8:  High opaque clouds;
+comment              9:  Very high opaque clouds; 
+comment              10:  Fractional clouds;
+comment              11:  High semitransparent thin clouds; 
+comment              12:  High semitransparent moderately thick clouds; 
+comment              13:  High semitransparent thick clouds; 
+comment              14:  High semitransparent above low or medium clouds; 
+comment              15:  High semitransparent above snow/ice
+flag_values          1, 2, 3, 4, 5, 6, 7, 8, 9, 10 11, 12, 13, 14, 15
+flag_meanings        Cloud-free_land
+flag_meanings        Cloud-free_sea
+flag_meanings        Snow_over_land
+flag_meanings        Sea_ice
+flag_meanings        Very_low_clouds
+flag_meanings        Low_clouds
+flag_meanings        Mid-level_clouds
+flag_meanings        High_opaque_clouds
+flag_meanings        Very_high_opaque_clouds
+flag_meanings        Fractional_clouds
+flag_meanings        High_semitransparent_thin_clouds
+flag_meanings        High_semitransparent_moderately_thick_clouds
+flag_meanings        High_semitransparent_thick_clouds
+flag_meanings        High_semitransparent_above_low_or_medium_clouds
+flag_meanings        High_semitransparent_above_snow_ice
+BLOCK_END
+
+
+# Attributes for Container ct_cumuliform
+# ------------------------------------
+BLOCK_ct_cumuliform
+standard_name        
+long_name            NWC GEO CT Stratiform/Cumuliform Cloud Detection
+units                
+valid_range          1, 5
+_FillValue           255
+ancillary_variables  ct_status_flag  ct_conditions ct_quality ct_cumuliform_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              1:  Stratiform status;
+comment              2:  Cumuliform status;
+comment              3:  Mixed status;
+comment              4:  Cloud-free;
+comment              5:  Undefined (separability problems)
+flag_values          1, 2, 3, 4, 5
+flag_meanings        Stratiform_status
+flag_meanings        Cumuliform_status
+flag_meanings        Mixed_status
+flag_meanings        Cloud-free
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+
+# Attributes for Container ct_multilayer
+# ------------------------------------
+BLOCK_ct_multilayer
+standard_name        
+long_name            NWC GEO CT Multilayer Cloud Detection
+units                
+valid_range          0, 3
+_FillValue           255
+ancillary_variables  ct_status_flag  ct_conditions ct_quality ct_multilayer_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0:  No multilayer detected;
+comment              1:  Multilayer detected; 
+comment              2:  Cloud free;
+comment              3:  Undefined (separability problems)
+flag_values          0, 1, 2, 3
+flag_meanings        No_multilayer_detected
+flag_meanings        Multilayer_detected
+flag_meanings        Cloud_free
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+
+# Attributes for Container ct_status_flag
+# ---------------------------------------
+BLOCK_ct_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CT processing
+units                
+valid_range          0, 127
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64
+flag_values          1, 2, 4, 8, 16, 32, 64
+flag_meanings        Low_level_thermal_inversion_in_NWP_field
+flag_meanings        Tropopause_temperature_available_from_NWP
+flag_meanings        138um_used_for_cirrus_identification
+flag_meanings        High_resolution_satellite_data_used
+flag_meanings        Solar_intrusion_suspected
+flag_meanings        No_method_for_stratiform_cumuliform_separation
+flag_meanings        No_method_for_multilayer
+BLOCK_END
+
+
+# Attributes for Container ct_pal
+# ------------------------------------
+BLOCK_ct_pal
+long_name            RGB palette for ct
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ct
+BLOCK_END
+
+
+# Attributes for Container ct_cumuliform_pal
+# ------------------------------------
+BLOCK_ct_cumuliform_pal
+long_name            RGB palette for ct_cumuliform
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ct_cumuliform
+BLOCK_END
+
+
+# Attributes for Container ct_multilayer_pal
+# ------------------------------------
+BLOCK_ct_multilayer_pal
+long_name            RGB palette for ct_multilayer
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ct_multilayer
+BLOCK_END
+
+
+
+
+
+
+                                         

@@ -1,0 +1,14 @@
+# Palette for CMA, cma_dust parameter
+# ---------------------------------
+#
+# Number of different count values:
+4
+#
+# Palette definition:
+#
+# Count    R   G   B
+# --------------------
+     0      0   0   0
+     1    255 180   0
+     2     75  40  15
+     3    100 100 100

@@ -1,0 +1,33 @@
+# Palette for RDT-CW, MapCellCatType parameter
+# -----------------------------------------------
+#
+# Number of different count values:
+23
+#
+# Palette definition:
+#
+# Count    R   G   B
+# --------------------
+     0    255 255 255
+     1    255 220   0   #convtriggering
+     2    200 100   0   #convsplit
+     3    200   0   0   #convgrowing
+     4    150   0 255   #convmature
+     5    255   0 255   #conv+overshoot
+     6      0 100 200   #convdecaying
+     7    255 255   0   #electrictriggering
+     8    255 100   0   #        split
+     9    255   0   0   #        growing
+    10     80   0 255   #        mature
+    11      0   0 255   #        decaying
+    12    200 255   0   #highrainratetriggering
+    13    150 255   0   #            split
+    14    100 255   0   #            growing
+    15      0 255   0   #            mature
+    16      0 255 255   #            decaying
+    17    150 100   0   #highseveritytriggering
+    18    137  75   0   #            split
+    19    125  50   0   #            growing
+    20    100   0   0   #            mature
+    21    100 100 255   #            decaying
+    22      0   0   0

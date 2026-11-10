@@ -1,0 +1,681 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_iSAHI.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - iSAHI
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_iSHAI.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for iSAHI
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-iSAHI products in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * APR 2016    DRR         GMV      iSHAI renames as iSHAI
+# * NOV 2017    V2016       GMV      CF Convention Compliance
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * 
+# **************************************************************************/
+#
+
+
+
+# iSAHI
+# -------------------------------------------
+TITLE        NWC GEO imaging Satellite Humidity And Instability
+SUMMARY      imaging Satellite Humidity And Instability Product of the NWC/GEO. Precipitable Water, Instability Indices, Skin Temperature, Total Ozone and other parameters based on physical retrieved T/q profiles in clear pixels 
+KEYWORDS     Precipitable Water, Atmospheric Stability
+CDM          Image
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          ishai_bl_pal
+PAL_FILE        S_NWC_PALETTE_ishai_bl.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_ml_pal
+PAL_FILE        S_NWC_PALETTE_ishai_ml.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_hl_pal
+PAL_FILE        S_NWC_PALETTE_ishai_hl.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_tpw_pal
+PAL_FILE        S_NWC_PALETTE_ishai_tpw.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_li_pal
+PAL_FILE        S_NWC_PALETTE_ishai_li.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_ki_pal
+PAL_FILE        S_NWC_PALETTE_ishai_ki.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_shw_pal
+PAL_FILE        S_NWC_PALETTE_ishai_shw.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_skt_pal
+PAL_FILE        S_NWC_PALETTE_ishai_skt.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_toz_pal
+PAL_FILE        S_NWC_PALETTE_ishai_toz.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffbl_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffbl.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffml_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffml.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffhl_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffhl.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_difftpw_pal
+PAL_FILE        S_NWC_PALETTE_ishai_difftpw.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffli_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffli.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffki_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffki.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffshw_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffshw.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_diffskt_pal
+PAL_FILE        S_NWC_PALETTE_ishai_diffskt.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_difftoz_pal
+PAL_FILE        S_NWC_PALETTE_ishai_difftoz.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          ishai_residual_pal
+PAL_FILE        S_NWC_PALETTE_ishai_residual.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          IR_band_pal
+PAL_FILE        S_NWC_PALETTE_IR_band.pal
+PALETTE_END
+
+# Attributes for Container ishai_bl
+# ------------------------------------
+BLOCK_ishai_bl
+standard_name        
+long_name            iSHAI Precipitable Water in Boundary Layer
+scale_factor         0.01
+add_offset           0.0
+units                mm 
+valid_range          0, 3500
+_FillValue           65535 
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_bl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment      
+BLOCK_END
+
+# Attributes for Container ishai_ml
+# ------------------------------------
+BLOCK_ishai_ml
+standard_name        
+long_name            iSHAI Precipitable Water in Medium Layer
+scale_factor         0.01
+add_offset           0.0
+units                mm
+valid_range          0, 4500
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_ml_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_hl
+# ------------------------------------
+BLOCK_ishai_hl
+standard_name        
+long_name            iSHAI Precipitable Water in High Layer
+scale_factor         0.01
+add_offset           0.0
+units                mm
+valid_range          0, 800
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_hl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_tpw
+# ------------------------------------
+BLOCK_ishai_tpw
+standard_name        
+long_name            iSHAI Total Precipitable Water
+scale_factor         0.01
+add_offset           0.0
+units                mm
+valid_range          0, 7000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_tpw_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_li
+# ------------------------------------
+BLOCK_ishai_li
+standard_name        
+long_name            iSHAI Lifted Index
+scale_factor         0.01
+add_offset           -15.0
+units                celsius
+valid_range          0, 4000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_li_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_ki
+# ------------------------------------
+BLOCK_ishai_ki
+standard_name	     
+long_name            iSHAI K Index
+units                celsius
+scale_factor         0.01
+add_offset           0.0
+valid_range          0, 6000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_ki_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_shw
+# ------------------------------------
+BLOCK_ishai_shw
+standard_name        
+long_name            iSHAI Showalter Index
+units                celsius
+scale_factor         0.01
+add_offset           -15.0
+valid_range          0, 4000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_shw_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_skt
+# ------------------------------------
+BLOCK_ishai_skt
+standard_name        
+long_name            iSHAI Skin Temperature
+units                degree_kelvin
+scale_factor         0.01
+add_offset           0.0
+valid_range          24300, 34300
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_skt_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_toz
+# ------------------------------------
+BLOCK_ishai_toz
+standard name        
+long_name            iSHAI Total_Ozone
+units                DU
+scale_factor         0.01
+add_offset           0.0
+valid_range          10000, 50000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_toz_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffbl
+# ------------------------------------
+BLOCK_ishai_diffbl
+standard_name        
+long_name            iSHAI Difference in BL
+scale_factor         0.01
+add_offset           -2.5
+units                mm
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffbl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffml
+# ------------------------------------
+BLOCK_ishai_diffml
+standard_name        
+long_name            iSHAI Difference in ML
+scale_factor         0.01
+add_offset           -3.5
+units                mm
+valid_range          0, 700
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffml_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffhl
+# ------------------------------------
+BLOCK_ishai_diffhl
+standard_name        
+long_name            iSHAI Difference in HL
+units                mm
+scale_factor	     0.01
+add_offset	     -1.0
+valid_range	     0, 200
+_FillValue	     65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffhl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_difftpw
+# ------------------------------------
+BLOCK_ishai_difftpw
+standard_name        
+long_name            iSHAI Difference in TPW
+units                mm
+scale_factor         0.01
+add_offset           -5.0
+valid_range          0, 1000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_difftpw_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffli
+# ------------------------------------
+BLOCK_ishai_diffli
+standard_name        
+long_name            iSHAI Difference in LI
+units                celsius
+scale_factor         0.01
+add_offset           -2.5
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffli_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffki
+# ------------------------------------
+BLOCK_ishai_diffki
+standard_name        
+long_name            iSHAI Difference in KI
+units                celsius
+scale_factor         0.01
+add_offset           -7.0
+valid_range          0, 1400
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffki_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffshw
+# ------------------------------------
+BLOCK_ishai_diffshw
+standard_name        
+long_name            iSHAI Difference in SHW
+units                celsius
+scale_factor         0.01
+add_offset           -2.5
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffshw_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_diffskt
+# ------------------------------------
+BLOCK_ishai_diffskt
+standard_name        
+long_name            iSHAI Difference in SKT
+units                celsius
+scale_factor         0.01
+add_offset           -15.0
+valid_range          0, 3000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_diffskt_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_difftoz
+# ------------------------------------
+BLOCK_ishai_difftoz
+standard_name        
+long_name            iSHAI Difference in TOZ
+units                DU
+scale_factor         0.01
+add_offset           -30.0
+valid_range          0, 6000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_difftoz_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_status_flag
+# ------------------------------------
+BLOCK_ishai_status_flag
+standard_name        status_flag
+long_name            iSHAI status flags
+valid_range          0, 255
+_FillValue           32768
+flag_mask            1,      2,     4,    8,   16,   32
+flag_values          1,      2,     4,    8,   16,   32
+flag_meanings        Cloud_free
+flag_meanings        Pixel_has_been_processed_without_error
+flag_meanings        First_guess_regression_step_has_been_applied
+flag_meanings        1st_iteration_of_physical_retrieval_has_been_done
+flag_meanings        2nd_iteration_of_physical_retrieval_has_been_done
+flag_meanings        3rd_iteration_of_physical_retrieval_has_been_done
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container ishai_residual
+# ------------------------------------
+BLOCK_ishai_residual
+standard_name        
+long_name            iSHAI residual
+units                degree_kelvin
+scale_factor         0.01
+add_offset           0.0
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  ishai_status_flag ishai_conditions ishai_quality ishai_residual_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment	
+BLOCK_END
+
+# Attributes for Container IR_band
+# ------------------------------------
+BLOCK_IR_band
+standard_name        toa_brightness_temperature
+long_name            IR_band BT for display on cloudy pixels
+units                
+valid_range          0, 127
+_FillValue           255
+ancillary_variables  IR_band_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+# Attributes for Container ishai_bl_pal
+# ------------------------------------
+BLOCK_ishai_bl_pal
+long_name            RGB palette for ishai_bl
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_bl
+BLOCK_END
+
+# Attributes for Container ishai_ml_pal
+# ------------------------------------
+BLOCK_ishai_ml_pal
+long_name            RGB palette for ishai_ml
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_ml
+BLOCK_END
+
+# Attributes for Container ishai_hl_pal
+# ------------------------------------
+BLOCK_ishai_hl_pal
+long_name            RGB palette for ishai_hl
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_hl
+BLOCK_END
+
+# Attributes for Container ishai_tpw_pal
+# ------------------------------------
+BLOCK_ishai_tpw_pal
+long_name            RGB palette for ishai_tpw
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_tpw
+BLOCK_END
+
+# Attributes for Container ishai_li_pal
+# ------------------------------------
+BLOCK_ishai_li_pal
+long_name            RGB palette for ishai_li
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_li
+BLOCK_END
+
+# Attributes for Container ishai_ki_pal
+# ------------------------------------
+BLOCK_ishai_ki_pal
+long_name            RGB palette for ishai_ki
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_ki
+BLOCK_END
+
+# Attributes for Container ishai_ki_pal
+# ------------------------------------
+BLOCK_ishai_ki_pal
+long_name            RGB palette for ishai_ki
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_ki
+BLOCK_END
+
+# Attributes for Container ishai_shw_pal
+# ------------------------------------
+BLOCK_ishai_shw_pal
+long_name            RGB palette for ishai_shw
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_shw
+BLOCK_END
+
+# Attributes for Container ishai_skt_pal
+# ------------------------------------
+BLOCK_ishai_skt_pal
+long_name            RGB palette for ishai_skt
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_skt
+BLOCK_END
+
+# Attributes for Container ishai_toz_pal
+# ------------------------------------
+BLOCK_ishai_toz_pal
+long_name            RGB palette for ishai_toz
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_toz
+BLOCK_END
+
+# Attributes for Container ishai_diffbl_pal
+# ------------------------------------
+BLOCK_ishai_diffbl_pal
+long_name            RGB palette for ishai_diffbl
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffbl
+BLOCK_END
+
+# Attributes for Container ishai_diffml_pal
+# ------------------------------------
+BLOCK_ishai_diffml_pal
+long_name            RGB palette for ishai_diffml
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffml
+BLOCK_END
+
+# Attributes for Container ishai_diffhl_pal
+# ------------------------------------
+BLOCK_ishai_diffhl_pal
+long_name            RGB palette for ishai_diffhl
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffhl
+BLOCK_END
+
+# Attributes for Container ishai_difftpw_pal
+# ------------------------------------
+BLOCK_ishai_difftpw_pal
+long_name            RGB palette for ishai_difftpw
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_difftpw
+BLOCK_END
+
+# Attributes for Container ishai_diffli_pal
+# ------------------------------------
+BLOCK_ishai_diffli_pal
+long_name            RGB palette for ishai_diffli
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffli
+BLOCK_END
+
+# Attributes for Container ishai_diffki_pal
+# ------------------------------------
+BLOCK_ishai_diffki_pal
+long_name            RGB palette for ishai_diffki
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffki
+BLOCK_END
+
+# Attributes for Container ishai_diffshw_pal
+# ------------------------------------
+BLOCK_ishai_diffshw_pal
+long_name            RGB palette for ishai_diffshw
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffshw
+BLOCK_END
+
+# Attributes for Container ishai_diffskt_pal
+# ------------------------------------
+BLOCK_ishai_diffskt_pal
+long_name            RGB palette for ishai_diffskt
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_diffskt
+BLOCK_END
+
+# Attributes for Container ishai_difftoz_pal
+# ------------------------------------
+BLOCK_ishai_difftoz_pal
+long_name            RGB palette for ishai_difftoz
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_difftoz
+BLOCK_END
+
+# Attributes for Container ishai_residual_pal
+# ------------------------------------
+BLOCK_ishai_residual_pal
+long_name            RGB palette for ishai_residual
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field ishai_residual
+BLOCK_END
+
+# Attributes for Container IR_band_pal
+# ------------------------------------
+BLOCK_IR_band_pal
+long_name            RGB palette for IR_band
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field IR_band
+BLOCK_END
+

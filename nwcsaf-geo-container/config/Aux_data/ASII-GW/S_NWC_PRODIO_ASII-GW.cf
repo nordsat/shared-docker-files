@@ -1,0 +1,191 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_ASII-GW.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - ASII-GW
+# *
+# *
+# * \par Copyright 2021, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  ZAMG Zentralanstalt fuer Meteorologie und Geodynamik
+# *                     This SW was developed by ZAMG within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     entered in force 1 March 2017 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-ASII-GW/NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_ASII-GW.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for ASII-GW
+# *
+# * \par FUNCTION    :  Defines Product information to be used by PRODIO
+# *                     to generate a GEO-ASII-GW product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED NOT TO MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR    	REASONS
+# * DEC 2014    SIRR        GMV      	NWCLIB Implementation for SIRR
+# * OCT 2018	1.0	   ZAMG		First version for ASII-GW
+# * AUG 2018    v2018	    GMV         CF Convention Compliance
+# * JAN 2020    vMTG        GMV         Update of output product format for vMTG
+# * SEP 2021    vMTG       ZAMG         IR (and future HRV analysis) added; 
+# * 			   		change in variables' names
+# **************************************************************************/
+#
+
+
+# ASII-GW
+# -------------------------------------------
+TITLE    NWC GEO Automatic Satellite Image Interpretation - Gravity Wave Product
+SUMMARY  Automatic Satellite Image Interpretation (Gravity Wave) Product of the NWC/GEO. Automatic interpretation of the WV satellite image.
+KEYWORDS turbulence, gravity (lee) waves
+CDM      Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          asiigw_wv_prob_pal
+PAL_FILE        S_NWC_PALETTE_asiigw_wv_prob.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          asiigw_ir_prob_pal
+PAL_FILE        S_NWC_PALETTE_asiigw_ir_prob.pal
+PALETTE_END
+
+# Attributes for Container asiigw_prob
+# --------------------------------------------
+BLOCK_asiigw_prob
+standard_name        
+long_name            Probability of occurrence of gravity waves (in VIS/HR)
+units                1
+valid_range          0, 100
+_FillValue           255
+ancillary_variables  asiigw_status_flag asiigw_conditions asiigw_quality asiigw_prob_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+# Attributes for Container asiigw_wv_prob
+# --------------------------------------------
+BLOCK_asiigw_wv_prob
+standard_name        
+long_name            Probability of occurrence of gravity waves in the WV channel
+units                1
+valid_range          0, 100
+_FillValue           255
+ancillary_variables  asiigw_status_flag asiigw_conditions asiigw_quality asiigw_wv_prob_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+# Attributes for Container asiigw_ir_prob
+# --------------------------------------------
+BLOCK_asiigw_ir_prob
+standard_name        
+long_name            Probability of occurrence of gravity waves in the IR channel
+units                1
+valid_range          0, 100
+_FillValue           255
+ancillary_variables  asiigw_status_flag asiigw_conditions asiigw_quality asiigw_ir_prob_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+# Attributes for Container asiigw_continuity
+# --------------------------------------------------
+BLOCK_asiigw_continuity
+standard_name        
+long_name            Temporal continuity of gravity wave signal (in VIS/HR)
+units                1
+valid_range          0, 8
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+# Attributes for Container asiigw_wv_continuity
+# --------------------------------------------------
+BLOCK_asiigw_wv_continuity
+standard_name        
+long_name            Temporal continuity of gravity wave signal in WV
+units                1
+valid_range          0, 8
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+# Attributes for Container asiigw_ir_continuity
+# --------------------------------------------------
+BLOCK_asiigw_ir_continuity
+standard_name        
+long_name            Temporal continuity of gravity wave signal in IR
+units                1
+valid_range          0, 8
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+BLOCK_END
+
+
+# Attributes for Container asiigw_status_flag
+# --------------------------------------------------------
+BLOCK_asiigw_status_flag
+standard_name        status_flag
+long_name            Status flag for probability-of-occurrence of gravity waves
+valid_range          0, 15
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment
+flag_mask            1, 2, 4, 8
+flag_values          1, 2, 4, 8
+flag_meanings        WV73_missing
+flag_meanings        WV73_thick_cloud
+flag_meanings	     IR108_missing
+flag_meanings	     IR108_high_cloud
+BLOCK_END
+
+# Attributes for Container asiigw_highres_status_flag
+# --------------------------------------------------------
+BLOCK_asiigw_highres_status_flag
+standard_name        status_flag
+long_name            Status flag for probability-of-occurrence of gravity waves in HR resolution
+valid_range          0, 1
+_FillValue           255
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment
+flag_mask            1
+flag_values          1
+flag_meanings        VIS_missing
+BLOCK_END
+
+# Attributes for Container asiigw_wv_prob_pal
+# -------------------------------------------
+BLOCK_asiigw_wv_prob_pal
+long_name            RGB palette for ASII-GW probabilities of occurrence of gravity waves in WV
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field asiigw_wv_prob
+BLOCK_END
+
+# Attributes for Container asiigw_ir_prob_pal
+# -------------------------------------------
+BLOCK_asiigw_ir_prob_pal
+long_name            RGB palette for ASII-GW probabilities of occurrence of gravity waves in IR
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field asiigw_ir_prob
+BLOCK_END

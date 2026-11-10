@@ -1,0 +1,250 @@
+#/*************************************************************************/
+#/**
+# * \file prodio_conf_file.CMIC
+# * \brief (PRIVATE) Configurable information for PRODIO - CMIC
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CMIC.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CMIC
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-CMIC product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * AGO 2015    STRR        GMV      Corrections in flag meanings
+# * OCT 2017    V2018	    MFL      adaptation V2018/CF conventions
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * 
+# **************************************************************************/
+#
+
+
+
+# CMIC
+# -------------------------------------------
+TITLE       NWC GEO Cloud Microphysics Product
+SUMMARY     Cloud Microphysics Product of the NWC/GEO. Information on cloud microphysics, as cloud thermodynamical phase, drop effective radius, cloud optical thickness and liquid water/ice path
+KEYWORDS    Cloud Droplet Size, Cloud Optical Thickness, Cloud Liquid Water, Cloud Ice
+CDM         Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          cmic_phase_pal
+PAL_FILE        S_NWC_PALETTE_cmic_phase.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cmic_reff_pal
+PAL_FILE        S_NWC_PALETTE_cmic_reff.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cmic_cot_pal
+PAL_FILE        S_NWC_PALETTE_cmic_cot.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cmic_lwp_pal
+PAL_FILE        S_NWC_PALETTE_cmic_lwp.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cmic_iwp_pal
+PAL_FILE        S_NWC_PALETTE_cmic_iwp.pal
+PALETTE_END
+
+
+
+# Attributes for Container cmic_phase
+# -------------------------------------------
+BLOCK_cmic_phase
+standard_name        thermodynamic_phase_of_cloud_water_particles_at_cloud_top
+long_name            NWC GEO CMIC Cloud Top Phase
+units                
+valid_range          1, 5
+_FillValue           255
+ancillary_variables  cmic_status_flag  cmic_conditions cmic_quality cmic_phase_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              1:  Liquid;
+comment              2:  Ice;
+comment              3:  Mixed;
+comment              4:  Cloud-free
+comment              5:  Undefined (separability problems)
+flag_values          1, 2, 3, 4, 5
+flag_meanings        Liquid
+flag_meanings        Ice
+flag_meanings        Mixed
+flag_meanings        Cloud-free
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+
+# Attributes for Container cmic_reff
+# -------------------------------------------
+BLOCK_cmic_reff
+standard_name        effective_radius_of_cloud_condensed_water_particles_at_cloud_top
+long_name            NWC GEO CMIC Cloud Drop Effective Radius
+scale_factor         1.0E-8
+add_offset           0.0
+units                m
+valid_range          0, 32000
+_FillValue           65535
+ancillary_variables  cmic_status_flag  cmic_conditions cmic_quality cmic_reff_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container cmic_cot
+# -------------------------------------------
+BLOCK_cmic_cot
+standard_name        atmosphere_optical_thickness_due_to_cloud
+long_name            NWC GEO CMIC Cloud Optical Thickness
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 32000
+_FillValue           65535
+ancillary_variables  cmic_status_flag  cmic_conditions cmic_quality cmic_cot_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container cmic_lwp
+# -------------------------------------------
+BLOCK_cmic_lwp
+standard_name        atmosphere_cloud_liquid_water_content
+long_name            NWC GEO CMIC Cloud Liquid Water Path
+scale_factor         0.001
+add_offset           0.0
+units                kg m-2
+valid_range          0, 4000
+_FillValue           65535
+ancillary_variables  cmic_status_flag  cmic_conditions cmic_quality cmic_lwp_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container cmic_iwp
+# -------------------------------------------
+BLOCK_cmic_iwp
+standard_name        atmosphere_cloud_ice_content
+long_name            NWC GEO CMIC cloud Ice Water Path
+scale_factor         0.001
+add_offset           0.0
+units                kg m-2
+valid_range          0, 4000
+_FillValue           65535
+ancillary_variables  cmic_status_flag  cmic_conditions cmic_quality cmic_iwp_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# Attributes for Container cmic_status_flag
+# ---------------------------------------
+BLOCK_cmic_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CMIC processing
+valid_range          0, 2047
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024        
+flag_values          1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024
+flag_meanings        Cloud-free
+flag_meanings        High_resolution_satellite_data_used
+flag_meanings        Combined_use_of_16um_22um_for_phase_retrieval
+flag_meanings        No_retrieved_phase_no_reliable_Reff_Cot_method
+flag_meanings        Mixed_phase_no_reliable_Reff_Cot_method
+flag_meanings        Measurement_incoherent_with_simulation_no_reliable_Reff_Cot_method
+flag_meanings        Too_much_overlap_in_simulation_no_reliable_Reff_Cot_method
+flag_meanings        16um_used_for_reff_cot_retrieval
+flag_meanings        22um_used_for_reff_cot_retrieval
+flag_meanings        38um_used_for_reff_cot_retrieval
+flag_meanings        Multilayer_cloud_suspected
+
+
+# Attributes for Container cmic_phase_pal
+# ------------------------------------
+BLOCK_cmic_phase_pal
+long_name            RGB palette for cmic_phase
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cmic_phase
+BLOCK_END
+
+
+# Attributes for Container cmic_reff_pal
+# ------------------------------------
+BLOCK_cmic_reff_pal
+long_name            RGB palette for cmic_reff
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cmic_reff
+BLOCK_END
+
+
+# Attributes for Container cmic_cot_pal
+# ------------------------------------
+BLOCK_cmic_cot_pal
+long_name            RGB palette for cmic_cot
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cmic_cot
+BLOCK_END
+
+
+# Attributes for Container cmic_lwp_pal
+# ------------------------------------
+BLOCK_cmic_lwp_pal
+long_name            RGB palette for cmic_lwp
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cmic_lwp
+BLOCK_END
+
+
+# Attributes for Container cmic_iwp_pal
+# ------------------------------------
+BLOCK_cmic_iwp_pal
+long_name            RGB palette for cmic_iwp
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cmic_iwp
+BLOCK_END
+

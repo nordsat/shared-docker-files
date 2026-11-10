@@ -1,0 +1,1440 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_RDT-CW.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - RDT-CW
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_RDT-CW.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for RDT-CW
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-RDT-CW product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * NOV 2017    V2016       GMV      CF Convention Compliance
+# * OCT 2018    V2018       MFT      Updated to GEO-RDT-CW v2018
+# * OCT 2019          2018.1      MFT         SPR-SAF-NWC-CDOP3-0685 : SMR-SAF-NWC-CDOP3-0659
+# * MAY 2020          2018.1      MFT         SPR-SAF-NWC-CDOP3-0699 : SMR-SAF-NWC-CDOP3-0672
+# * JUL 2020         v2018.1         MFT         SPR-SAF-NWC-CDOP3-0709 : SMR-SAF-NWC-CDOP3-0683
+# * AUG 2021          2021        MFT         SPR-SAF-NWC-CDOP3-0740 : SMR-SAF-NWC-CDOP3-0709
+# * MAR 2023    v2021.1     MFT      SPR-SAF-NWC-CDOP3-0765 : SMR-SAF-NWC-CDOP3-0736
+# * FEB 2024    v2021.2     MFT      SPR-SAF-NWC-CDOP4-0792 : SMR-SAF-NWC-CDOP4-0758
+# * JUL 2024    v2024       MFT      SPR-SAF-NWC-CDOP4-0798 : SMR-SAF-NWC-CDOP4-0765        
+# **************************************************************************/
+#
+
+
+# RDT_CW
+# -------------------------------------------
+TILE      NWC GEO Convection Warning Product
+SUMMARY   Convection Warning Product of the NWC/GEO. Information about significant convective systems from the triggering to mature phase
+KEYWORDS  Convection, Convective Clouds/Systems (observed/analyzed)
+CDM       Bulletin
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          MapCellCatType_pal
+PAL_FILE        S_NWC_PALETTE_rdtcw.pal
+PALETTE_END
+
+# Attributes for Container MapCellCatType_pal
+# ------------------------------------
+BLOCK_MapCellCatType_pal
+long_name            RGB palette for MapCellCatType
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field MapCellCatType
+BLOCK_END
+
+
+# Attributes for QContainer NbSigCell
+# -------------------------------------------
+BLOCK_NbSigCell
+standard_name        
+long_name            Number of encoded significant RDT-CW cloud cells
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 5000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbConvCell
+# -------------------------------------------
+BLOCK_NbConvCell
+standard_name        
+long_name            Number of convective cloud cells
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 5000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbCloudCell
+# -------------------------------------------
+BLOCK_NbCloudCell
+standard_name        
+long_name            Number of analyzed and tracked cloud cells
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 50000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbElecCell
+# -------------------------------------------
+BLOCK_NbElecCell
+standard_name        
+long_name            Number of electric cloud cells
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 5000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbHrrCell
+# -------------------------------------------
+BLOCK_NbHrrCell
+standard_name        
+long_name            Number of cloud cells with High Rain Rate values 
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 5000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer MapCellCatType
+# -------------------------------------------
+BLOCK_MapCellCatType
+standard_name        
+long_name            NWC GEO RDT-CW Type and phase of significant cells
+units                1
+valid_range          0, 21
+_FillValue           255
+ancillary_variables  MapCellCatType_pal
+coordinates          lon lat                  
+comment        0:Non_convective
+comment        1:Convective_triggering
+comment        2:Convective_triggering_from_split
+comment        3:Convective_growing
+comment        4:Convective_mature
+comment        5:OvershootingTop_mature
+comment        6:Convective_decaying
+comment        7:Electric_triggering
+comment        8:Electric_triggering_from_split
+comment        9:Electric_growing
+comment        10:Electric_mature
+comment        11:Electric_decaying
+comment        12:HighRainRate_triggering
+comment        13:HighRainRate_triggering_from_split
+comment        14:HighRainRate_growing
+comment        15:HighRainRate_mature
+comment        16:HighRainRate_decaying
+comment        17:HighSeverity_triggering
+comment        18:HighSeverity_triggering_from_split
+comment        19:HighSeverity_growing
+comment        20:HighSeverity_mature
+comment        21:HighSeverity_decaying
+flag_values          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
+flag_meanings        Non_convective
+flag_meanings        Convective_triggering
+flag_meanings        Convective_triggering_from_split
+flag_meanings        Convective_growing
+flag_meanings        Convective_mature
+flag_meanings        OvershootingTop_mature
+flag_meanings        Convective_decaying
+flag_meanings        Electric_triggering
+flag_meanings        Electric_triggering_from_split
+flag_meanings        Electric_growing
+flag_meanings        Electric_mature
+flag_meanings        Electric_decaying
+flag_meanings        HighRainRate_triggering
+flag_meanings        HighRainRate_triggering_from_split
+flag_meanings        HighRainRate_growing
+flag_meanings        HighRainRate_mature
+flag_meanings        HighRainRate_decaying
+flag_meanings        HighSeverity_triggering
+flag_meanings        HighSeverity_triggering_from_split
+flag_meanings        HighSeverity_growing
+flag_meanings        HighSeverity_mature
+flag_meanings        HighSeverity_decaying
+BLOCK_END
+             
+# Attributes for QContainer NumIdCell
+# -------------------------------------------
+BLOCK_NumIdCell
+standard_name        
+long_name            Identification Number of cloud cell
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 50000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NumIdBirth
+# -------------------------------------------
+BLOCK_NumIdBirth
+standard_name        
+long_name            Identification Number of cloud cell at birth
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 50000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer DecTime
+# -------------------------------------------
+BLOCK_DecTime
+standard_name        
+long_name            time gap between radiometer time and slot time
+scale_factor         1.0
+add_offset           0.0
+units                s
+valid_range          0, 1800
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer LeadTime
+# -------------------------------------------
+BLOCK_LeadTime
+standard_name        
+long_name            lead time from slot for forecast cloud cell
+scale_factor         1.0
+add_offset           0.0
+units                s
+valid_range          0, 3600
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer Duration
+# -------------------------------------------
+BLOCK_Duration
+standard_name        
+long_name            Duration of cloud system since birth
+scale_factor         30.0
+add_offset           0.0
+units                s
+valid_range          0, 60480
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer ConvType
+# -------------------------------------------
+BLOCK_ConvType
+standard_name        
+long_name            Type (conv or not) of cloud system
+units                1
+valid_range          0, 9
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        0:Non_convective
+comment        1:Convective
+comment        2:Convective_inherited
+comment        3:Convective_forced_overshoot
+comment        4:Convective_forced_lightning
+comment        5:Convective_forced_convrainrate
+comment        6:Convective_forced_coldtropical
+comment        7:Convective_forced_inherited
+comment        8:Declassified_convective
+comment        9:Not_defined
+flag_values          0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+flag_meanings        Non_convective
+flag_meanings        Convective
+flag_meanings        Convective_inherited
+flag_meanings        Convective_forced_overshoot
+flag_meanings        Convective_forced_lightning
+flag_meanings        Convective_forced_convrainrate
+flag_meanings        Convective_forced_coldtropical
+flag_meanings        Convective_forced_inherited
+flag_meanings        Declassified_convective
+flag_meanings        Not_defined
+BLOCK_END
+
+# Attributes for CContainer ConvTypeMethod
+# -------------------------------------------
+BLOCK_ConvTypeMethod
+standard_name        
+long_name            Method used for convective diagnosis
+units                1
+valid_range          1, 5
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        1:discrimination statistical scheme
+comment        2:electric
+comment        3:overshoot
+comment        4:convective_rain_rate
+comment        5:tropical
+flag_values          1, 2, 3, 4, 5
+flag_meanings        discrimination_statistical_scheme
+flag_meanings        electric
+flag_meanings        overshoot
+flag_meanings        convective_rain_rate
+flag_meanings        tropical
+BLOCK_END
+
+# Attributes for CContainer ConvTypeQuality
+# -------------------------------------------
+BLOCK_ConvTypeQuality
+standard_name        
+long_name            Quality of convective diagnosis 
+units                1
+valid_range          1, 4
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        1:high quality
+comment        2:moderate quality
+comment        3:low quality
+comment        4:very_low quality
+flag_values          1, 2, 3, 4
+flag_meanings        high_quality
+flag_meanings        moderate_quality
+flag_meanings        low_quality
+flag_meanings        very_low_quality
+BLOCK_END
+
+# Attributes for CContainer PhaseLife
+# -------------------------------------------
+BLOCK_PhaseLife
+standard_name        
+long_name            Phase Life of Cloud system
+units                1
+valid_range          0, 4
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        0:Triggering
+comment        1:Triggering_from_split
+comment        2:Growing
+comment        3:Mature
+comment        4:Decaying
+flag_values          0, 1, 2, 3, 4
+flag_meanings        Triggering
+flag_meanings        Triggering_from_split
+flag_meanings        Growing
+flag_meanings        Mature
+flag_meanings        Decaying
+BLOCK_END
+
+# Attributes for QContainer MvtSpeed
+# -------------------------------------------
+BLOCK_MvtSpeed
+standard_name        
+long_name            Motion speed of cloud cell
+scale_factor         0.001
+add_offset           0.0
+units                m s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer MvtDirection
+# -------------------------------------------
+BLOCK_MvtDirection
+standard_name        wind_to_direction
+long_name            Direction of Motion of cloud cell
+scale_factor         1.0
+add_offset           0.0
+units                degree
+valid_range          0, 360
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer MvtQuality
+# -------------------------------------------
+BLOCK_MvtQuality
+standard_name        
+long_name            Quality of motion estimation of cloud cell
+units                1
+valid_range          1, 4
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        1:high quality
+comment        2:moderate quality
+comment        3:low quality
+comment        4:very_low quality
+flag_values          1, 2, 3, 4
+flag_meanings        high_quality
+flag_meanings        moderate_quality
+flag_meanings        low_quality
+flag_meanings        very_low_quality
+BLOCK_END
+
+# Attributes for QContainer DtTimeRate
+# -------------------------------------------
+BLOCK_DtTimeRate
+standard_name        
+long_name            gap time to compute rates of cloud system
+scale_factor         1.0
+add_offset           0.0
+units                s
+valid_range          1, 1800
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer ExpansionRate
+# -------------------------------------------
+BLOCK_ExpansionRate
+standard_name        
+long_name            Expansion rate of cloud system
+scale_factor         0.0000002
+add_offset           -0.005
+units                s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer CoolingRate
+# -------------------------------------------
+BLOCK_CoolingRate
+standard_name        
+long_name            Temperature change rate of cloud system
+scale_factor         0.000002
+add_offset           -0.05
+units                K s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer LightningRate
+# -------------------------------------------
+BLOCK_LightningRate
+standard_name        
+long_name            Lightning trend of cloud system
+scale_factor         0.0001
+add_offset           -2.
+units                s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer satlightningrate
+# -------------------------------------------
+BLOCK_satlightningrate
+standard_name        
+long_name            Satellite Lightning trend of cloud system
+scale_factor         0.0001
+add_offset           -2.
+units                s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer CTPressRate
+# -------------------------------------------
+BLOCK_CTPressRate
+standard_name        
+long_name            Top Pressure trend of cloud system
+scale_factor         0.001
+add_offset           -25.
+units                Pa s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer MaxFlashRate
+# ----------------------------------------
+BLOCK_MaxFlashRate
+standard_name        
+long_name            maximum flash rate in cloud cell
+scale_factor         0.0001
+add_offset           -2.
+units                s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer LightningJump
+# -------------------------------------------
+BLOCK_LightningJump
+standard_name        
+long_name            Lightning Jump occurrence in cloud cell
+units                1
+valid_range          0, 3
+_FillValue           255
+ancillary_variables  
+comment              0:  No Lightning Jump;
+comment              1:  Lightning Jump inherited;
+comment              2:  Lightning Jump observed active;
+comment              3:  Lightning Jump observed not active;
+flag_values          0, 1, 2, 3
+flag_meanings        No_Lightning_Jump
+flag_meanings        Lightning_Jump_inherited
+flag_meanings        Lightning_Jump_observed_active
+flag_meanings        Lightning_Jump_observed_not_active
+BLOCK_END
+
+# Attributes for QContainer maxsatflashrate
+# ----------------------------------------
+BLOCK_maxsatflashrate
+standard_name        
+long_name            maximum satellite flash rate in cloud cell
+scale_factor         0.0001
+add_offset           -2.
+units                s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer satlightningjump
+# -------------------------------------------
+BLOCK_satlightningjump
+standard_name        
+long_name            Satellite Lightning Jump occurrence in cloud cell
+units                1
+valid_range          0, 3
+_FillValue           255
+ancillary_variables  
+comment              0:  No Lightning Jump;
+comment              1:  Lightning Jump inherited;
+comment              2:  Lightning Jump observed active;
+comment              3:  Lightning Jump observed not active;
+flag_values          0, 1, 2, 3
+flag_meanings        No_Lightning_Jump
+flag_meanings        Lightning_Jump_inherited
+flag_meanings        Lightning_Jump_observed_active
+flag_meanings        Lightning_Jump_observed_not_active
+BLOCK_END
+
+# Attributes for CContainer SeverityType
+# -------------------------------------------
+BLOCK_SeverityType
+standard_name        
+long_name            Type of severity of cloud cell
+units                1
+valid_range          0, 7
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        0:no_activity
+comment        1:turbulence
+comment        2:lightning
+comment        3:icing
+comment        4:high_altitude_icing
+comment        5:hail
+comment        6:heavy_rainfall
+comment        7:type_not_defined
+flag_values          0, 1, 2, 3, 4, 5 ,6 ,7
+flag_meanings        no_activity
+flag_meanings        turbulence
+flag_meanings        lightning
+flag_meanings        icing
+flag_meanings        high_altitude_icing
+flag_meanings        hail
+flag_meanings        heavy_rainfall
+flag_meanings        type_not_defined
+BLOCK_END
+
+# Attributes for CContainer SeverityIntensity
+# -------------------------------------------
+BLOCK_SeverityIntensity
+standard_name        
+long_name            severity intensity of cloud cell 
+units                1
+valid_range          0, 4
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        0:severity_not_defined
+comment        1:low_severity
+comment        2:moderate_severity
+comment        3:high_severity
+comment        4:very_high_severity
+flag_values          0, 1, 2, 3, 4
+flag_meanings        severity_not_defined
+flag_meanings        low_severity
+flag_meanings        moderate_severity
+flag_meanings        high_severity
+flag_meanings        very_high_severity
+BLOCK_END
+
+# Attributes for QContainer LatContour
+# -------------------------------------------
+BLOCK_LatContour
+standard_name        latitude
+long_name            latitude of contour point of cloud cell
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer LonContour
+# -------------------------------------------
+BLOCK_LonContour
+standard_name        longitude
+long_name            longitude of contour point of cloud cell
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer LatG
+# -------------------------------------------
+BLOCK_LatG
+standard_name        latitude
+long_name            latitude of Gravity Centre of cloud cell
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer LonG
+# -------------------------------------------
+BLOCK_LonG
+standard_name        longitude
+long_name            longitude of Gravity Centre of cloud cell
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer BTemp
+# ----------------------------------------
+BLOCK_BTemp
+standard_name        brightness_temperature
+long_name            Brightness Temperature threshold defining a Cloud cell
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer BTmoy
+# ----------------------------------------
+BLOCK_BTmoy
+standard_name        brightness_temperature
+long_name            Average Brightness Temperature over a Cloud cell
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer BTmin
+# ----------------------------------------
+BLOCK_BTmin
+standard_name        brightness_temperature
+long_name            Minimum Brightness Temperature of a Cloud cell
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer Surface
+# ----------------------------------------
+BLOCK_Surface
+standard_name        
+long_name            Surface of a Cloud cell
+scale_factor         5000000.
+add_offset           0.
+units                m2
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer EllipseGaxe
+# ----------------------------------------
+BLOCK_EllipseGaxe
+standard_name        
+long_name            Large axis of Ellipse approaching Cloud cell
+scale_factor         30.
+add_offset           0.
+units                m
+valid_range          50, 65535
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer EllipsePaxe
+# ----------------------------------------
+BLOCK_EllipsePaxe
+standard_name        
+long_name            Small axis of Ellipse approaching Cloud cell
+scale_factor         30.
+add_offset           0.
+units                m
+valid_range          50, 65535
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer EllipseAngle
+# ----------------------------------------
+BLOCK_EllipseAngle
+standard_name        
+long_name            Angle of Ellipse approaching Cloud cell
+scale_factor         1.
+add_offset           0.
+units                degrees_north
+valid_range          0, 360
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer LatIncG
+# -------------------------------------------
+BLOCK_LatIncG
+standard_name        latitude
+long_name            latitude of Gravity Centre of including cloud cell
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer LonIncG
+# -------------------------------------------
+BLOCK_LonIncG
+standard_name        longitude
+long_name            longitude of Gravity Centre of including cloud cell
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer EllIncGaxe
+# ----------------------------------------
+BLOCK_EllIncGaxe
+standard_name        
+long_name            Large axis of Ellipse approaching including Cloud cell
+scale_factor         30.
+add_offset           0.
+units                m
+valid_range          50, 65535
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer EllIncPaxe
+# ----------------------------------------
+BLOCK_EllIncPaxe
+standard_name        
+long_name            Small axis of Ellipse approaching including Cloud cell
+scale_factor         30.
+add_offset           0.
+units                m
+valid_range          50, 65535
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer EllIncAngle
+# ----------------------------------------
+BLOCK_EllIncAngle
+standard_name        
+long_name            Angle of Ellipse approaching including Cloud cell
+scale_factor         1.
+add_offset           0.
+units                degrees_north
+valid_range          0, 360
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbPosLightning
+# ----------------------------------------
+BLOCK_NbPosLightning
+standard_name        
+long_name            Number of CG positive lightning strokes paired with cloud cell
+scale_factor         1.
+add_offset           0.
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbNegLightning
+# ----------------------------------------
+BLOCK_NbNegLightning
+standard_name        
+long_name            Number of CG negative lightning strokes paired with cloud cell
+scale_factor         1.
+add_offset           0.
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbNegIntraLightning
+# ----------------------------------------
+BLOCK_NbNegIntraLightning
+standard_name        
+long_name            Number of Negative IntraCloud lightning strokes paired with cloud cell
+scale_factor         1.
+add_offset           0.
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NbPosIntraLightning
+# ----------------------------------------
+BLOCK_NbPosIntraLightning
+standard_name        
+long_name            Number of Positive IntraCloud lightning strokes paired with cloud cell
+scale_factor         1.
+add_offset           0.
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer nbsatlightning
+# ----------------------------------------
+BLOCK_nbsatlightning
+standard_name        
+long_name            Number of satellite lightning flashes paired with cloud cell
+scale_factor         1.
+add_offset           0.
+units                1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer DtLightning
+# ----------------------------------------
+BLOCK_DtLightning
+standard_name        
+long_name            time interval to pair lighting data with cloud cells
+scale_factor         1.
+add_offset           0.
+units                s
+valid_range          0, 1800
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer DtSatLightning
+# ----------------------------------------
+BLOCK_DtSatLightning
+standard_name        
+long_name            time interval to pair satellite lighting data with cloud cells
+scale_factor         1.
+add_offset           0.
+units                s
+valid_range          0, 1800
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer CType
+# ------------------------------------
+BLOCK_CType
+standard_name        
+long_name            Most frequent Cloud Type over cloud cell extension
+units                1
+valid_range          1, 15
+_FillValue           255
+ancillary_variables  
+comment              5:  Very low clouds;
+comment              6:  Low clouds;
+comment              7:  Mid-level clouds; 
+comment              8:  High opaque clouds;
+comment              9:  Very high opaque clouds; 
+comment              10:  Fractional clouds;
+comment              11:  High semitransparent thin clouds; 
+comment              12:  High semitransparent moderately thick clouds; 
+comment              13:  High semitransparent thick clouds; 
+comment              14:  High semitransparent above low or medium clouds; 
+comment              15:  High semitransparent above snow/ice
+flag_values          1, 2, 3, 4, 5, 6, 7, 8, 9, 10 11, 12, 13, 14, 15
+flag_meanings        Cloud-free_land
+flag_meanings        Cloud-free_sea
+flag_meanings        Snow_over_land
+flag_meanings        Sea_ice
+flag_meanings        Very_low_clouds
+flag_meanings        Low_clouds
+flag_meanings        Mid-level_clouds
+flag_meanings        High_opaque_clouds
+flag_meanings        Very_high_opaque_clouds
+flag_meanings        Fractional_clouds
+flag_meanings        High_semitransparent_thin_clouds
+flag_meanings        High_semitransparent_moderately_thick_clouds
+flag_meanings        High_semitransparent_thick_clouds
+flag_meanings        High_semitransparent_above_low_or_medium_clouds
+flag_meanings        High_semitransparent_above_snow_ice
+BLOCK_END
+
+# Attributes for CContainer CTPhase
+# -------------------------------------------
+BLOCK_CTPhase
+standard_name        
+long_name            Most frequent Cloud Top Phase over cloud cell extension
+units                1
+valid_range          1, 5
+_FillValue           255
+ancillary_variables  
+comment              1:  Liquid;
+comment              2:  Ice;
+comment              3:  Mixed;
+comment              4:  Cloud-free
+comment              5:  Undefined (separability problems)
+flag_values          1, 2, 3, 4, 5
+flag_meanings        Liquid
+flag_meanings        Ice
+flag_meanings        Mixed
+flag_meanings        Cloud-free
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+# Attributes for QContainer CTPressure
+# ----------------------------------------
+BLOCK_CTPressure
+standard_name        air_pressure_at_cloud_top
+long_name            Minimum Cloud Top Pressure over cloud cell extension
+scale_factor         10.
+add_offset           0.0
+units                Pa
+valid_range          500, 11000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer ctbarometricaltitude
+# -------------------------------------------
+BLOCK_ctbarometricaltitude
+standard_name        
+long_name            barometric_altitude_in_hectofeet
+scale_factor         1.0
+add_offset           -40.0
+units                hectofeet
+valid_range          0, 1070
+_FillValue           65535
+ancillary_variables  
+comment              Barometric altitude in the International Standard Atmosphere (ICAO, 1976). Rounded by 5 gives the nearest FL
+BLOCK_END
+
+# Attributes for QContainer CTCot
+# ----------------------------------------
+BLOCK_CTCot
+standard_name        atmosphere_optical_thickness_due_to_cloud
+long_name            maximum cloud_optical_thickness over cloud cell extension
+scale_factor         0.01
+add_offset           0.0
+units                1
+valid_range          0, 32000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+			              
+# Attributes for QContainer CTReff
+# ----------------------------------------
+BLOCK_CTReff
+standard_name        effective_radius_of_cloud_condensed_water_particles_at_cloud_top
+long_name            maximum radius_effective over cloud cell extension
+scale_factor         1.0E-8
+add_offset           0.0
+units                m
+valid_range          0, 32000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer CTCwp
+# ----------------------------------------
+BLOCK_CTCwp
+standard_name        atmosphere_mass_content_of_convective_cloud_condensed_water
+long_name            maximum cloud condensed water_path over cloud cell extension
+scale_factor         0.001
+add_offset           0.0
+units                kg m-2
+valid_range          0, 4000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for CContainer CTHicgHzd
+# ----------------------------------------
+BLOCK_CTHicgHzd
+standard_name        
+long_name            High altitude Icing Hazard index
+units                1
+valid_range          0, 4
+_FillValue           255
+ancillary_variables  
+coordinates          
+comment        0:risk not defined
+comment        1:low_risk
+comment        2:moderate_risk
+comment        3:high_risk
+comment        4:very_high_risk
+flag_values          0, 1, 2, 3, 4
+flag_meanings        risk_not_defined
+flag_meanings        low_risk
+flag_meanings        moderate_risk
+flag_meanings        high_risk-free
+flag_meanings        very_high_risk
+BLOCK_END
+
+# Attributes for QContainer CRainRate
+# ----------------------------------------
+BLOCK_CRainRate
+standard_name        convective_precipitation_rate
+long_name            maximum convective_rain_rate over cloud cell extension
+scale_factor         0.1
+add_offset           0.0
+units                mm/h
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer SatFlashDensity
+# ----------------------------------------
+BLOCK_SatFlashDensity
+standard_name        satellite_flash_density
+long_name            maximum satellite flash density over cell
+scale_factor         1
+add_offset           0.0
+units                1
+valid_range          0, 500
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer SatMfa
+# ----------------------------------------
+BLOCK_SatMfa
+standard_name        satellite_minimum_flash_area
+long_name            minimum satellite flash area over cell
+scale_factor         1
+add_offset           0.0
+units                m2
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer BTempSlice
+# ----------------------------------------
+BLOCK_BTempSlice
+standard_name        brightness_temperature
+long_name            Brightness Temperature threshold defining a Cloud cell
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer SurfaceSlice
+# ----------------------------------------
+BLOCK_SurfaceSlice
+standard_name        
+long_name            Surface of Cloud cell at Temperature threshold
+scale_factor         5000000.
+add_offset           0.
+units                m2
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer NumIdCellOT
+# -------------------------------------------
+BLOCK_NumIdCellOT
+standard_name        
+long_name            Identification Number of cloud cell for overshoot
+scale_factor         1.0
+add_offset           0.0
+units                1
+valid_range          0, 50000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer LatPixOT
+# -------------------------------------------
+BLOCK_LatPixOT
+standard_name        latitude
+long_name            latitude of overshoot main point
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer LonPixOT
+# -------------------------------------------
+BLOCK_LonPixOT
+standard_name        longitude
+long_name            longitude of overshoot main point
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer BTminOT
+# ----------------------------------------
+BLOCK_BTminOT
+standard_name        brightness_temperature
+long_name            Minimum Brightness Temperature of overshoot
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer BTDOT
+# ----------------------------------------
+BLOCK_BTDOT
+standard_name        
+long_name            WV-IR Brightness Temperature difference at overshoot
+scale_factor         0.01
+add_offset           -40.
+units                K
+valid_range          0, 8000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer DTtropoOT
+# ----------------------------------------
+BLOCK_DTtropoOT
+standard_name        
+long_name            Negative temperature gap of overshoot above tropopause
+scale_factor         0.01
+add_offset           -20.
+units                K
+valid_range          0, 2000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer AreaOT
+# ----------------------------------------
+BLOCK_AreaOT
+standard_name        
+long_name            Surface of overshoot
+scale_factor         5000000.
+add_offset           0.
+units                m2
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer DTimeTraj
+# ----------------------------------------
+BLOCK_DTimeTraj
+standard_name        
+long_name            time gap between current and past Cloud cell
+scale_factor         1.
+add_offset           0.
+units                s
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer LatTrajCellCG
+# -------------------------------------------
+BLOCK_LatTrajCellCG
+standard_name        latitude
+long_name            latitude of Gravity Centre of past cloud cell
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer LonTrajCellCG
+# -------------------------------------------
+BLOCK_LonTrajCellCG
+standard_name        longitude
+long_name            longitude of Gravity Centre of past cloud cell
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for QContainer BTempTraj
+# ----------------------------------------
+BLOCK_BTempTraj
+standard_name        brightness_temperature
+long_name            Brightness Temperature threshold defining past Cloud cell
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer BTminTraj
+# ----------------------------------------
+BLOCK_BTminTraj
+standard_name        brightness_temperature
+long_name            Minimum Brightness Temperature of past Cloud cell
+scale_factor         0.01
+add_offset           130.0
+units                K
+valid_range          0, 22000
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer BaseAreaTraj
+# ----------------------------------------
+BLOCK_BaseAreaTraj
+standard_name        
+long_name            Surface of base of past Cloud cell
+scale_factor         5000000.
+add_offset           0.
+units                m2
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer TopAreaTraj
+# ----------------------------------------
+BLOCK_TopAreaTraj
+standard_name        
+long_name            Surface of top of past Cloud cell
+scale_factor         5000000.
+add_offset           0.
+units                m2
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer CoolingRateTraj
+# ----------------------------------------
+BLOCK_CoolingRateTraj
+standard_name        
+long_name            Temperature change rate of past cloud system
+scale_factor         0.000002
+add_offset           -0.05
+units                K s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer ExpanRateTraj
+# ----------------------------------------
+BLOCK_ExpanRateTraj
+standard_name        
+long_name            Expansion rate of past cloud system
+scale_factor         0.0000002
+add_offset           -0.005
+units                s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer SpeedTraj
+# ----------------------------------------
+BLOCK_SpeedTraj
+standard_name        
+long_name            Motion speed of past cloud cell
+scale_factor         0.001
+add_offset           0.0
+units                m s-1
+valid_range          0, 65534
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END
+
+# Attributes for QContainer DirTraj
+# ----------------------------------------
+BLOCK_DirTraj
+standard_name        wind_to_direction
+long_name            Direction of Motion of past cloud cell
+scale_factor         1.0
+add_offset           0.0
+units                degree
+valid_range          0, 360
+_FillValue           65535
+ancillary_variables  
+coordinates          
+comment              
+BLOCK_END

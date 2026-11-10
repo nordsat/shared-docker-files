@@ -1,0 +1,158 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_Common.cf
+# * \brief (PRIVATE) Configurable information for PRODIO, COMMON containers
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_Common.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for COMMON Containers
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate NWC/GEO product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * APR 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * OCT 2023    v2024       GMV      Include units for nx and ny variable
+# **************************************************************************/
+#
+
+
+
+# Attributes for Container "lat"
+# ------------------------------
+BLOCK_lat
+#_CoordinateAxisType  Lat
+standard_name        latitude
+long_name            Latitude at the centre of each pixel
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for Container "lon"
+# ------------------------------
+BLOCK_lon
+#_CoordinateAxisType  Lon
+standard_name        longitude
+long_name            Longitude at the centre of each pixel
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for Container "time"
+# ------------------------------
+BLOCK_time
+calendar             proleptic_gregorian
+long_name            time
+units                seconds since 1970-01-01 00:00:00
+BLOCK_END
+
+# Attributes for Container "fct"
+# ------------------------------
+BLOCK_fct
+long_name            forecast_term_in_minutes
+units                minute
+BLOCK_END
+
+# Attributes for Container "projection_definition"
+# ------------------------------
+BLOCK_projection_definition
+grid_mapping_name    geostationary
+BLOCK_END
+
+# Attributes for Container "ny"
+# ------------------------------
+BLOCK_ny
+standard_name        projection_y_coordinate
+long_name            scanning_y_angle_in_radians
+units                radian
+BLOCK_END
+
+# Attributes for Container "nx"
+# ------------------------------
+BLOCK_nx
+standard_name        projection_x_coordinate
+long_name            scanning_x_angle_in_radians
+units                radian
+BLOCK_END
+
+# Attributes for <pge>_conditions
+# -------------------------------
+BLOCK_conditions
+long_name            Common geophysical and processing conditions
+valid_range          1, 65535
+_FillValue           0
+flag_mask            1, 6, 6, 6, 8, 48, 48, 48, 64, 128, 768, 768, 768, 3072, 3072, 3072, 12288, 12288, 12288, 49152, 49152, 49152
+flag_values          1, 2, 4, 6, 8, 16, 32, 48, 64, 128, 256, 512, 768, 1024, 2048, 3072,  4096,  8192, 12288, 16384, 32768, 49152
+flag_meanings        space
+flag_meanings        night
+flag_meanings        day
+flag_meanings        twilight
+flag_meanings        sunglint
+flag_meanings        land
+flag_meanings        sea
+flag_meanings        coast
+flag_meanings        not_used
+flag_meanings        not_used
+flag_meanings        all_satellite_channels_available
+flag_meanings        useful_satellite_channels_missing
+flag_meanings        mandatory_satellite_channels_missing
+flag_meanings        all_NWP_fields_available
+flag_meanings        useful_NWP_fields_missing
+flag_meanings        mandatory_NWP_fields_missing
+flag_meanings        all_product_data_available
+flag_meanings        useful_product_data_missing
+flag_meanings        mandatory_product_data_missing
+flag_meanings        all_auxiliary_data_available
+flag_meanings        useful_auxiliary_data_missing
+flag_meanings        mandatory_auxiliary_data_missing
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              Common geophysical and processing conditions
+BLOCK_END
+
+# Attributes for <pge>_quality
+# -------------------------------
+BLOCK_quality
+long_name             Common Quality Indicators
+valid_range           1, 56
+_FillValue            0
+flag_mask             1, 2, 4, 56, 56, 56, 56
+flag_values           1, 2, 4,  8, 16, 24, 32
+flag_meanings         nodata
+flag_meanings         internal_consistency
+flag_meanings         temporal_consistency
+flag_meanings         good
+flag_meanings         questionable
+flag_meanings         bad
+flag_meanings         interpolated
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment               Common Quality Indicators
+BLOCK_END
+

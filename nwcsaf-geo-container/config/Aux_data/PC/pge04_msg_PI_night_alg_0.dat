@@ -1,0 +1,25 @@
+# Precipitation likelihood for night algorithm0, all clouds
+# Column 1: index
+# Column 2: P(precipitation < 0.1mm/hr)
+# Column 3: P(0.1mm/hr<precipitation<5.0mm/hr)
+# Column 4: P(5mm/hr<precipitation)
+    5  100    0    0
+   10  100    0    0
+   15  100    0    0
+   20  100    0    0
+   25  100    0    0
+   30  100    0    0
+   35   90   10    0
+   40   90   10    0
+   45   90   10    0
+   50   90   10    0
+   55   80   20    0
+   60   80   20    0
+   65   70   30    0
+   70   60   40    0
+   75   50   50    0
+   80   40   60    0
+   85   30   70    0
+   90   30   70    0
+   95   30   70    0
+  100   30   70    0 

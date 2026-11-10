@@ -1,0 +1,73 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_AUX-LATLON.cf
+# * \brief (PRIVATE) Configurable information for PRODIO, AUX-LATLON
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_AUX-LATLON.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for AUX-LATLON
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-AUX-LATLON product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * JUN 2017    2016.2      GMV      SPR-621: Generation of AUX Products in netCDF
+# * 
+# **************************************************************************/
+#
+
+
+
+# Attributes for Header - AUX
+# ------------------------------
+TITLE       NWC GEO Auxiliary Product - Lat/Lon
+SUMMARY     latitude and Longitude data Product of the NWC/GEO
+KEYWORDS    Auxiliary
+CDM         Image
+
+# Palette Definition
+# ------------------------------
+
+
+# Attributes for Container latitude
+# ------------------------------------
+BLOCK_latitude
+standard_name        latitude
+long_name            Latitude at the centre of each pixel
+units                degrees_north
+valid_range          -90.0, 90.0
+_FillValue           -9999.0
+BLOCK_END
+
+# Attributes for Container longitude
+# ------------------------------------
+BLOCK_longitude
+standard_name        longitude
+long_name            Longitude at the centre of each pixel
+units                degrees_east
+valid_range          -180.0, 180.0
+_FillValue           -9999.0
+BLOCK_END

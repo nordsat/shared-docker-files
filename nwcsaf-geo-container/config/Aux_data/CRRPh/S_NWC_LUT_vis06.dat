@@ -1,0 +1,45 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_LUT_vis06.dat
+# * \brief  LUT for the computation of the VIS06
+# *
+# * \par Copyright 2021, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *                     between EUMETSAT and AEMET.
+# *
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-CRRPh
+# *
+# * \par FILE        :  S_NWC_LUT_vis06.dat
+# *
+# * \par TYPE        :  LUT table
+# *
+# * \par FUNCTION    :  This is the configuration file to read the 2D binary LUT
+# *                     S_NWC_LUT_vis06.lut, containing VIS06 values as a 
+# *                     function of principal components (p1,p2) computed
+# *                     from normalized values of IR and WV bands
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    v0.0       GMV       First version (GEO-CRRPh PROTOTYPE)       
+# * OCT 2021    v3.0       GMV       Final version for NWC/GEO v2021     
+# * MAR 2023    v3.0       GMV       SPR-771 CRRPh goes out of range in tropical areas
+# *
+# **************************************************************************/
+#
+
+LUT_NCOLS    275
+LUT_NLINES   200
+LUT_X0       -11.0
+LUT_Y0       -3.4825
+LUT_DX       0.08
+LUT_DY       0.035

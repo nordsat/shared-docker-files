@@ -1,0 +1,1446 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_L1SD.cf
+# * \brief (PRIVATE) Configurable information for PRODIO - L1SD
+# *
+# *
+# * \par Copyright 2021, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_L1SD.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for L1SD
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate L1SD product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * JUN 2016    v1.0        GMV      First Version of GEO-L1SD PGE/Tool
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * APR 2021    2.0         GMV       Update for vMTG. Update of L1SD format 
+# * OCT 2023    v2024       GMV      SPR-780. Paralax correction for MTG
+# **************************************************************************/
+#
+
+
+# L1SD
+# -------------------------------------------
+TITLE       NWC/GEO Level 1 Satellite Product
+SUMMARY     Level 1 Satellite data. Refer to NWC/CDOP2/MTG/AEMET/SW/ACDD Section A.1 for details on satellite band data
+KEYWORDS    Satellite Data
+CDM         Image
+
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          l1sd_refl_pal
+PAL_FILE        S_NWC_PALETTE_l1sd_refl.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          l1sd_bt_ir_pal
+PAL_FILE        S_NWC_PALETTE_l1sd_bt_ir.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          l1sd_bt_wv_pal
+PAL_FILE        S_NWC_PALETTE_l1sd_bt_wv.pal
+PALETTE_END
+
+
+
+# ==========================================================================
+
+
+# Attributes for Container l1sd_VIS04_rad
+# ------------------------------------
+BLOCK_l1sd_VIS04_rad
+standard_name        Radiance_VIS04
+long_name            Radiance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_rad
+# ------------------------------------
+BLOCK_l1sd_VIS05_rad
+standard_name        Radiance_VIS05
+long_name            Radiance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_rad
+# ------------------------------------
+BLOCK_l1sd_VIS06_rad
+standard_name        Radiance_VIS06
+long_name            Radiance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_rad
+# ------------------------------------
+BLOCK_l1sd_VIS08_rad
+standard_name        Radiance_VIS08
+long_name            Radiance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_rad
+# ------------------------------------
+BLOCK_l1sd_VIS09_rad
+standard_name        Radiance_VIS09
+long_name            Radiance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_rad
+# ----------------------------------
+BLOCK_l1sd_HRV_rad
+standard_name        Radiance_HRV
+long_name            Radiance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_rad
+# ------------------------------------
+BLOCK_l1sd_NIR13_rad
+standard_name        Radiance_NIR13
+long_name            Radiance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_rad
+# ------------------------------------
+BLOCK_l1sd_NIR16_rad
+standard_name        Radiance_NIR16
+long_name            Radiance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_rad
+# ------------------------------------
+BLOCK_l1sd_NIR22_rad
+standard_name        Radiance_NIR22
+long_name            Radiance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR38_rad
+# --------------------------------
+BLOCK_l1sd_IR38_rad
+standard_name        Radiance_IR38
+long_name            Radiance_IR38
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_WV62_rad
+# --------------------------------
+BLOCK_l1sd_WV62_rad
+standard_name        Radiance_WV62
+long_name            Radiance_WV62
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_WV70_rad
+# --------------------------------
+BLOCK_l1sd_WV70_rad
+standard_name        Radiance_WV70
+long_name            Radiance_WV70
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_WV73_rad
+# --------------------------------
+BLOCK_l1sd_WV73_rad
+standard_name        Radiance_WV73
+long_name            Radiance_WV73
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR87_rad
+# --------------------------------
+BLOCK_l1sd_IR87_rad
+standard_name        Radiance_IR87
+long_name            Radiance_IR87
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR97_rad
+# --------------------------------
+BLOCK_l1sd_IR97_rad
+standard_name        Radiance_IR97
+long_name            Radiance_IR97
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR103_rad
+# ---------------------------------
+BLOCK_l1sd_IR103_rad
+standard_name        Radiance_IR103
+long_name            Radiance_IR103
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR108_rad
+# ---------------------------------
+BLOCK_l1sd_IR108_rad
+standard_name        Radiance_IR108
+long_name            Radiance_IR108
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR120_rad
+# ---------------------------------
+BLOCK_l1sd_IR120_rad
+standard_name        Radiance_IR120
+long_name            Radiance_IR120
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR134_rad
+# ---------------------------------
+BLOCK_l1sd_IR134_rad
+standard_name        Radiance_IR134
+long_name            Radiance_IR134
+scale_factor         0.01
+add_offset           0.0
+units                mW m-2 sr-1 (cm-1)-1
+valid_range          0, 60000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# ===========================================================================
+
+# Attributes for Container l1sd_VIS04_refl
+# -----------------------------------
+BLOCK_l1sd_VIS04_refl
+standard_name        Raw_Reflectance_VIS04
+long_name            Raw_Reflectance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_refl
+# -----------------------------------
+BLOCK_l1sd_VIS05_refl
+standard_name        Raw_Reflectance_VIS05
+long_name            Raw_Reflectance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_refl
+# -----------------------------------
+BLOCK_l1sd_VIS06_refl
+standard_name        Raw_Reflectance_VIS06
+long_name            Raw_Reflectance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_refl
+# -----------------------------------
+BLOCK_l1sd_VIS08_refl
+standard_name        Raw_Reflectance_VIS08
+long_name            Raw_Reflectance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_refl
+# -----------------------------------
+BLOCK_l1sd_VIS09_refl
+standard_name        Raw_Reflectance_VIS09
+long_name            Raw_Reflectance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_refl
+# ---------------------------------
+BLOCK_l1sd_HRV_refl
+standard_name        Raw_Reflectance_HRV
+long_name            Raw_Reflectance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_refl
+# -----------------------------------
+BLOCK_l1sd_NIR13_refl
+standard_name        Raw_Reflectance_NIR13
+long_name            Raw_Reflectance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_refl
+# -----------------------------------
+BLOCK_l1sd_NIR16_refl
+standard_name        Raw_Reflectance_NIR16
+long_name            Raw_Reflectance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_refl
+# -----------------------------------
+BLOCK_l1sd_NIR22_refl
+standard_name        Raw_Reflectance_NIR22
+long_name            Raw_Reflectance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# ============================================================================
+
+
+# Attributes for Container l1sd_VIS04_refnc
+# ------------------------------------
+BLOCK_l1sd_VIS04_refnc
+standard_name        Normalized_Corrected_Reflectance_VIS04
+long_name            Normalized_Corrected_Reflectance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_refnc
+# ------------------------------------
+BLOCK_l1sd_VIS05_refnc
+standard_name        Normalized_Corrected_Reflectance_VIS05
+long_name            Normalized_Corrected_Reflectance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_refnc
+# ------------------------------------
+BLOCK_l1sd_VIS06_refnc
+standard_name        Normalized_Corrected_Reflectance_VIS06
+long_name            Normalized_Corrected_Reflectance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_refnc
+# ------------------------------------
+BLOCK_l1sd_VIS08_refnc
+standard_name        Normalized_Corrected_Reflectance_VIS08
+long_name            Normalized_Corrected_Reflectance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_refnc
+# ------------------------------------
+BLOCK_l1sd_VIS09_refnc
+standard_name        Normalized_Corrected_Reflectance_VIS09
+long_name            Normalized_Corrected_Reflectance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_refnc
+# ----------------------------------
+BLOCK_l1sd_HRV_refnc
+standard_name        Normalized_Corrected_Reflectance_HRV
+long_name            Normalized_Corrected_Reflectance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_refnc
+# ------------------------------------
+BLOCK_l1sd_NIR13_refnc
+standard_name        Normalized_Corrected_Reflectance_NIR13
+long_name            Normalized_Corrected_Reflectance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_refnc
+# ------------------------------------
+BLOCK_l1sd_NIR16_refnc
+standard_name        Normalized_Corrected_Reflectance_NIR16
+long_name            Normalized_Corrected_Reflectance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_refnc
+# ------------------------------------
+BLOCK_l1sd_NIR22_refnc
+standard_name        Normalized_Corrected_Reflectance_NIR22
+long_name            Normalized_Corrected_Reflectance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+
+# ============================================================================
+
+
+# Attributes for Container l1sd_IR38_bt
+# --------------------------------
+BLOCK_l1sd_IR38_bt
+standard_name        Radiance_IR38
+long_name            Brightness_Temperature_IR38
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_WV62_bt
+# --------------------------------
+BLOCK_l1sd_WV62_bt
+standard_name        Brightness_Temperature_WV62
+long_name            Brightness_Temperature_WV62
+scale_factor         0.01
+add_offset           160.0
+units                K
+valid_range          0, 11000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_wv_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_WV70_bt
+# --------------------------------
+BLOCK_l1sd_WV70_bt
+standard_name        Brightness_Temperature_WV70
+long_name            Brightness_Temperature_WV70
+scale_factor         0.01
+add_offset           160.0
+units                K
+valid_range          0, 11000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_wv_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_WV73_bt
+# --------------------------------
+BLOCK_l1sd_WV73_bt
+standard_name        Brightness_Temperature_WV73
+long_name            Brightness_Temperature_WV73
+scale_factor         0.01
+add_offset           160.0
+units                K
+valid_range          0, 11000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_wv_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR87_bt
+# --------------------------------
+BLOCK_l1sd_IR87_bt
+standard_name        Brightness_Temperature_IR87
+long_name            Brightness_Temperature_IR87
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR97_bt
+# --------------------------------
+BLOCK_l1sd_IR97_bt
+standard_name        Brightness_Temperature_IR97
+long_name            Brightness_Temperature_IR97
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR103_bt
+# ---------------------------------
+BLOCK_l1sd_IR103_bt
+standard_name        Brightness_Temperature_IR103
+long_name            Brightness_Temperature_IR103
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR108_bt
+# ---------------------------------
+BLOCK_l1sd_IR108_bt
+standard_name        Brightness_Temperature_IR108
+long_name            Brightness_Temperature_IR108
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR120_bt
+# ---------------------------------
+BLOCK_l1sd_IR120_bt
+standard_name        Brightness_Temperature_IR120
+long_name            Brightness_Temperature_IR120
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_IR134_bt
+# ---------------------------------
+BLOCK_l1sd_IR134_bt
+standard_name        Brightness_Temperature_IR134
+long_name            Brightness_Temperature_IR134
+scale_factor         0.01
+add_offset           120.0
+units                K
+valid_range          0, 20000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_bt_ir_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# ============================================================================
+
+# Attributes for Container l1sd_VIS04_refn
+# -----------------------------------
+BLOCK_l1sd_VIS04_refn
+standard_name        Normalized_Reflectance_VIS04
+long_name            Normalized_Reflectance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_refn
+# -----------------------------------
+BLOCK_l1sd_VIS05_refn
+standard_name        Normalized_Reflectance_VIS05
+long_name            Normalized_Reflectance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_refn
+# ------------------------------------
+BLOCK_l1sd_VIS06_refn
+standard_name        Normalized_Reflectance_VIS06
+long_name            Normalized_Reflectance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_refn
+# ------------------------------------
+BLOCK_l1sd_VIS08_refn
+standard_name        Normalized_Reflectance_VIS08
+long_name            Normalized_Reflectance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_refn
+# -----------------------------------
+BLOCK_l1sd_VIS09_refn
+standard_name        Normalized_Reflectance_VIS09
+long_name            Normalized_Reflectance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_refn
+# ---------------------------------
+BLOCK_l1sd_HRV_refn
+standard_name        Normalized_Reflectance_HRV
+long_name            Normalized_Reflectance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_refn
+# -----------------------------------
+BLOCK_l1sd_NIR13_refn
+standard_name        Normalized_Reflectance_NIR13
+long_name            Normalized_Reflectance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_refn
+# ------------------------------------
+BLOCK_l1sd_NIR16_refn
+standard_name        Normalized_Reflectance_NIR16
+long_name            Normalized_Reflectance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_refn
+# -----------------------------------
+BLOCK_l1sd_NIR22_refn
+standard_name        Normalized_Reflectance_NIR22
+long_name            Normalized_Reflectance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# ============================================================================
+
+# Attributes for Container l1sd_VIS04_reflc
+# -----------------------------------
+BLOCK_l1sd_VIS04_reflc
+standard_name        Corrected_Reflectance_VIS04
+long_name            Corrected_Reflectance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_reflc
+# -----------------------------------
+BLOCK_l1sd_VIS05_reflc
+standard_name        Corrected_Reflectance_VIS05
+long_name            Corrected_Reflectance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_reflc
+# ------------------------------------
+BLOCK_l1sd_VIS06_reflc
+standard_name        Corrected_Reflectance_VIS06
+long_name            Corrected_Reflectance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_reflc
+# ------------------------------------
+BLOCK_l1sd_VIS08_reflc
+standard_name        Corrected_Reflectance_VIS08
+long_name            Corrected_Reflectance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_reflc
+# -----------------------------------
+BLOCK_l1sd_VIS09_reflc
+standard_name        Corrected_Reflectance_VIS09
+long_name            Corrected_Reflectance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_reflc
+# ---------------------------------
+BLOCK_l1sd_HRV_reflc
+standard_name        Corrected_Reflectance_HRV
+long_name            Corrected_Reflectance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_reflc
+# -----------------------------------
+BLOCK_l1sd_NIR13_reflc
+standard_name        Corrected_Reflectance_NIR13
+long_name            Corrected_Reflectance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_reflc
+# ------------------------------------
+BLOCK_l1sd_NIR16_reflc
+standard_name        Corrected_Reflectance_NIR16
+long_name            Corrected_Reflectance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_reflc
+# -----------------------------------
+BLOCK_l1sd_NIR22_reflc
+standard_name        Corrected_Reflectance_NIR22
+long_name            Corrected_Reflectance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# ============================================================================
+
+# Attributes for Container l1sd_VIS04_refm
+# -----------------------------------
+BLOCK_l1sd_VIS04_refm
+standard_name        Normalized_Reflectance_VIS04
+long_name            Normalized_Reflectance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_refm
+# -----------------------------------
+BLOCK_l1sd_VIS05_refm
+standard_name        Normalized_Reflectance_VIS05
+long_name            Normalized_Reflectance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_refm
+# ------------------------------------
+BLOCK_l1sd_VIS06_refm
+standard_name        Normalized_Reflectance_VIS06
+long_name            Normalized_Reflectance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_refm
+# ------------------------------------
+BLOCK_l1sd_VIS08_refm
+standard_name        Normalized_Reflectance_VIS08
+long_name            Normalized_Reflectance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_refm
+# -----------------------------------
+BLOCK_l1sd_VIS09_refm
+standard_name        Normalized_Reflectance_VIS09
+long_name            Normalized_Reflectance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_refm
+# ---------------------------------
+BLOCK_l1sd_HRV_refm
+standard_name        Normalized_Reflectance_HRV
+long_name            Normalized_Reflectance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_refm
+# -----------------------------------
+BLOCK_l1sd_NIR13_refm
+standard_name        Normalized_Reflectance_NIR13
+long_name            Normalized_Reflectance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_refm
+# ------------------------------------
+BLOCK_l1sd_NIR16_refm
+standard_name        Normalized_Reflectance_NIR16
+long_name            Normalized_Reflectance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_refm
+# -----------------------------------
+BLOCK_l1sd_NIR22_refm
+standard_name        Normalized_Reflectance_NIR22
+long_name            Normalized_Reflectance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# ============================================================================
+
+# Attributes for Container l1sd_VIS04_refmc
+# -----------------------------------
+BLOCK_l1sd_VIS04_refmc
+standard_name        Normalized_Corrected_Reflectance_VIS04
+long_name            Normalized_Corrected_Reflectance_VIS04
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS05_refmc
+# -----------------------------------
+BLOCK_l1sd_VIS05_refmc
+standard_name        Normalized_Corrected_Reflectance_VIS05
+long_name            Normalized_Corrected_Reflectance_VIS05
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS06_refmc
+# ------------------------------------
+BLOCK_l1sd_VIS06_refmc
+standard_name        Normalized_Corrected_Reflectance_VIS06
+long_name            Normalized_Corrected_Reflectance_VIS06
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS08_refmc
+# ------------------------------------
+BLOCK_l1sd_VIS08_refmc
+standard_name        Normalized_Corrected_Reflectance_VIS08
+long_name            Normalized_Corrected_Reflectance_VIS08
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_VIS09_refmc
+# -----------------------------------
+BLOCK_l1sd_VIS09_refmc
+standard_name        Normalized_Corrected_Reflectance_VIS09
+long_name            Normalized_Corrected_Reflectance_VIS09
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_HRV_refmc
+# ---------------------------------
+BLOCK_l1sd_HRV_refmc
+standard_name        Normalized_Corrected_Reflectance_HRV
+long_name            Normalized_Corrected_Reflectance_HRV
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR13_refmc
+# -----------------------------------
+BLOCK_l1sd_NIR13_refmc
+standard_name        Normalized_Corrected_Reflectance_NIR13
+long_name            Normalized_Corrected_Reflectance_NIR13
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR16_refmc
+# ------------------------------------
+BLOCK_l1sd_NIR16_refmc
+standard_name        Normalized_Corrected_Reflectance_NIR16
+long_name            Normalized_Corrected_Reflectance_NIR16
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# Attributes for Container l1sd_NIR22_refmc
+# -----------------------------------
+BLOCK_l1sd_NIR22_refmc
+standard_name        Normalized_Corrected_Reflectance_NIR22
+long_name            Normalized_Corrected_Reflectance_NIR22
+scale_factor         0.01
+add_offset           0.0
+units                100
+valid_range          0 10000
+_FillValue           65535
+ancillary_variables  l1sd_conditions l1sd_quality l1sd_refl_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+BLOCK_END
+
+# ===========================================================================
+
+# Attributes for Container l1sd_refl_pal
+# --------------------------------------
+BLOCK_l1sd_refl_pal
+long_name            RGB palette for reflectance bands
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to reflectance bands
+BLOCK_END
+
+# Attributes for Container l1sd_bt_ir_pal
+# --------------------------------------
+BLOCK_l1sd_bt_ir_pal
+long_name            RGB palette for IR bands
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to IR bands
+BLOCK_END
+
+# Attributes for Container l1sd_bt_wv_pal
+# --------------------------------------
+BLOCK_l1sd_bt_wv_pal
+long_name            RGB palette for WV bands
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to WV bands
+BLOCK_END

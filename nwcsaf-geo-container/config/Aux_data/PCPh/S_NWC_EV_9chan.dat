@@ -1,0 +1,73 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_EV_9chan.dat
+# * \brief  Eigenvalues for the computation of components for PCPh
+# *
+# * \par Copyright 2022, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting
+# *                     between EUMETSAT and AEMET.
+# *
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  GEO-PCPh
+# *
+# * \par FILE        :  S_NWC_EV_9chan.dat
+# *
+# * \par TYPE        :  configuration file
+# *
+# * \par FUNCTION    :  This file contains the eignevalues for the computation 
+# *                     of the components for retrieve PCPh 
+# *                     using normalised data for the following satellite 
+# *                     bands:
+# *                       CWP
+# *                       IR108
+# *                       IR120
+# *                       IR134
+# *                       IR87
+# *                       IR97
+# *                       VIS06
+# *                       WV62
+# *                       WV73
+# *
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * MAR 2020    v0.0       GMV       First version (GEO-PCPh PROTOTYPE)       
+# * DIC 2020    v3.0       GMV       Update of coefficients for vMTG    
+# * OCT 2021    v3.0       GMV       Final version for NWC/GEO v2021     
+# * JAN 2022    v4.0       GMV       Final version for NWC/GEO vMTG
+# *
+# **************************************************************************/
+#
+
+# Eigenvector V1
+# --------------
+v11     0.16196726
+v12    -0.36737917
+v13    -0.3668939
+v14    -0.36577753
+v15    -0.36739541
+v16    -0.35333574
+v17     0.27229012
+v18    -0.36048641
+v19    -0.32630803
+
+# Eigenvector V2
+# --------------
+v21    -0.79885475
+v22    -0.06545106
+v23    -0.0886929
+v24    -0.1257116
+v25    -0.04760894
+v26    -0.0402052
+v27    -0.50034629
+v28    -0.14551587
+v29    -0.24181205

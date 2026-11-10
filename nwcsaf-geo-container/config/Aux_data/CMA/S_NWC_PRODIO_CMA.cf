@@ -1,0 +1,312 @@
+#/*************************************************************************/
+#/**
+# * \file S_NWC_PRODIO_CMA.cf
+# * \brief (PRIVATE) Configurable information for PRODIO, CMA
+# *
+# *
+# * \par Copyright 2015, EUMETSAT, All Rights Reserved
+# *
+# * \par PRODUCED BY :  GMV Aerospace and Defence S.A.U.
+# *                     This SW was developed by GMV within the
+# *                     context of the EUMETSAT Satellite Application
+# *                     Facility Co-operation Agreement for Support to
+# *                     Nowcasting and Very Short Range Forecasting,
+# *                     dated on 29 June 2011 between EUMETSAT
+# *                     and AEMET.
+# *
+# * \par PROJECT     :  NWC SAF
+# *
+# * \par UNIT NAME   :  NWCLIB
+# *
+# * \par FILE        :  S_NWC_PRODIO_CMA.cf
+# *
+# * \par TYPE        :  (PRIVATE) Product Configuration File for CMA
+# *
+# * \par FUNCTION    :
+# *                     Defines Product information to be used by PRODIO
+# *                     to generate GEO-CMA product in netCDF format
+# *
+# *                     -------------------------------------------
+# *                     USERS ARE REQUESTED TO NOT MODIFY THIS FILE 
+# *                     -------------------------------------------
+# *
+# **************************************************************************/
+#/* HISTORY
+# *
+# *  DATE      VERSION     AUTHOR     REASONS
+# * DEC 2014    SIRR        GMV      NWCLIB Implementation for SIRR
+# * OCT 2017    V2018	    MFL      adaptation V2018/CF conventions
+# * JAN 2020    vMTG        GMV      Update of output product format for vMTG
+# * DEC 2025    v2025       MFL      Update cma_status
+# * 
+# **************************************************************************/
+#
+
+
+
+# Attributes for Header - CMA
+# ------------------------------
+TITLE       NWC GEO Cloud Mask Product
+SUMMARY     Cloud Mask Product of the NWC/GEO. Information on the presence of clouds, dust, smoke and volcanic plumes
+KEYWORDS    Cloud Amount, Dust, Ash, Smoke
+CDM         Image
+
+# Palette Definition
+# ------------------------------
+PALETTE
+PAL_ID          cma_pal
+PAL_FILE        S_NWC_PALETTE_cma.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cma_cloudsnow_pal
+PAL_FILE        S_NWC_PALETTE_cma_cloudsnow.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cma_dust_pal
+PAL_FILE        S_NWC_PALETTE_cma_dust.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cma_volcanic_pal
+PAL_FILE        S_NWC_PALETTE_cma_volcanic.pal
+PALETTE_END
+
+PALETTE
+PAL_ID          cma_smoke_pal
+PAL_FILE        S_NWC_PALETTE_cma_smoke.pal
+PALETTE_END
+
+# Attributes for Container cma
+# ------------------------------------
+BLOCK_cma
+standard_name        cloud_binary_mask
+long_name            NWC GEO CMA Cloud Mask
+units                
+valid_range          0, 1
+_FillValue           255
+ancillary_variables  cma_status_flag cma_conditions cma_quality cma_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0:  Cloud free;
+comment              1: Cloudy
+flag_values          0, 1
+flag_meanings        Cloud_free
+flag_meanings        Cloudy
+BLOCK_END
+
+
+# Attributes for Container cma_cloudsnow
+# ------------------------------------
+BLOCK_cma_cloudsnow
+standard_name        
+long_name            NWC GEO CMA Cloud and Snow Mask
+units                
+valid_range          0, 3
+_FillValue           255
+ancillary_variables  cma_status_flag  cma_conditions cma_quality cma_cloudsnow_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0:  Cloud free;
+comment              1:  Cloud (except thin ice over snow);
+comment              2:  Thin ice clouds over snow/ice; 
+comment              3:  Snow/Ice
+flag_values          0, 1, 2, 3
+flag_meanings        Cloud_free
+flag_meanings        Cloud_except_thin_ice_over_snow
+flag_meanings        Thin_ice_clouds_over_snow_ice
+flag_meanings        Snow_Ice
+BLOCK_END
+
+
+# Attributes for Container cma_dust
+# ------------------------------------
+BLOCK_cma_dust
+standard_name        
+long_name            NWC GEO CMA Dust Detection
+units                
+valid_range          0, 2
+_FillValue           255
+ancillary_variables  cma_status_flag  cma_conditions cma_quality cma_dust_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0:  No dust;
+comment              1:  Dust;
+comment              2:  Undefined (separability problems)
+flag_values          0, 1, 2
+flag_meanings        No_dust
+flag_meanings        Dust
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+
+# Attributes for Container cma_volcanic
+# ------------------------------------
+BLOCK_cma_volcanic
+standard_name        
+long_name            NWC GEO CMA Volcanic Plume Detection
+units                
+valid_range          0, 2
+_FillValue           255
+ancillary_variables  cma_status_flag  cma_conditions cma_quality cma_volcanic_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0:  No volcanic plume;
+comment              1:  Volcanic plume;
+comment              2:  Undefined (separability problems)
+flag_values          0, 1, 2
+flag_meanings        No_volcanic_plume
+flag_meanings        Volcanic_plume
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+# Attributes for Container cma_smoke
+# ------------------------------------
+BLOCK_cma_smoke
+standard_name        
+long_name            NWC GEO CMA Smoke Detection
+units                
+valid_range          0, 2
+_FillValue           255
+ancillary_variables  cma_status_flag  cma_conditions cma_quality cma_smoke_pal
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              0:  No smoke;
+comment              1:  Smoke;
+comment              2:  Undefined (separability problems)
+flag_values          0, 1, 2
+flag_meanings        No_smoke
+flag_meanings        Smoke
+flag_meanings        Undefined_separability_problems
+BLOCK_END
+
+# Attributes for Container cma_testlist1
+# --------------------------------------
+BLOCK_cma_testlist1
+standard_name        status_flag
+long_name            NWC GEO CMA List of Tests (1/2)
+valid_range          0, 32767
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384
+flag_values          1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384
+flag_meanings         R06um_land_or_R08um_sea
+flag_meanings         R16um_sea
+flag_meanings         Sunglint_test_using_38um
+flag_meanings         R138um
+flag_meanings         T108um_or_SST
+flag_meanings         T108umT120um
+flag_meanings         T108umT38um
+flag_meanings         T120umT38um
+flag_meanings         T38umT108um
+flag_meanings         T108umT87um
+flag_meanings         T87umT108um
+flag_meanings         T87umT38um
+flag_meanings         Snow_with_only_38um
+flag_meanings         Snow_with_16um
+flag_meanings         Snow_with_combined_use_of_16um_and_22um
+BLOCK_END
+
+# Attributes for Container cma_testlist2
+# --------------------------------------
+BLOCK_cma_testlist2
+standard_name        status_flag
+long_name            NWC GEO CMA List of Tests (2/2)
+valid_range          0, 32767
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
+flag_values          1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
+flag_meanings         Local_Spatial_Texture
+flag_meanings         T108um_with_RTTOV
+flag_meanings         T38um_with_RTTOV
+flag_meanings         T87umT38um_with_RTTOV
+flag_meanings         T108umT120um_with_RTTOV
+flag_meanings         T108umT87um_with_RTTOV
+flag_meanings         T108umT38um_with_RTTOV
+flag_meanings         Temporal_differencing
+flag_meanings         Stationary_cloud_in_twilight
+flag_meanings         Spatial_extent_of_stationary_clouds_in_twilight
+flag_meanings         Use_of_high_resolution_visible
+flag_meanings         Spatial_filtering_cloud_reclassified_as_cloud-free
+flag_meanings         Spatial_filtering_cloud-free_reclassified_as_cloud
+BLOCK_END
+
+
+# Attributes for Container cma_status_flag
+# ------------------------------------
+BLOCK_cma_status_flag
+standard_name        status_flag
+long_name            Information on specific NWC GEO CMA processing
+valid_range          0, 4095
+_FillValue           32768
+coordinates          time ny nx
+grid_mapping         projection_definition
+comment              
+flag_mask            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048
+flag_values          1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048
+flag_meanings        Low_level_thermal_inversion_in_NWP_field
+flag_meanings        Cold_snowy_ground_suspected
+flag_meanings        Temporal_algorithm_passed
+flag_meanings        High_resolution_satellite_data_used
+flag_meanings        Solar_intrusion_detected
+flag_meanings        RTTOV_on-line_used
+flag_meanings        SST_analysis_available
+flag_meanings        Snow_map_available
+flag_meanings        Sea_ice_map_available
+flag_meanings        No_method_for_dust
+flag_meanings        No_method_for_volcanic_plume
+flag_meanings        No_method_for_smoke
+BLOCK_END
+
+
+# Attributes for Container cma_pal
+# ------------------------------------
+BLOCK_cma_pal
+long_name            RGB palette for cma
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cma
+BLOCK_END
+
+# Attributes for Container cma_cloudsnow_pal
+# ------------------------------------
+BLOCK_cma_cloudsnow_pal
+long_name            RGB palette for cma_cloudsnow
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cma_cloudsnow
+BLOCK_END
+
+# Attributes for Container cma_dust_pal
+# ------------------------------------
+BLOCK_cma_dust_pal
+long_name            RGB palette for cma_dust
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cma_dust
+BLOCK_END
+
+# Attributes for Container cma_smoke_pal
+# ------------------------------------
+BLOCK_cma_smoke_pal
+long_name            RGB palette for cma_smoke
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cma_smoke
+BLOCK_END
+
+# Attributes for Container cma_volcanic_pal
+# ------------------------------------
+BLOCK_cma_volcanic_pal
+long_name            RGB palette for cma_volcanic
+valid_range          0, 255
+colormodel           RGB
+comment              Palette applicable to field cma_volcanic
+BLOCK_END
+
